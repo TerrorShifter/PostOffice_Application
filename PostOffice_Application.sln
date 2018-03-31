@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostOffice_Application", "PostOffice_Application\PostOffice_Application.csproj", "{0731CB18-40DF-44FD-ABF6-2438F4CD9375}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0731CB18-40DF-44FD-ABF6-2438F4CD9375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0731CB18-40DF-44FD-ABF6-2438F4CD9375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0731CB18-40DF-44FD-ABF6-2438F4CD9375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0731CB18-40DF-44FD-ABF6-2438F4CD9375}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B3A4430-B2B8-4BE5-A89B-1FD1587B165D}
+	EndGlobalSection
+EndGlobal
