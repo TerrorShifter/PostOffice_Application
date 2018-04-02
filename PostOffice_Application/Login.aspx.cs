@@ -29,7 +29,7 @@ namespace PostOffice_Application
                 using (SqlConnection connection = new SqlConnection(cb.ConnectionString))
                 {
                     connection.Open();
-                    string query = "SELECT COUNT(1) FROM LOGIN WHERE Username=@Username AND Password=@Password AND User_Type_Name=@UserType";
+                    string query = "SELECT COUNT(1) FROM LOGIN L, USER_TYPE U WHERE L.Username=@Username AND L.Password=@Password AND U.User_Type_Name=@UserType AND L.User_Type_ID=U.User_Type_ID";
                     SqlCommand checkCredentials = new SqlCommand(query, connection);
                     checkCredentials.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
                     checkCredentials.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
@@ -48,6 +48,11 @@ namespace PostOffice_Application
             {
                 Console.WriteLine(ex.ToString());
             }
+        }
+
+        protected void btnForgot_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ForgotPassword.aspx");
         }
     }
 }

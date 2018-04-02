@@ -7,41 +7,60 @@
     <title></title>
     <style>
         body{
-            background-color:cadetblue;
+            background-color:grey;
+        }
+        .auto-style2 {
+            height: 60px;
+            width: 165px;
+        }
+        .auto-style3 {
+            width: 128px;
+        }
+        .auto-style4 {
+            height: 60px;
+            width: 128px;
+        }
+        .auto-style6 {
+            width: 165px;
+        }
+        .dropdown{
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <table style="margin:auto;border:5px solid black">
+            <table style="border:5px solid black; height: 260px; width: 428px; text-align:center; font-weight:bold; background-color:whitesmoke; position:fixed; margin-left:-214px; margin-top:-65px; top:25%; left:50%">
                 <tr>
-                    <td>
-                        <asp:Label ID="Label1" runat="server" Text="Username"></asp:Label></td>
-                    <td>
-                        <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox></td>
+                    <td class="auto-style6">
+                        <asp:Label ID="Label1" runat="server" Text="Username:"></asp:Label></td>
+                    <td class="auto-style3">
+                        <asp:TextBox ID="txtUsername" runat="server" Width="160px"></asp:TextBox></td>
                 </tr>
                  <tr>
-                    <td>
-                        <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label></td>
-                    <td>
-                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox></td>
+                    <td class="auto-style6">
+                        <asp:Label ID="Label2" runat="server" Text="Password:"></asp:Label></td>
+                    <td class="auto-style3">
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" Width="160px"></asp:TextBox></td>
                 </tr>
                  <tr>
-                    <td>
+                    <td class="auto-style2">
                         
-                        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="Post_Office" DataTextField="User_Type_Name" DataValueField="User_Type_Name">
+                        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="Post_Office" DataTextField="User_Type_Name" DataValueField="User_Type_Name" Width="160px">
                         </asp:DropDownList>
                         <asp:SqlDataSource ID="Post_Office" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [User_Type_Name] FROM [USER_TYPE] ORDER BY [User_Type_Name]"></asp:SqlDataSource>
                         
                         </td>
-                    <td>
-                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" /></td>
+                    <td class="auto-style4">
+                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" Width="160px" /></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td>
+                    <td class="auto-style2">
                         <asp:Label ID="lblLoginError" runat="server" Text="Invalid login info" ForeColor="Red"></asp:Label></td>
+                    <td class="auto-style4">
+                        <asp:Button ID="btnForgot" runat="server" Text="Forgot Password?" Width="160px" OnClick="btnForgot_Click" />
+                        </td>
                 </tr>
             </table>
         </div>
