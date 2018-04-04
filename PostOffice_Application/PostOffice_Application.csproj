@@ -66,6 +66,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Employee\CreateSuccess.aspx" />
+    <Content Include="Employee\EmployeeMaster.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -75,11 +77,49 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Employee\EmployeeCreatePackage.aspx" />
+    <Content Include="Employee\EmployeeHome.aspx" />
+    <Content Include="Employee\EmployeeUpdateShipment.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employee\CreateSuccess.aspx.cs">
+      <DependentUpon>CreateSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\CreateSuccess.aspx.designer.cs">
+      <DependentUpon>CreateSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeMaster.Master.cs">
+      <DependentUpon>EmployeeMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeMaster.Master.designer.cs">
+      <DependentUpon>EmployeeMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeCreatePackage.aspx.cs">
+      <DependentUpon>EmployeeCreatePackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeCreatePackage.aspx.designer.cs">
+      <DependentUpon>EmployeeCreatePackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeHome.aspx.cs">
+      <DependentUpon>EmployeeHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeHome.aspx.designer.cs">
+      <DependentUpon>EmployeeHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeUpdateShipment.aspx.cs">
+      <DependentUpon>EmployeeUpdateShipment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeUpdateShipment.aspx.designer.cs">
+      <DependentUpon>EmployeeUpdateShipment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
