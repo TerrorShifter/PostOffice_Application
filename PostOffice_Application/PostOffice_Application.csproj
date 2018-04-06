@@ -75,11 +75,27 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Customer_Home.aspx" />
+    <Content Include="Customer_Tracking.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer_Home.aspx.cs">
+      <DependentUpon>Customer_Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer_Home.aspx.designer.cs">
+      <DependentUpon>Customer_Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer_Tracking.aspx.cs">
+      <DependentUpon>Customer_Tracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer_Tracking.aspx.designer.cs">
+      <DependentUpon>Customer_Tracking.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
