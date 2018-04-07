@@ -20,7 +20,32 @@
         <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
     </p>
     <p style="font-size: medium">
-        Customer ID:
+        Customer ID (<asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">
+            <asp:View ID="View1" runat="server">
+                <asp:Button CommandName="NextView" ID="btnnext" runat="server" Text = "Create new customer" />
+            </asp:View>
+            <asp:View ID="View2" runat="server">
+                <asp:Button CommandName="PrevView" ID="btnprevious" runat="server" Text = "Cancel" />
+                <br />
+                Customer first name:
+                <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+                , last name:
+                <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
+                <br />
+                Customer phone number:
+                <asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
+                , email:
+                <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
+                <br />
+                Customer address ID:
+                <asp:TextBox ID="TextBox11" runat="server"></asp:TextBox>
+                , local post office ID:
+                <asp:TextBox ID="TextBox12" runat="server" style="margin-right: 0px"></asp:TextBox>
+                <br />
+                <asp:Button ID="Button2" runat="server" Text="Generate new ID" />
+            </asp:View>
+        </asp:MultiView>
+        ):
         <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
     </p>
     <p style="font-size: medium">
