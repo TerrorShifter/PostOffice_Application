@@ -37,7 +37,8 @@
                     <td class="auto-style6">
                         <asp:Label ID="Label1" runat="server" Text="Username/Email:"></asp:Label></td>
                     <td class="auto-style3">
-                        <asp:TextBox ID="txtUsername" runat="server" Width="160px"></asp:TextBox></td>
+                        <asp:TextBox ID="txtUsername" runat="server" Width="160px"></asp:TextBox></td> 
+                        <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server" ControlToValidate="txtUsername" ErrorMessage="Username is a required field." ForeColor="Yellow"></asp:RequiredFieldValidator>
                 </tr>
                  <tr>
                     <td class="auto-style6">
