@@ -17,12 +17,12 @@ namespace PostOffice_Application
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Login.aspx"); 
+            Response.Redirect("Login.aspx"); //redirect to Login Page
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect(""); //will redirect to sign up page once complete
+            Response.Redirect("SignUp.aspx"); //redirect to Sign Up Page
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace PostOffice_Application
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-
+           
         }
     }
 }
