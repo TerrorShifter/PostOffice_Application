@@ -9,7 +9,7 @@
         .auto-style1 {
             width: 309px;
             height: 220px;
-            margin-left: 572px;
+            margin-left: 594px;
             margin-right: 934px;
             margin-top: 58px;
         }
