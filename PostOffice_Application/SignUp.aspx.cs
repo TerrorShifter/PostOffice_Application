@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,10 +18,32 @@ namespace PostOffice_Application
 
         }
 
+        //checks if input password meets format requirements, or if it is empty.
+        //At least one: digit, lowercase, special character. Length between 6 and 20.
+        bool passwordCheck(string text)
+        {
+            var  passwordRegex =  new Regex("((?=.*\\d)(?=.*[a-z])(?=.*[\\W]).{6,20})");
+            if (!passwordRegex.IsMatch(text)||text=="")
+            {
+                return false;
+            }
+            else
+                return true;
+        }
+
+        bool emailCheck(string text)
+        {
+            if (text == "" || !text.Contains("@") || !text.Contains("."))
+                return false;
+            else
+                return true;
+
+        }
+
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
             //Checks if input strings are properly formatted, or if they are entered at all.
-            if (TextBox1.Text == "" || passwordText.Text == "" || TextBox1.Text.Contains("@") == false)
+            if (emailCheck(TextBox1.Text)==false|| passwordCheck(passwordText.Text)==false)
             {
                 lblSignUpInfo.Text = "Invalid Email or Password.";
                 lblSignUpInfo.ForeColor = System.Drawing.Color.Red;
@@ -42,7 +65,7 @@ namespace PostOffice_Application
                          InitialCatalog = "Post_Office",
                          UserID = "luisflores",
                          Password = "luisf%1220"
-                      /* DataSource = ".\\SQLEXPRESS",
+                     /* DataSource = ".\\SQLEXPRESS",
                         InitialCatalog = "LOGIN",
                         IntegratedSecurity = true*/
 
@@ -67,6 +90,7 @@ namespace PostOffice_Application
                         }
                         else
                         {
+                            //adds info to login table of database, informs user of successful acount creation.
                             SqlCommand c = new SqlCommand(query, con);
                             c.Parameters.AddWithValue("@Username", TextBox1.Text.Trim());
                             c.Parameters.AddWithValue("@Password", passwordText.Text.Trim());
