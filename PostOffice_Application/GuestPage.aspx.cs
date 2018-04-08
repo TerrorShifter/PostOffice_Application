@@ -24,5 +24,20 @@ namespace PostOffice_Application
         {
             Response.Redirect(""); //will redirect to sign up page once complete
         }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void TextBox1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
