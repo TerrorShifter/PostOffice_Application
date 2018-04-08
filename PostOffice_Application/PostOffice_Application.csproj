@@ -78,6 +78,7 @@
     <Content Include="email-png-email-png-285.png" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="SignUp.aspx" />
     <Content Include="Web.config" />
     <Content Include="GuestPage.aspx" />
   </ItemGroup>
@@ -103,6 +104,13 @@
     </Compile>
     <Compile Include="GuestPage.aspx.designer.cs">
       <DependentUpon>GuestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp.aspx.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp.aspx.designer.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

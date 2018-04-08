@@ -11,7 +11,8 @@
             height: 220px;
             margin-left: 594px;
             margin-right: 195px;
-            margin-top: 58px;
+            margin-top: 80px;
+            margin-bottom: 0px;
         }
     </style>
 </head>
