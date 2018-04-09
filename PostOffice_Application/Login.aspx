@@ -32,11 +32,13 @@
     <form id="form1" runat="server">
         <div>
             <table style="border:5px solid black; height: 260px; width: 428px; text-align:center; font-weight:bold; background-color:whitesmoke; position:fixed; margin-left:-214px; margin-top:-65px; top:25%; left:50%">
+                <caption style="border:5px solid black; background-color:skyblue">Login</caption>
                 <tr>
                     <td class="auto-style6">
-                        <asp:Label ID="Label1" runat="server" Text="Username:"></asp:Label></td>
+                        <asp:Label ID="Label1" runat="server" Text="Username/Email:"></asp:Label></td>
                     <td class="auto-style3">
-                        <asp:TextBox ID="txtUsername" runat="server" Width="160px"></asp:TextBox></td>
+                        <asp:TextBox ID="txtUsername" runat="server" Width="160px"></asp:TextBox></td> 
+                        <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server" ControlToValidate="txtUsername" ErrorMessage="Username is a required field." ForeColor="Yellow"></asp:RequiredFieldValidator>
                 </tr>
                  <tr>
                     <td class="auto-style6">
