@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="Employee\EmployeeUpdateShipment.aspx.designer.cs">
       <DependentUpon>EmployeeUpdateShipment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer_Home.aspx.cs">
       <DependentUpon>Customer_Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
