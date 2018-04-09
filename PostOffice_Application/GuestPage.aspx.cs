@@ -15,12 +15,12 @@ namespace PostOffice_Application
 
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void Login_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx"); //redirect to Login Page
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Signup_Click(object sender, EventArgs e)
         {
             Response.Redirect("SignUp.aspx"); //redirect to Sign Up Page
         }
@@ -38,6 +38,11 @@ namespace PostOffice_Application
         protected void Button3_Click(object sender, EventArgs e)
         {
            
+        }
+
+        protected void Track_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

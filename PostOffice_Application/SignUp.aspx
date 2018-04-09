@@ -45,7 +45,7 @@
                         <asp:Label ID="Email" runat="server" Text="Username/Email"></asp:Label>
                     </td>
                     <td class="auto-style4">
-                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
                     </td>
                     <td class="auto-style4">
                         &nbsp;</td>
@@ -64,7 +64,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style5">
-                        <asp:Label ID="Label1" runat="server" Text="Confirm Password"></asp:Label>
+                        <asp:Label ID="lblConfirmPW" runat="server" Text="Confirm Password"></asp:Label>
                     </td>
                     <td class="auto-style3">
                         <asp:TextBox ID="confirmPassword" runat="server" TextMode="Password"></asp:TextBox>

@@ -43,7 +43,7 @@ namespace PostOffice_Application
         protected void btnSignUp_Click(object sender, EventArgs e)
         {
             //Checks if input strings are properly formatted, or if they are entered at all.
-            if (emailCheck(TextBox1.Text)==false|| passwordCheck(passwordText.Text)==false)
+            if (emailCheck(txtUsername.Text)==false|| passwordCheck(passwordText.Text)==false)
             {
                 lblSignUpInfo.Text = "Invalid Email or Password.";
                 lblSignUpInfo.ForeColor = System.Drawing.Color.Red;
@@ -79,7 +79,7 @@ namespace PostOffice_Application
                         //Checks if an account has already been created using the given email.
                         string checkDuplicate = "SELECT COUNT(1) FROM LOGIN  WHERE Username=@Username";
                         SqlCommand d = new SqlCommand(checkDuplicate, con);
-                        d.Parameters.AddWithValue("@Username", TextBox1.Text.Trim());
+                        d.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
                         d.Parameters.AddWithValue("@Password", passwordText.Text.Trim());
                         int count = Convert.ToInt32(d.ExecuteScalar());
                         if (count == 1)
@@ -92,7 +92,7 @@ namespace PostOffice_Application
                         {
                             //adds info to login table of database, informs user of successful acount creation.
                             SqlCommand c = new SqlCommand(query, con);
-                            c.Parameters.AddWithValue("@Username", TextBox1.Text.Trim());
+                            c.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
                             c.Parameters.AddWithValue("@Password", passwordText.Text.Trim());
                             c.ExecuteNonQuery();
 
@@ -100,7 +100,7 @@ namespace PostOffice_Application
                             lblSignUpInfo.ForeColor = System.Drawing.Color.Green;
                             lblSignUpInfo.Visible = true;
 
-                            TextBox1.Text = "";
+                            txtUsername.Text = "";
                             passwordText.Text = "";
                             confirmPassword.Text = "";
                         }
