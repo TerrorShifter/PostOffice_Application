@@ -40,13 +40,13 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.Label Email;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtUsername;
         
         /// <summary>
         /// passwordText control.
@@ -58,13 +58,13 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.TextBox passwordText;
         
         /// <summary>
-        /// Label1 control.
+        /// lblConfirmPW control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblConfirmPW;
         
         /// <summary>
         /// confirmPassword control.
