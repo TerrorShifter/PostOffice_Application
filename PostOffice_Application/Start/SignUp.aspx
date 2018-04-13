@@ -69,7 +69,7 @@
             <table style="border:5px solid black; text-align:center;margin-left:-214px; margin-top:-65px; " class="auto-style1">
                 <tr>
                     <td class="auto-style2" colspan="3">
-                        <asp:Label ID="Title" runat="server" Text="Register"></asp:Label>
+                        <asp:Label ID="lblRegister" runat="server" Text="Register"></asp:Label>
                     </td>
                 </tr>
                 <tr>
