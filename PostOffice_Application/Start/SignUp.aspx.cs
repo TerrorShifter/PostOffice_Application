@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net.Mail;
+using System.Net;
 
 namespace PostOffice_Application
 {
@@ -100,9 +102,29 @@ namespace PostOffice_Application
                             lblSignUpInfo.ForeColor = System.Drawing.Color.Green;
                             lblSignUpInfo.Visible = true;
 
-                            txtUsername.Text = "";
-                            passwordText.Text = "";
-                            confirmPassword.Text = "";
+                            try
+                            {
+                                MailMessage mailMessage = new MailMessage();
+                                mailMessage.To.Add(txtUsername.Text.Trim());
+                                mailMessage.From = new MailAddress("team4post.office@gmail.com");
+                                mailMessage.Subject = "Registration Complete!";
+                                mailMessage.Body = "Hello, \n\nThank you for registering with your friendly Team 4 Post Office! You may now login with the entered credentials. \n\nThanks, \n\nTeam 4";
+                                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
+                                {
+                                    Credentials = new NetworkCredential("team4post.office@gmail.com", "youvegotmail4"),
+                                    EnableSsl = true,
+                                    DeliveryMethod = SmtpDeliveryMethod.Network
+                                };
+                                smtpClient.Send(mailMessage);
+                                Session["Username"] = null;
+                                string display = "Registration Successful! Check your Email for our thank you message.";
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "myalert", "alert('" + display + "');window.location='GuestPage.aspx';", true);
+                            }
+                            catch (Exception ex)
+                            {
+                                string display = "Could not send the Email - ERROR: " + ex.Message;
+                                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
+                            }                           
                         }
                     }
                 }

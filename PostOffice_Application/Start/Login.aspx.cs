@@ -39,8 +39,12 @@ namespace PostOffice_Application
                     {
                         Session["Username"] = txtUsername.Text.Trim();
                         Session["UserType"] = DropDownList1.Text.Trim();
-                        string display = "Login Successful!";
-                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
+                        string destination = "";
+                        if (DropDownList1.Text.Trim() == "Customer")
+                            destination = "/Customer/Customer_Home.aspx";
+                        else
+                            destination = "/Employee/EmployeeHome.aspx";
+                        Response.Redirect(destination);
                     }
                     else { lblLoginError.Visible = true; }
                 }

@@ -29,9 +29,41 @@
             width: 150px;
             height: 41px;
         }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: right;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: skyblue;
+            color: #111;
+            font-weight: bold;
+        }
+        .home{
+            float: left;
+        }
         </style>
 </head>
 <body>
+    <ul>      
+        <li><a href="Login.aspx">Login</a></li> 
+        <li class="home"><a href="GuestPage.aspx">Home</a></li>
+    </ul>
     <form id="form1" runat="server">
         <div>
             <table style="border:5px solid black; text-align:center;margin-left:-214px; margin-top:-65px; " class="auto-style1">
