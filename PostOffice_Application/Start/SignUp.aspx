@@ -7,11 +7,11 @@
     <title></title>
     <style type="text/css">
         .auto-style1 {
-            height: 220px;
-            width: 470px;
+            height: 379px;
+            width: 579px;
             position: fixed;
             top: 15%;
-            left: 47%;
+            left: 44%;
         }
         .auto-style2 {
             height: 55px;
@@ -62,7 +62,7 @@
 <body>
     <ul>      
         <li><a href="Login.aspx">Login</a></li> 
-        <li class="home"><a href="GuestPage.aspx">Home</a></li>
+        <li class="home"><a href="../Default.aspx">Home</a></li>
     </ul>
     <form id="form1" runat="server">
         <div>
@@ -80,7 +80,8 @@
                         <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
                     </td>
                     <td class="auto-style4">
-                        &nbsp;</td>
+                        <asp:CheckBox ID="chkEmployee" runat="server" AutoPostBack="true" Text="Employee?" OnCheckedChanged="chkEmployee_CheckedChanged" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style5">
@@ -90,7 +91,8 @@
                     </td>
                     <td class="auto-style4">
 
-                        &nbsp;</td>
+                        <asp:TextBox ID="txtEmplNum" runat="server" placeholder="Employee Number"></asp:TextBox>
+                    </td>
 
                    
                 </tr>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GuestPage.aspx.cs" Inherits="PostOffice_Application.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="PostOffice_Application.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -43,8 +43,8 @@
 </head>
 <body style="height: 73px">
     <ul>
-        <li><a href="SignUp.aspx">Register</a></li> 
-        <li><a href="Login.aspx">Login</a></li>               
+        <li><a href="Start/SignUp.aspx">Register</a></li> 
+        <li><a href="Start/Login.aspx">Login</a></li>               
     </ul>
     <form id="form1" runat="server">
         <div>
