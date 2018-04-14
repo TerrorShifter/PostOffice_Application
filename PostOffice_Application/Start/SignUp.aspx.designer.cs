@@ -49,6 +49,15 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.TextBox txtUsername;
         
         /// <summary>
+        /// chkEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkEmployee;
+        
+        /// <summary>
         /// passwordText control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace PostOffice_Application {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox passwordText;
+        
+        /// <summary>
+        /// txtEmplNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEmplNum;
         
         /// <summary>
         /// lblConfirmPW control.

@@ -11,7 +11,8 @@ namespace PostOffice_Application
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Button btnLogout = this.Master.FindControl("btnLogoff") as Button;
         }
+
     }
 }
