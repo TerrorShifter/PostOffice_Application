@@ -13,5 +13,10 @@ namespace PostOffice_Application
         {
 
         }
+
+        protected void TextBox1_TextChanged()
+        {
+
+        }
     }
 }

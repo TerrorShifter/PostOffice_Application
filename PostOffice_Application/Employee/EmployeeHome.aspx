@@ -3,5 +3,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-        Welcome! Select a tab to proceed.</p>
+        Welcome, &lt;name&gt;.</p>
+    <h2>
+        Generate a report</h2>
+    <p>
+        Report type: </p>
 </asp:Content>
