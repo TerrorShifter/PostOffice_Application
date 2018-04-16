@@ -85,6 +85,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Common\Password_Reset.aspx" />
     <Content Include="Employee\CreateSuccess.aspx" />
     <Content Include="Employee\EmployeeMaster.Master" />
     <None Include="packages.config" />
@@ -117,6 +118,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Password_Reset.aspx.cs">
+      <DependentUpon>Password_Reset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\Password_Reset.aspx.designer.cs">
+      <DependentUpon>Password_Reset.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Employee\CreateSuccess.aspx.cs">
       <DependentUpon>CreateSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
