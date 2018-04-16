@@ -40,7 +40,7 @@
             background-color: #333;
             color: white;
         }
-        li button:hover{
+        .btn:hover{
             background-color: skyblue;
             color: #111;
             font-weight: bold;
@@ -51,6 +51,7 @@
     <form id="form1" runat="server">
     <ul>
         <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
+        <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
         <li><a href="EmployeeCreatePackage.aspx">Add Package</a></li>
         <li><a href="EmployeeUpdateShipment.aspx">Update Shipment Status</a></li>
         <li class="home"><a href="EmployeeHome.aspx">Home</a></li>

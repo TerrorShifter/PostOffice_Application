@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PostOffice_Application {
+namespace PostOffice_Application.Common {
     
     
-    public partial class CustomerPage {
+    public partial class WebForm1 {
         
         /// <summary>
         /// form1 control.

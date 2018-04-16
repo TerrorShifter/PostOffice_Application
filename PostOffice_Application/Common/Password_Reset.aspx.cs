@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace PostOffice_Application
+namespace PostOffice_Application.Common
 {
-    public partial class Customer_Tracking : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,6 +19,16 @@ namespace PostOffice_Application
             Session.Abandon();
             Session.Contents.RemoveAll();
             Response.Redirect("../Start/Login.aspx");
+        }
+
+        protected void ChangePasswordPushButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void CancelPushButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Request.UrlReferrer.ToString());
         }
     }
 }
