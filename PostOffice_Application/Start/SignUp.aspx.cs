@@ -17,7 +17,7 @@ namespace PostOffice_Application
         protected void Page_Load(object sender, EventArgs e)
         {
             lblSignUpInfo.Visible = false;
-
+            txtEmplNum.Visible = chkEmployee.Checked;
         }
 
         //checks if input password meets format requirements, or if it is empty.
@@ -40,6 +40,28 @@ namespace PostOffice_Application
             else
                 return true;
 
+        }
+
+        bool IsEmployee(SqlConnection sqlCon)
+        {
+            try
+            {
+                string query = "SELECT COUNT(1) FROM EMPLOYEE WHERE Employee_ID = @emp";
+                SqlCommand d = new SqlCommand(query, sqlCon);
+                d.Parameters.AddWithValue("@Username", txtEmplNum.Text.Trim());
+                int count = Convert.ToInt32(d.ExecuteScalar());
+                if (count == 1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
@@ -76,13 +98,28 @@ namespace PostOffice_Application
                     using (SqlConnection con = new SqlConnection(constr.ConnectionString))
                     {
                         con.Open();
+                        int usertype = 1;
                         //this query inserts given data from text boxes into correspoding login table in database.
-                        string query = "INSERT INTO LOGIN (Username, Password, User_Type_ID) VALUES(@Username, @Password, 1)";
+                        string query = "INSERT INTO LOGIN (Username, Password, User_Type_ID) VALUES(@Username, @Password, @UserType)";
                         //Checks if an account has already been created using the given email.
                         string checkDuplicate = "SELECT COUNT(1) FROM LOGIN  WHERE Username=@Username";
                         SqlCommand d = new SqlCommand(checkDuplicate, con);
                         d.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
                         d.Parameters.AddWithValue("@Password", passwordText.Text.Trim());
+                        if (txtEmplNum.Visible == true)
+                        {
+                            bool isEmp = IsEmployee(con);
+                            if (isEmp)
+                            {
+                                usertype = 2;
+                            }
+                            else
+                            {
+                                string display = "Must be an employee in order to register an employee account.";
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "myalert", "alert('" + display + "');window.location='SignUp.aspx';", true);
+                            }
+                        }
+                        d.Parameters.AddWithValue("@UserType", usertype);
                         int count = Convert.ToInt32(d.ExecuteScalar());
                         if (count == 1)
                         {
@@ -118,7 +155,7 @@ namespace PostOffice_Application
                                 smtpClient.Send(mailMessage);
                                 Session["Username"] = null;
                                 string display = "Registration Successful! Check your Email for our thank you message.";
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "myalert", "alert('" + display + "');window.location='GuestPage.aspx';", true);
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "myalert", "alert('" + display + "');window.location='Default.aspx';", true);
                             }
                             catch (Exception ex)
                             {
@@ -135,6 +172,11 @@ namespace PostOffice_Application
             }
             
 
+        }
+
+        protected void chkEmployee_CheckedChanged(object sender, EventArgs e)
+        {
+            txtEmplNum.Visible = chkEmployee.Checked;
         }
     }
 }

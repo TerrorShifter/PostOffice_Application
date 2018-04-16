@@ -59,15 +59,5 @@ namespace PostOffice_Application.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap email_png_email_png_285 {
-            get {
-                object obj = ResourceManager.GetObject("email_png_email_png_285", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

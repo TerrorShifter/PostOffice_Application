@@ -33,6 +33,14 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="Post_OfficeConnectionString-Deployment" Order="1">
+          <Destination Path="Data Source=team-4-post-office-dbs.database.windows.net%3bInitial Catalog=Post_Office%3bPersist Security Info=True%3bUser ID=ServerAdmin%3bPassword=UmaThurman18" />
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <PublishDatabases>true</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,6 +85,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Common\Password_Reset.aspx" />
     <Content Include="Employee\CreateSuccess.aspx" />
     <Content Include="Employee\EmployeeMaster.Master" />
     <None Include="packages.config" />
@@ -99,14 +108,23 @@
     <Content Include="Employee\EmployeeUpdateShipment.aspx" />
     <Content Include="Customer\Customer_Home.aspx" />
     <Content Include="Customer\Customer_Tracking.aspx" />
-    <Content Include="Start\email-png-email-png-285.png" />
+    <Content Include="email-png-email-png-285.png" />
     <Content Include="Start\ForgotPassword.aspx" />
     <Content Include="Start\Login.aspx" />
     <Content Include="Start\SignUp.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Start\GuestPage.aspx" />
+    <Content Include="Default.aspx">
+      <BrowseToURL>~/Default.aspx</BrowseToURL>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Password_Reset.aspx.cs">
+      <DependentUpon>Password_Reset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\Password_Reset.aspx.designer.cs">
+      <DependentUpon>Password_Reset.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Employee\CreateSuccess.aspx.cs">
       <DependentUpon>CreateSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -181,12 +199,12 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Start\GuestPage.aspx.cs">
-      <DependentUpon>GuestPage.aspx</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Start\GuestPage.aspx.designer.cs">
-      <DependentUpon>GuestPage.aspx</DependentUpon>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Start\SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
@@ -200,6 +218,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -213,15 +232,14 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65516</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:65516/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://team-4-post-office-test.azurewebsites.net</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

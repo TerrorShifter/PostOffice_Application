@@ -59,7 +59,7 @@
 <body>
     <ul>      
         <li><a href="SignUp.aspx">Register</a></li> 
-        <li class="home"><a href="GuestPage.aspx">Home</a></li>
+        <li class="home"><a href="../Default.aspx">Home</a></li>
     </ul>
     <form id="form1" runat="server">
         <div>
