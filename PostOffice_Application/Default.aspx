@@ -7,12 +7,11 @@
     <title></title>
     <style type="text/css">
         .auto-style1 {
-            width: 309px;
-            height: 220px;
-            margin-left: 594px;
-            margin-right: 195px;
-            margin-top: 80px;
-            margin-bottom: 0px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            /*width: 20%;*/
+            margin-top: 84px;
         }
         ul {
             list-style-type: none;
@@ -45,10 +44,23 @@
             margin-left: 573px;
         }
         #inputBox {
+            display: block;
             height: 37px;
             width: 288px;
-            margin-left: 580px;
+            margin: auto;
+            /*margin-left: auto;
+            margin-right: auto;*/
+            /*margin-left: 579px;*/
         }
+        .auto-style2 {
+            height: 0px;
+        }
+        
+        .auto-style3 {
+            height: 90px;
+            margin-top: 0px;
+        }
+        
     </style>
 </head>
 <body style="height: 73px">
@@ -59,13 +71,13 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <p style="height: 317px">
-            <img class="auto-style1" src="email-png-email-png-285.png" /><input id="inputBox" placeholder="Type Your Tracking Number" type="text" /><asp:Button ID="btnTrack" runat="server" Height="42px" OnClick="Track_Click" style="font-size: medium; margin-left: 4px; margin-top: 11px; margin-bottom: 0px" Text="Track" Width="82px" />
-        </p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
+        <p style="height: 187px; margin-bottom: 1px;">
+            <img class="auto-style1" src="email-png-email-png-285.png" />
+                <div align="center" class="auto-style3">
+                    <input id="inputBox" placeholder="Type Your Tracking Number" type="text" />
+                    <asp:Button ID="btnTrack" runat="server" Height="42px" OnClick="Track_Click" style="font-size: medium; margin-left: 4px; margin-top: 4px; margin-bottom: 0px" Text="Track" Width="82px" />
+                </div>
+        </p> 
     </form>
 </body>
 </html>
