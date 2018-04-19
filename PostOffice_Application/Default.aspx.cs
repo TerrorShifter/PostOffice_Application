@@ -10,9 +10,18 @@ namespace PostOffice_Application
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        string trackingNum = " ";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                txtBoxTracking.Text = null;
+                lblError.Visible = false;
+                lblShipped.Visible = false;
+                lblLastArrived.Visible = false;
+                lblDelivered.Visible = false;
+            }
         }
 
         protected void Login_Click(object sender, EventArgs e)
@@ -39,8 +48,27 @@ namespace PostOffice_Application
         {
            
         }
-
+        
+  
         protected void Track_Click(object sender, EventArgs e)
+        {
+            long parseInt = 1;
+            trackingNum = txtBoxTracking.Text;
+            if (!long.TryParse(txtBoxTracking.Text, out parseInt) || txtBoxTracking.Text.Length != 25) //if input tracking number is invalid(contains letters or not long enough), show error
+            {
+                lblError.Visible = true;
+                lblShipped.Visible = false;
+                lblLastArrived.Visible = false;
+                lblDelivered.Visible = false;
+            }
+            else
+            {
+                lblError.Visible = false;
+            }
+
+        }
+
+        protected void txtBoxTracking_TextChanged(object sender, EventArgs e)
         {
 
         }
