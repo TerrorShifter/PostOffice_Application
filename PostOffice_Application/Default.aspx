@@ -116,7 +116,7 @@
         <p style="height: 187px; margin-bottom: 1px;">
             <img class="auto-style1" src="email-png-email-png-285.png" />
                 <div align="center" class="auto-style3">
-                    <asp:TextBox ID="txtBoxTracking" placeholder="Type Your Tracking Number (25 Digits)" runat="server" CssClass="auto-style5" Height="36px" OnTextChanged="txtBoxTracking_TextChanged" Width="256px"></asp:TextBox>
+                    <asp:TextBox ID="txtBoxTracking" placeholder="Type Your Tracking Number (10 Digits)" runat="server" CssClass="auto-style5" Height="36px" OnTextChanged="txtBoxTracking_TextChanged" Width="256px"></asp:TextBox>
                     <!--<input id="inputBox" placeholder="Type Your Tracking Number" type="text" />!-->
                     <asp:Button ID="btnTrack" runat="server" Height="42px" OnClick="Track_Click" style="font-size: medium; margin-left: 4px; margin-top: 4px; margin-bottom: 0px" Text="Track" Width="82px" />
                     <br />

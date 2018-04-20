@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using System.Data.SqlClient;
 
 namespace PostOffice_Application
 {
@@ -54,7 +55,7 @@ namespace PostOffice_Application
         {
             long parseInt = 1;
             trackingNum = txtBoxTracking.Text;
-            if (!long.TryParse(txtBoxTracking.Text, out parseInt) || txtBoxTracking.Text.Length != 25) //if input tracking number is invalid(contains letters or not long enough), show error
+            if (!long.TryParse(trackingNum, out parseInt) || trackingNum.Length != 10) //if input tracking number is invalid(contains letters or not long enough), show error
             {
                 lblError.Visible = true;
                 lblShipped.Visible = false;
@@ -64,6 +65,38 @@ namespace PostOffice_Application
             else
             {
                 lblError.Visible = false;
+                try
+                {
+                    var constr = new SqlConnectionStringBuilder
+                    {
+                        DataSource = "team-4-post-office-dbs.database.windows.net",
+                        InitialCatalog = "Post_Office",
+                        UserID = "eniolakunle",
+                        Password = "%Eniola1997%"
+                    };
+
+                    using (SqlConnection conn = new SqlConnection(constr.ConnectionString))
+                    {
+                        conn.Open();
+                        string query = "SELECT Delivery_Status FROM SHIPMENT WHERE Tracking_Num = @TrackingID";
+                        SqlCommand showStatus = new SqlCommand(query, conn);
+                        showStatus.Parameters.AddWithValue("@TrackingID", trackingNum);
+                        lblShipped.Text = showStatus.ExecuteScalar().ToString();
+                        lblShipped.Visible = true;
+                        conn.Close();
+
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                catch (NullReferenceException ex) //tracking number does not exist, NULL package
+                {
+                    Console.WriteLine(ex.ToString());
+                    lblError.Visible = true;
+                }
+
             }
 
         }
