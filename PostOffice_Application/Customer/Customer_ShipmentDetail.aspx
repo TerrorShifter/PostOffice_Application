@@ -69,6 +69,7 @@
             <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
             <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
             <li><a href="Customer_Tracking.aspx">Tracking</a></li>
+             <li class="home"><a href="Customer_Home.aspx">Home</a></li>
         </ul>
     </form>
     <p>
