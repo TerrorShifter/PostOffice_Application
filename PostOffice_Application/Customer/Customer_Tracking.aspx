@@ -17,7 +17,7 @@
         /*https://www.w3schools.com/howto/howto_css_contact_form.asp this link is where I got the style block below for my tracking form. I made some slight modifications to the design attributes*/
         /* Style inputs with type="text", select elements and textareas */
         input[type=text], select, textarea {
-            width: 20%; /* Full width */
+            /* Full width */
             padding: 12px; /* Some padding */  
             border: 1px solid #ccc; /* Gray border */
             border-radius: 4px; /* Rounded borders */
@@ -51,6 +51,8 @@
         /*This is to change the entire page background color*/
         body {
             background-color: #f3f3f3;
+            height: 437px;
+            position: relative;
         }
 
 
@@ -96,7 +98,10 @@
 
     /*Header style for double outline*/
     h2 {border-style: double;}
-</style>
+        .auto-style1 {
+            text-decoration: underline;
+        }
+    </style>
 
 </head>
 <body>
@@ -106,14 +111,12 @@
             <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
             <li class="home"><a href="Customer_Home.aspx">Home</a></li>
         </ul>
-    </form>
    
 
     
 
 
    <!-- Form for entering Trackign Number-->
-  <form>
     <label for="">Please enter your Tracking Number for your Package:</label>
       <br/> <!-- Breaks line  -->
     <input type="text" id="TrackingNum" name="Tracking Number" placeholder="Your Tracking Number.."/>
@@ -121,10 +124,22 @@
 
     <input type="submit" value="Submit"/>  <!--Submit Does nothing at the moment-->
 
-  </form>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p class="auto-style1">
+            <strong>Select You Username to view your packages:</strong></p>
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Username" DataValueField="Username" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Username] FROM [LOGIN]"></asp:SqlDataSource>
+
+    </form>
+   
+
+ 
 
 
-
-</body>
+   </body>
 
 </html>
