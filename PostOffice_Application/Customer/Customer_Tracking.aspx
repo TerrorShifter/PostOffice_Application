@@ -107,10 +107,9 @@
             <li class="home"><a href="Customer_Home.aspx">Home</a></li>
         </ul>
     </form>
-    <h2>Customer Page</h2>
+   
 
-     <!-- This is just a header to show you have changed to the Tracking Page from Home Page -->
-    <h2>Tracking Page</h2>
+    
 
 
    <!-- Form for entering Trackign Number-->

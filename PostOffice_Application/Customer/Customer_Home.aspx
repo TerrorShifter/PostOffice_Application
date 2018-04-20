@@ -72,7 +72,7 @@
             <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
             <li><a href="Customer_Tracking.aspx">Tracking</a></li>
         </ul>
-    <h2>Customer Page</h2>
+   
     
     </form>
 
