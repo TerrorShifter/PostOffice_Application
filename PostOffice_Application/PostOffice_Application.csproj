@@ -15,7 +15,7 @@
     <RootNamespace>PostOffice_Application</RootNamespace>
     <AssemblyName>PostOffice_Application</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -112,7 +112,9 @@
     <Content Include="Start\ForgotPassword.aspx" />
     <Content Include="Start\Login.aspx" />
     <Content Include="Start\SignUp.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Default.aspx">
       <BrowseToURL>~/Default.aspx</BrowseToURL>
     </Content>
@@ -236,7 +238,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65516</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65516/</IISUrl>
+          <IISUrl>http://localhost/PostOffice_Application</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
           <CustomServerUrl>http://team-4-post-office-test.azurewebsites.net</CustomServerUrl>
