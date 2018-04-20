@@ -58,19 +58,21 @@
     </p>
     <p style="font-size: medium">
         Package type:
-        <asp:DropDownList ID="DropDownList1" runat="server">
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Package_Type_string" DataValueField="Package_Type_ID">
             <asp:ListItem>Letter</asp:ListItem>
             <asp:ListItem>Package</asp:ListItem>
         </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString2 %>" SelectCommand="SELECT [Package_Type_string], [Package_Type_ID] FROM [PACKAGE_TYPE]"></asp:SqlDataSource>
     </p>
     <p style="font-size: medium">
         Priority:
-        <asp:DropDownList ID="DropDownList2" runat="server">
+        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="Priority_Type" DataValueField="Priority_ID">
             <asp:ListItem>Standard</asp:ListItem>
             <asp:ListItem>First Class</asp:ListItem>
             <asp:ListItem>Overnight</asp:ListItem>
             <asp:ListItem>Same Day</asp:ListItem>
         </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString2 %>" SelectCommand="SELECT [Priority_ID], [Priority_Type] FROM [PRIORITY]"></asp:SqlDataSource>
     </p>
     <p style="font-size: medium">
         Fragile?

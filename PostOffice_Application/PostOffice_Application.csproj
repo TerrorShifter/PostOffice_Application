@@ -109,6 +109,7 @@
     <Content Include="Customer\Customer_Home.aspx" />
     <Content Include="Customer\Customer_Tracking.aspx" />
     <Content Include="email-png-email-png-285.png" />
+    <Content Include="Employee\EmployeeCustomerCreation.aspx" />
     <Content Include="Start\ForgotPassword.aspx" />
     <Content Include="Start\Login.aspx" />
     <Content Include="Start\SignUp.aspx" />
@@ -174,6 +175,13 @@
     <Compile Include="Customer\Customer_Tracking.aspx.designer.cs">
       <DependentUpon>Customer_Tracking.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Employee\EmployeeCustomerCreation.aspx.cs">
+      <DependentUpon>EmployeeCustomerCreation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeCustomerCreation.aspx.designer.cs">
+      <DependentUpon>EmployeeCustomerCreation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -232,13 +240,13 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65516</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:65516/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>True</UseCustomServer>
+          <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://team-4-post-office-test.azurewebsites.net</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
