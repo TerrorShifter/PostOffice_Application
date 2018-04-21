@@ -8,6 +8,7 @@
     <!-- This shows the little arrow for the drop down menu -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
+ 
 
     <title></title>
     <style>
@@ -77,7 +78,8 @@
     </form>
 
      <!-- Placeholder Text just to show that You are in the Home page -->
-    <h3>Welcome to our Post Office Customer HomePage!</h3>
+    <h3 id="WelcomeHeader"
+        <asp:Label ID="WelcomeLabel" runat="server" Text="Label"></asp:Label></h3>
 
 
 
