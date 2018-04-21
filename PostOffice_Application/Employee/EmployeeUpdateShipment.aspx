@@ -4,14 +4,15 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Update a shipment</h1>
     Tracking number:
-    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <asp:TextBox ID="txtTrackingNumber" runat="server"></asp:TextBox>
     <br />
     <br />
     New Delivery status:
-    <asp:DropDownList ID="DropDownList1" runat="server">
+    <asp:DropDownList ID="DeliveryStatusList" runat="server">
         <asp:ListItem></asp:ListItem>
         <asp:ListItem>Delivered</asp:ListItem>
         <asp:ListItem>Shipped</asp:ListItem>
     </asp:DropDownList>
-    <asp:Button ID="Button1" runat="server" Text="Submit" />
+    <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+    <asp:Label ID="lblInvalidInfo" runat="server" ForeColor="Red" Text="lblInvalidInfo" Visible="False"></asp:Label>
 </asp:Content>
