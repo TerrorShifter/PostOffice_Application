@@ -39,6 +39,16 @@
             color: #111;
             font-weight: bold;
         }
+        #Text1 {
+            height: 32px;
+            width: 303px;
+            margin-left: 573px;
+        }
+        #inputBox {
+            height: 37px;
+            width: 288px;
+            margin-left: 580px;
+        }
     </style>
 </head>
 <body style="height: 73px">
@@ -50,8 +60,7 @@
         <div>
         </div>
         <p style="height: 317px">
-            <img class="auto-style1" src="email-png-email-png-285.png" /><asp:TextBox ID="TextBox1" runat="server" AutoPostBack="True" BackColor="#E0E0E0" BorderStyle="Groove" ForeColor="Black" Height="12%" OnTextChanged="TextBox1_TextChanged" style="text-align: left; font-size: large; margin-left: 554px; margin-right: 0px; margin-top: 0px; margin-bottom: 1px" Width="22%" OnLoad="TextBox1_Load">Type Your Tracking Number</asp:TextBox>
-            <asp:Button ID="btnTrack" runat="server" Height="42px" OnClick="Track_Click" style="font-size: medium; margin-left: 4px; margin-top: 11px; margin-bottom: 0px" Text="Track" Width="82px" />
+            <img class="auto-style1" src="email-png-email-png-285.png" /><input id="inputBox" placeholder="Type Your Tracking Number" type="text" /><asp:Button ID="btnTrack" runat="server" Height="42px" OnClick="Track_Click" style="font-size: medium; margin-left: 4px; margin-top: 11px; margin-bottom: 0px" Text="Track" Width="82px" />
         </p>
         <p>
             &nbsp;</p>

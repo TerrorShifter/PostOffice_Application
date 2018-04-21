@@ -14,9 +14,11 @@ namespace PostOffice_Application
 
         }
 
-        protected void TextBox1_TextChanged()
+        protected void btnLogoff_Click(object sender, EventArgs e)
         {
-
+            Session.Abandon();
+            Session.Contents.RemoveAll();
+            Response.Redirect("../Start/Login.aspx");
         }
     }
 }

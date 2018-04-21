@@ -65,7 +65,7 @@ namespace PostOffice_Application
                 mailMessage.Body = "Hello, \n\nWe've assigned a new temporary password to " + Session["Username"] + " as requested. The new password is " + tempPW + " and you may use it to login and reset to a new custom password. \n\nThanks, \n\nTeam 4";
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
                 {
-                    Credentials = new NetworkCredential("team4post.office@gmail.com", "youvegotmail4"),
+                    Credentials = new NetworkCredential("team4post.office@gmail.com", "mail!youve4got"),
                     EnableSsl = true,
                     DeliveryMethod = SmtpDeliveryMethod.Network
                 };                
