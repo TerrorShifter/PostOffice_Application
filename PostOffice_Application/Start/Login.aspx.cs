@@ -38,8 +38,13 @@ namespace PostOffice_Application
                     if (count == 1)
                     {
                         Session["Username"] = txtUsername.Text.Trim();
-                        string display = "Login Successful!";
-                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
+                        Session["UserType"] = DropDownList1.Text.Trim();
+                        string destination = "";
+                        if (DropDownList1.Text.Trim() == "Customer")
+                            destination = "/Customer/Customer_Home.aspx";
+                        else
+                            destination = "/Employee/EmployeeHome.aspx";
+                        Response.Redirect(destination);
                     }
                     else { lblLoginError.Visible = true; }
                 }
@@ -52,7 +57,17 @@ namespace PostOffice_Application
 
         protected void btnForgot_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ForgotPassword.aspx");
+            if(string.IsNullOrWhiteSpace(txtUsername.Text.Trim()))
+            {
+                string display = "Username is required";
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
+                txtUsername.Focus();
+            }
+            else
+            {
+                Session["Username"] = txtUsername.Text.Trim();
+                Response.Redirect("ForgotPassword.aspx");
+            }
         }
     }
 }

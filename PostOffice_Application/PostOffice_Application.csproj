@@ -15,7 +15,7 @@
     <RootNamespace>PostOffice_Application</RootNamespace>
     <AssemblyName>PostOffice_Application</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -33,6 +33,14 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="Post_OfficeConnectionString-Deployment" Order="1">
+          <Destination Path="Data Source=team-4-post-office-dbs.database.windows.net%3bInitial Catalog=Post_Office%3bPersist Security Info=True%3bUser ID=ServerAdmin%3bPassword=UmaThurman18" />
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <PublishDatabases>true</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +50,17 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="Post_OfficeConnectionString-Deployment" Order="1">
+          <Destination Path="Data Source=team-4-post-office-dbs.database.windows.net%3bInitial Catalog=Post_Office%3bPersist Security Info=True%3bUser ID=ServerAdmin%3bPassword=UmaThurman18" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=team-4-post-office-dbs.database.windows.net%3bInitial Catalog=Post_Office%3bPersist Security Info=True%3bUser ID=ServerAdmin%3bPassword=UmaThurman18" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Release\AutoScripts\Post_OfficeConnectionString-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -66,8 +85,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Common\Password_Reset.aspx" />
+    <Content Include="Employee\CreateSuccess.aspx" />
+    <Content Include="Employee\EmployeeMaster.Master" />
     <None Include="packages.config" />
-    <Content Include="Customer.Master" />
+    <None Include="Properties\PublishProfiles\team-4-post-office - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\team-4-post-office-test - Web Deploy.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -79,16 +106,27 @@
     <Content Include="Employee\EmployeeCreatePackage.aspx" />
     <Content Include="Employee\EmployeeHome.aspx" />
     <Content Include="Employee\EmployeeUpdateShipment.aspx" />
-    <Content Include="Customer_Home.aspx" />
-    <Content Include="Customer_Tracking.aspx" />
+    <Content Include="Customer\Customer_Home.aspx" />
+    <Content Include="Customer\Customer_Tracking.aspx" />
     <Content Include="email-png-email-png-285.png" />
-    <Content Include="ForgotPassword.aspx" />
-    <Content Include="Login.aspx" />
-    <Content Include="SignUp.aspx" />
-    <Content Include="Web.config" />
-    <Content Include="GuestPage.aspx" />
+    <Content Include="Start\ForgotPassword.aspx" />
+    <Content Include="Start\Login.aspx" />
+    <Content Include="Start\SignUp.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Default.aspx">
+      <BrowseToURL>~/Default.aspx</BrowseToURL>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Password_Reset.aspx.cs">
+      <DependentUpon>Password_Reset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\Password_Reset.aspx.designer.cs">
+      <DependentUpon>Password_Reset.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Employee\CreateSuccess.aspx.cs">
       <DependentUpon>CreateSuccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -124,51 +162,66 @@
     <Compile Include="Employee\EmployeeUpdateShipment.aspx.designer.cs">
       <DependentUpon>EmployeeUpdateShipment.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer_Home.aspx.cs">
+    <Compile Include="Customer\Customer_Home.aspx.cs">
+      <DependentUpon>Customer_Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Customer_Home.aspx.designer.cs">
       <DependentUpon>Customer_Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer_Home.aspx.designer.cs">
-      <DependentUpon>Customer_Home.aspx</DependentUpon>
+    <Compile Include="Customer\Customer_Tracking.aspx.cs">
+      <DependentUpon>Customer_Tracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer_Tracking.aspx.cs">
+    <Compile Include="Customer\Customer_Tracking.aspx.designer.cs">
       <DependentUpon>Customer_Tracking.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer_Tracking.aspx.designer.cs">
-      <DependentUpon>Customer_Tracking.aspx</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ForgotPassword.aspx.cs">
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Start\ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ForgotPassword.aspx.designer.cs">
+    <Compile Include="Start\ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="Start\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="Start\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GuestPage.aspx.cs">
-      <DependentUpon>GuestPage.aspx</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GuestPage.aspx.designer.cs">
-      <DependentUpon>GuestPage.aspx</DependentUpon>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SignUp.aspx.cs">
+    <Compile Include="Start\SignUp.aspx.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Start\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SignUp.aspx.designer.cs">
-      <DependentUpon>SignUp.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.Master.cs">
-      <DependentUpon>Customer.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.Master.designer.cs">
-      <DependentUpon>Customer.Master</DependentUpon>
-    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -181,15 +234,14 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65516</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65516/</IISUrl>
+          <IISUrl>http://localhost/PostOffice_Application</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://team-4-post-office-test.azurewebsites.net</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
