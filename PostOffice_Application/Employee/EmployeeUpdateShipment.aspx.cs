@@ -15,6 +15,7 @@ namespace PostOffice_Application
 
         }
 
+        //Used on dropdown list and tracking number field
         bool isValidText(string text)
         {
             if (text == "")
@@ -23,6 +24,7 @@ namespace PostOffice_Application
                 return true;
         }
 
+        //Since the Delivery_Status value is an int type in the database, the dropdown list selection must be converted to a corresponding integer.
         int statusToInt(string status)
         {
             int stat_int = 0;
@@ -45,7 +47,7 @@ namespace PostOffice_Application
                 lblInvalidInfo.Text = "Invalid tracking number.";
                 lblInvalidInfo.Visible = true;
             }
-            else if (DeliveryStatusList.SelectedValue == "")
+            else if (!isValidText(DeliveryStatusList.SelectedValue))
             {
                 lblInvalidInfo.Text = "Please choose a new delivery status.";
                 lblInvalidInfo.Visible = true;
@@ -65,6 +67,7 @@ namespace PostOffice_Application
 
                     using (SqlConnection con = new SqlConnection(constr.ConnectionString))
                     {
+                        //Updates a row in the shipment table that matches the given tracking number with the new given delivery status.
                         con.Open();
                         string updateShipmentQuery = "UPDATE SHIPMENT SET SHIPMENT.Delivery_Status = @newStatus WHERE SHIPMENT.Tracking_Num = @trackingNo";
 
