@@ -78,7 +78,7 @@ namespace PostOffice_Application
                     using (SqlConnection conn = new SqlConnection(constr.ConnectionString))
                     {
                         conn.Open();
-                        string query = "SELECT Delivery_Status FROM SHIPMENT WHERE Tracking_Num = @TrackingID";
+                        string query = "SELECT Status_String FROM SHIPMENT, DELIVERY_STRING WHERE Tracking_Num = @TrackingID AND Status_ID = Delivery_Status";
                         SqlCommand showStatus = new SqlCommand(query, conn);
                         showStatus.Parameters.AddWithValue("@TrackingID", trackingNum);
                         lblShipped.Text = showStatus.ExecuteScalar().ToString();
