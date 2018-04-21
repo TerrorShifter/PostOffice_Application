@@ -39,6 +39,12 @@ namespace PostOffice_Application
                     {
                         Session["Username"] = txtUsername.Text.Trim();
                         Session["UserType"] = DropDownList1.Text.Trim();
+
+                        string getid = "SELECT C.Customer_ID FROM CUSTOMER C, LOGIN L WHERE C.Email = L.Username";
+                        SqlCommand getcustid = new SqlCommand(getid, connection);
+                        SqlDataReader idreader = getcustid.ExecuteReader();                                     
+                        Session["CustomerID"] = idreader.ToString();
+
                         string destination = "";
                         if (DropDownList1.Text.Trim() == "Customer")
                             destination = "/Customer/Customer_Home.aspx";
