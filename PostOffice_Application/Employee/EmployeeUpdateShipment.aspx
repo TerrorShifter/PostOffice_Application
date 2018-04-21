@@ -10,8 +10,11 @@
     New Delivery status:
     <asp:DropDownList ID="DeliveryStatusList" runat="server">
         <asp:ListItem></asp:ListItem>
+        <asp:ListItem>Pre-Shipment</asp:ListItem>
+        <asp:ListItem>In Transit</asp:ListItem>
+        <asp:ListItem>Out For Delivery</asp:ListItem>
         <asp:ListItem>Delivered</asp:ListItem>
-        <asp:ListItem>Shipped</asp:ListItem>
+        <asp:ListItem>Failed</asp:ListItem>
     </asp:DropDownList>
     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
     <asp:Label ID="lblInvalidInfo" runat="server" ForeColor="Red" Text="lblInvalidInfo" Visible="False"></asp:Label>

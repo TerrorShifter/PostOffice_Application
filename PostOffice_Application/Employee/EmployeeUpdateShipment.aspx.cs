@@ -30,12 +30,21 @@ namespace PostOffice_Application
             int stat_int = 0;
             switch (status)
             {
-                case "Shipped":
+                case "Pre-Shipment":
                     stat_int = 1;
                     break;
-                case "Delivered":
+                case "In Transit":
                     stat_int = 2;
-                    break;    
+                    break;
+                case "Out For Delivery":
+                    stat_int = 4;
+                    break;
+                case "Delivered":
+                    stat_int = 5;
+                    break;
+                case "Failed":
+                    stat_int = 6;
+                    break;
             }
             return stat_int;
         }
@@ -69,7 +78,7 @@ namespace PostOffice_Application
                     {
                         //Updates a row in the shipment table that matches the given tracking number with the new given delivery status.
                         con.Open();
-                        string updateShipmentQuery = "UPDATE SHIPMENT SET SHIPMENT.Delivery_Status = @newStatus WHERE SHIPMENT.Tracking_Num = @trackingNo";
+                        string updateShipmentQuery = "UPDATE DELIVERY_STATUS SET DELIVERY_STATUS.Status = @newStatus WHERE EXISTS(SELECT* FROM SHIPMENT WHERE SHIPMENT.Tracking_Num = @trackingNo); ";
 
                         SqlCommand cmd = new SqlCommand(updateShipmentQuery, con);
                         cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
