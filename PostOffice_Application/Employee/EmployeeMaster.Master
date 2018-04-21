@@ -54,6 +54,7 @@
         <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
         <li><a href="EmployeeCreatePackage.aspx">Add Package</a></li>
         <li><a href="EmployeeUpdateShipment.aspx">Update Shipment Status</a></li>
+        <li><a href="EmployeeCreateRoute.aspx">Add Delivery Route</a></li>
         <li class="home"><a href="EmployeeHome.aspx">Home</a></li>
     </ul>
         <div>

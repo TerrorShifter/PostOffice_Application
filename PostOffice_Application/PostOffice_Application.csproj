@@ -87,6 +87,7 @@
   <ItemGroup>
     <Content Include="Common\Password_Reset.aspx" />
     <Content Include="Employee\CreateSuccess.aspx" />
+    <Content Include="Employee\EmployeeCreateRoute.aspx" />
     <Content Include="Employee\EmployeeMaster.Master" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\team-4-post-office - Web Deploy.pubxml" />
@@ -133,6 +134,13 @@
     </Compile>
     <Compile Include="Employee\CreateSuccess.aspx.designer.cs">
       <DependentUpon>CreateSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeCreateRoute.aspx.cs">
+      <DependentUpon>EmployeeCreateRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeCreateRoute.aspx.designer.cs">
+      <DependentUpon>EmployeeCreateRoute.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\EmployeeMaster.Master.cs">
       <DependentUpon>EmployeeMaster.Master</DependentUpon>
