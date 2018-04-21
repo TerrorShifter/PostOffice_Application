@@ -15,6 +15,28 @@ namespace PostOffice_Application
         {
             Button btnLogout = this.Master.FindControl("btnLogoff") as Button;
         }
+        protected void ddl1_changeView(object sender, EventArgs e)
+        {
+            switch (ddl1.SelectedValue)
+            {
+                case "View1":
+                    mv1.SetActiveView(View1);
+                    break;
+                case "View2":
+                    mv1.SetActiveView(View2);
+                    break;
+                case "View3":
+                    mv1.SetActiveView(View3);
+                    break;
+                case "View4":
+                    mv1.SetActiveView(View4);
+                    break;
+            }
+        }
+        protected void Button1OnClick(object sender, EventArgs e)
+        {
+            GridView1.Visible = true;
+        }
 
         bool isValidDate(string text)
         {

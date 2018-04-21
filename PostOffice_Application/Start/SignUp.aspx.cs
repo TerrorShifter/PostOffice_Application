@@ -83,6 +83,7 @@ namespace PostOffice_Application
             {
                 try
                 {
+                    string display = "";                   
                     var constr = new SqlConnectionStringBuilder
                     {
                        DataSource = "team-4-post-office-dbs.database.windows.net",
@@ -104,8 +105,7 @@ namespace PostOffice_Application
                         //Checks if an account has already been created using the given email.
                         string checkDuplicate = "SELECT COUNT(1) FROM LOGIN  WHERE Username=@Username";
                         SqlCommand d = new SqlCommand(checkDuplicate, con);
-                        d.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
-                        d.Parameters.AddWithValue("@Password", passwordText.Text.Trim());
+                        d.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());                       
                         if (txtEmplNum.Visible == true)
                         {
                             bool isEmp = IsEmployee(con);
@@ -115,11 +115,10 @@ namespace PostOffice_Application
                             }
                             else
                             {
-                                string display = "Must be an employee in order to register an employee account.";
+                                display = "Must be an employee in order to register an employee account.";
                                 ScriptManager.RegisterStartupScript(this, this.GetType(), "myalert", "alert('" + display + "');window.location='SignUp.aspx';", true);
                             }
-                        }
-                        d.Parameters.AddWithValue("@UserType", usertype);
+                        }                        
                         int count = Convert.ToInt32(d.ExecuteScalar());
                         if (count == 1)
                         {
@@ -129,15 +128,24 @@ namespace PostOffice_Application
                         }
                         else
                         {
-                            //adds info to login table of database, informs user of successful acount creation.
-                            SqlCommand c = new SqlCommand(query, con);
-                            c.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
-                            c.Parameters.AddWithValue("@Password", passwordText.Text.Trim());
-                            c.ExecuteNonQuery();
+                            try
+                            {
+                                //adds info to login table of database, informs user of successful acount creation.
+                                SqlCommand c = new SqlCommand(query, con);
+                                c.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
+                                c.Parameters.AddWithValue("@Password", passwordText.Text.Trim());
+                                c.Parameters.AddWithValue("@UserType", usertype);
+                                c.ExecuteNonQuery();
 
-                            lblSignUpInfo.Text = "Account Created.";
-                            lblSignUpInfo.ForeColor = System.Drawing.Color.Green;
-                            lblSignUpInfo.Visible = true;
+                                lblSignUpInfo.Text = "Account Created.";
+                                lblSignUpInfo.ForeColor = System.Drawing.Color.Green;
+                                lblSignUpInfo.Visible = true;
+                            }
+                            catch(SqlException ex)
+                            {
+                                display = "Could not send the Email - ERROR: " + ex.Message;
+                                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
+                            }
 
                             try
                             {
@@ -148,18 +156,18 @@ namespace PostOffice_Application
                                 mailMessage.Body = "Hello, \n\nThank you for registering with your friendly Team 4 Post Office! You may now login with the entered credentials. \n\nThanks, \n\nTeam 4";
                                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
                                 {
-                                    Credentials = new NetworkCredential("team4post.office@gmail.com", "youvegotmail4"),
+                                    Credentials = new NetworkCredential("team4post.office@gmail.com", "mail!youve4got"),
                                     EnableSsl = true,
                                     DeliveryMethod = SmtpDeliveryMethod.Network
                                 };
                                 smtpClient.Send(mailMessage);
                                 Session["Username"] = null;
-                                string display = "Registration Successful! Check your Email for our thank you message.";
-                                ScriptManager.RegisterStartupScript(this, this.GetType(), "myalert", "alert('" + display + "');window.location='Default.aspx';", true);
+                                display = "Registration Successful! Check your Email for our thank you message.";
+                                ScriptManager.RegisterStartupScript(this, this.GetType(), "myalert", "alert('" + display + "');window.location='../Default.aspx';", true);
                             }
                             catch (Exception ex)
                             {
-                                string display = "Could not send the Email - ERROR: " + ex.Message;
+                                display = "Could not send the Email - ERROR: " + ex.Message;
                                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
                             }                           
                         }
