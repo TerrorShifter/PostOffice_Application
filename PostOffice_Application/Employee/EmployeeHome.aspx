@@ -21,6 +21,7 @@
             <asp:ListItem Text="Packages on shipment" Value="View2"></asp:ListItem>
             <asp:ListItem Text="Customer order history" Value="View3"></asp:ListItem>
             <asp:ListItem Text="Incomplete packages" Value="View4"></asp:ListItem>
+            <asp:ListItem Text="Packages within a date range" Value="View5"></asp:ListItem>
         </asp:DropDownList>
     </p>
     <p>
@@ -62,19 +63,17 @@
             <asp:View ID="View4" runat="server">
                 View4
             </asp:View>
+            <asp:View ID="View5" runat="server">
+                   From:
+                  <asp:TextBox ID="beginDate" runat="server" align="middle"></asp:TextBox>
+                 To:
+                 <asp:TextBox ID="endDate" runat="server" align="middle"></asp:TextBox>
+                 <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" />
+                <asp:Label ID="lblDateRangeError" runat="server" ForeColor="Red" Text="Please enter a date." Visible="False" align="right"></asp:Label>
+                <asp:GridView ID="DateRangeTable" runat="server" align="middle">
+                 </asp:GridView>
+            </asp:View>
         </asp:MultiView>
-    </p>
-        Report type: </p>
-    <p class="auto-style1">
-        Date Range:
-        <asp:TextBox ID="beginDate" runat="server" align="middle"></asp:TextBox>
-        To:
-        <asp:TextBox ID="endDate" runat="server" align="middle"></asp:TextBox>
-        <asp:Label ID="lblDateRangeError" runat="server" ForeColor="Red" Text="Invalid Date." Visible="False" align="right"></asp:Label>
-    </p>
-    <p class="auto-style2">
-        <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Get Shipments" />
-    </p>
-    <asp:GridView ID="DateRangeTable" runat="server" align="middle">
-    </asp:GridView>
+  
+    
 </asp:Content>

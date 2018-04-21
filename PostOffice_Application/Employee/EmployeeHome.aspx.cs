@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace PostOffice_Application
 {
@@ -31,6 +32,9 @@ namespace PostOffice_Application
                 case "View4":
                     mv1.SetActiveView(View4);
                     break;
+                case "View5":
+                    mv1.SetActiveView(View5);
+                    break;
             }
         }
         protected void Button1OnClick(object sender, EventArgs e)
@@ -38,8 +42,10 @@ namespace PostOffice_Application
             GridView1.Visible = true;
         }
 
+        //used for view5, date report
         bool isValidDate(string text)
         {
+            
             if (text == "")
                 return false;
             else
@@ -70,6 +76,8 @@ namespace PostOffice_Application
                     using (SqlConnection con = new SqlConnection(constr.ConnectionString))
                     {
                         con.Open();
+                        //Returns a table with the columns: Tracking Number, Package Type, Contents, Value of the contents, and the full address associated with the package
+                        //based on given dates
                         string getPackageInfoQuery = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], SHIPMENT.Package_Type, SHIPMENT.Contents, SHIPMENT.Value_Of_Contents AS Value, DELIVERY_STATUS.Date_Shipped, concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM SHIPMENT LEFT JOIN Address ON SHIPMENT.Recipient_Address_ID = Address.Address_ID LEFT JOIN COUNTRY ON Address.Country_ID = Country.Country_ID LEFT JOIN STATES ON Address.State_ID = STATES.State_ID LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID WHERE NOT SHIPMENT.Delivery_Status = 3 AND NOT SHIPMENT.Delivery_Status = 2 AND DELIVERY_STATUS.Date_Shipped BETWEEN @startDate AND @endDate;";
                         SqlCommand cmd = new SqlCommand(getPackageInfoQuery, con);
                         cmd.Parameters.AddWithValue("@startDate", begin);
