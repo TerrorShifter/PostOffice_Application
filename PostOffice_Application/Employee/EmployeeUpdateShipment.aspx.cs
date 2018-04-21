@@ -23,6 +23,21 @@ namespace PostOffice_Application
                 return true;
         }
 
+        int statusToInt(string status)
+        {
+            int stat_int = 0;
+            switch (status)
+            {
+                case "Shipped":
+                    stat_int = 1;
+                    break;
+                case "Delivered":
+                    stat_int = 2;
+                    break;    
+            }
+            return stat_int;
+        }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             if (!isValidText(txtTrackingNumber.Text))
@@ -37,9 +52,35 @@ namespace PostOffice_Application
             }
             else
             {
-               
+                lblInvalidInfo.Visible = false;
+                try
+                {
+                    var constr = new SqlConnectionStringBuilder
+                    {
+                        DataSource = "team-4-post-office-dbs.database.windows.net",
+                        InitialCatalog = "Post_Office",
+                        UserID = "luisflores",
+                        Password = "luisf%1220"
+                    };
+
+                    using (SqlConnection con = new SqlConnection(constr.ConnectionString))
+                    {
+                        con.Open();
+                        string updateShipmentQuery = "UPDATE SHIPMENT SET SHIPMENT.Delivery_Status = @newStatus WHERE SHIPMENT.Tracking_Num = @trackingNo";
+
+                        SqlCommand cmd = new SqlCommand(updateShipmentQuery, con);
+                        cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
+                        cmd.Parameters.AddWithValue("@trackingNo", txtTrackingNumber.Text.Trim());
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
 
         }
     }
+
 }
