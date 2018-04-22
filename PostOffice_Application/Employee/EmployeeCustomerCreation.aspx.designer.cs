@@ -7,10 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PostOffice_Application.Employee {
+namespace PostOffice_Application {
     
     
-    public partial class WebForm1 {
+    public partial class EmployeeCustomerCreation {
+        
+        /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
         /// TextBox1 control.
@@ -22,6 +31,15 @@ namespace PostOffice_Application.Employee {
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// TextBox2 control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,15 @@ namespace PostOffice_Application.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// TextBox3 control.
@@ -40,6 +67,15 @@ namespace PostOffice_Application.Employee {
         protected global::System.Web.UI.WebControls.TextBox TextBox3;
         
         /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
         /// TextBox4 control.
         /// </summary>
         /// <remarks>
@@ -47,6 +83,15 @@ namespace PostOffice_Application.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        
+        /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
         /// MultiView1 control.
@@ -85,6 +130,15 @@ namespace PostOffice_Application.Employee {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+        
+        /// <summary>
         /// DropDownList2 control.
         /// </summary>
         /// <remarks>
@@ -103,15 +157,6 @@ namespace PostOffice_Application.Employee {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
         
         /// <summary>
-        /// CheckBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
-        
-        /// <summary>
         /// TextBox5 control.
         /// </summary>
         /// <remarks>
@@ -121,6 +166,15 @@ namespace PostOffice_Application.Employee {
         protected global::System.Web.UI.WebControls.TextBox TextBox5;
         
         /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+        
+        /// <summary>
         /// TextBox6 control.
         /// </summary>
         /// <remarks>
@@ -128,6 +182,15 @@ namespace PostOffice_Application.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        
+        /// <summary>
+        /// Label9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
         /// TextBox7 control.
@@ -146,6 +209,15 @@ namespace PostOffice_Application.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox8;
+        
+        /// <summary>
+        /// Label10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
         /// TextBox9 control.
@@ -193,13 +265,40 @@ namespace PostOffice_Application.Employee {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// TextBox10 control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// DropDownList3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
+        
+        /// <summary>
+        /// Label5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label5;
+        
+        /// <summary>
+        /// SqlDataSource3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
         
         /// <summary>
         /// TextBox11 control.
@@ -211,6 +310,15 @@ namespace PostOffice_Application.Employee {
         protected global::System.Web.UI.WebControls.TextBox TextBox11;
         
         /// <summary>
+        /// Label6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
+        
+        /// <summary>
         /// Button4 control.
         /// </summary>
         /// <remarks>
@@ -218,14 +326,5 @@ namespace PostOffice_Application.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button4;
-        
-        /// <summary>
-        /// SqlDataSource3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
     }
 }
