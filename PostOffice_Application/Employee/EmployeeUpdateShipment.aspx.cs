@@ -24,6 +24,13 @@ namespace PostOffice_Application
                 return true;
         }
 
+        protected void Lookup(object sender, EventArgs e)
+        {
+            string url = "IDLookup.aspx?EntityTable=" + ((LinkButton)sender).CommandArgument.ToString();
+            string s = "window.open('" + url + "', 'popup_window', 'width=300,height=100,left=100,top=100,resizable=yes');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", s, true);
+        }
+
         //Since the Delivery_Status value is an int type in the database, the dropdown list selection must be converted to a corresponding integer.
         int statusToInt(string status)
         {

@@ -25,7 +25,17 @@ namespace PostOffice_Application
                 DropDownList3.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                 DropDownList3.SelectedIndex = 0;
                 DropDownList3.AppendDataBoundItems = true;
+                DropDownList4.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList4.SelectedIndex = 0;
+                DropDownList4.AppendDataBoundItems = true;
             }
+        }
+
+        protected void Lookup(object sender, EventArgs e)
+        {
+            string url = "IDLookup.aspx?EntityTable=" + ((LinkButton)sender).CommandArgument.ToString();
+            string s = "window.open('" + url + "', 'popup_window', 'width=300,height=100,left=100,top=100,resizable=yes');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", s, true);
         }
 
         protected void CreateSubmit(object sender, EventArgs e)
@@ -68,6 +78,11 @@ namespace PostOffice_Application
                 Label4.Text = "Required";
                 readyToSubmit = false;
             }
+            else if(!emailCheck(TextBox4.Text))
+            {
+                Label4.Text = "Must be a valid email";
+                readyToSubmit = false;
+            }
             else
                 sqlCmd.Parameters.AddWithValue("@Val4", TextBox4.Text);
             if (DropDownList3.SelectedValue == "")
@@ -77,13 +92,13 @@ namespace PostOffice_Application
             }
             else
                 sqlCmd.Parameters.AddWithValue("@Val5", DropDownList3.SelectedValue);
-            if (TextBox11.Text == "")
+            if (DropDownList4.SelectedValue == "")
             {
                 Label6.Text = "Required";
                 readyToSubmit = false;
             }
             else
-                sqlCmd.Parameters.AddWithValue("@Val6", TextBox11.Text);
+                sqlCmd.Parameters.AddWithValue("@Val6", DropDownList4.SelectedValue);
             if (readyToSubmit)
             {
                 sqlConnection1.Open();
@@ -155,6 +170,13 @@ namespace PostOffice_Application
                 DropDownList3.SelectedIndex = DropDownList3.Items.Count - 1;
                 MultiView1.SetActiveView(View1);
             }
+        }
+
+        protected bool emailCheck(string text)
+        {
+            if (!text.Contains("@") || !text.Contains("."))
+                return false;
+            return true;
         }
     }
 }

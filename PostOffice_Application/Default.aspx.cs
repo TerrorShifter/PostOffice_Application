@@ -96,7 +96,6 @@ namespace PostOffice_Application
                         lblShipped.Visible = true;
                         conn.Close();
 
-
                     }
                     
                 }

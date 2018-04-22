@@ -76,7 +76,6 @@
 </head>
 <body style="height: 73px">
     <ul>
-        <li><a href="Start/SignUp.aspx">Register</a></li> 
         <li><a href="Start/Login.aspx">Login</a></li>               
     </ul>
     <form id="form1" runat="server">

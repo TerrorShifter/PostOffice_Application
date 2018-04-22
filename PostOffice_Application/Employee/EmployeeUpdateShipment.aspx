@@ -5,6 +5,7 @@
     <h1>Update a shipment</h1>
     Tracking number:
     <asp:TextBox ID="txtTrackingNumber" runat="server"></asp:TextBox>
+    <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument="SHIPMENT" OnClick="Lookup">Lookup</asp:LinkButton>
     <br />
     <br />
     New Delivery status:
