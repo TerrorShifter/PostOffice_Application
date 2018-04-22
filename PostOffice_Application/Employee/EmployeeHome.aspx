@@ -37,7 +37,7 @@
                     runat="server" 
                     DataSourceMode="DataReader" 
                     ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" 
-                    SelectCommand="SELECT S.Tracking_Num, S.Weight, S.Sender_ID, S.Recipient_Address_ID, S.Recipient_Phone, S.Package_Type, S.Delivery_Status, S.Rate, S.Priority_ID, S.Fragile, S.Contents, S.Value_of_Contents FROM SHIPMENT AS S INNER JOIN DELIVERY_STRING AS DS ON S.Delivery_Status = DS.Status_ID CROSS JOIN DELIVERY_ROUTE AS D CROSS JOIN CURRENT_STOP AS C WHERE (DS.Status_String = 'In Transit') AND (S.Recipient_Address_ID = C.Address_ID) AND (C.Stop_ID IN D.Stops)">
+                    SelectCommand="SELECT S.Tracking_Num, S.Weight, S.Sender_ID, S.Recipient_Address_ID, S.Recipient_Phone, S.Package_Type, S.Delivery_Status, S.Rate, S.Priority_ID, S.Fragile, S.Contents, S.Value_of_Contents FROM SHIPMENT AS S INNER JOIN DELIVERY_STRING AS DS ON S.Delivery_Status = DS.Status_ID CROSS JOIN DELIVERY_ROUTE AS D CROSS JOIN CURRENT_STOP AS C WHERE (DS.Status_String = 'In Transit') AND (S.Recipient_Address_ID = C.Address_ID) AND (C.Route_ID = D.Route_ID)">
                 </asp:SqlDataSource>
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!" Visible="False">
                     <Columns>
