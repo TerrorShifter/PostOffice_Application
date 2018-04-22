@@ -30,19 +30,22 @@ namespace PostOffice_Application
             int stat_int = 0;
             switch (status)
             {
-                case "Pre-Shipment":
+                case "In Transit":
                     stat_int = 1;
                     break;
-                case "In Transit":
+                case "Out for Delivery":
                     stat_int = 2;
                     break;
-                case "Out For Delivery":
+                case "Delivered":
+                    stat_int = 3;
+                    break;
+                case "Returned":
                     stat_int = 4;
                     break;
-                case "Delivered":
+                case "Failed to Deliver":
                     stat_int = 5;
                     break;
-                case "Failed":
+                case "Processing":
                     stat_int = 6;
                     break;
             }
