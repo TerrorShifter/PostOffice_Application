@@ -49,6 +49,15 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
+        /// lblLocate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLocate;
+        
+        /// <summary>
         /// lblShipped control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace PostOffice_Application {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblShipped;
+        
+        /// <summary>
+        /// imgCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgCheck;
         
         /// <summary>
         /// Label1 control.
