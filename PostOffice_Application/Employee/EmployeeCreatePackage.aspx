@@ -62,7 +62,7 @@
             <asp:ListItem>Letter</asp:ListItem>
             <asp:ListItem>Package</asp:ListItem>
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString2 %>" SelectCommand="SELECT [Package_Type_string], [Package_Type_ID] FROM [PACKAGE_TYPE]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Package_Type_string], [Package_Type_ID] FROM [PACKAGE_TYPE]"></asp:SqlDataSource>
     </p>
     <p style="font-size: medium">
         Priority:
@@ -72,7 +72,7 @@
             <asp:ListItem>Overnight</asp:ListItem>
             <asp:ListItem>Same Day</asp:ListItem>
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString2 %>" SelectCommand="SELECT [Priority_ID], [Priority_Type] FROM [PRIORITY]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Priority_ID], [Priority_Type] FROM [PRIORITY]"></asp:SqlDataSource>
     </p>
     <p style="font-size: medium">
         Fragile?
