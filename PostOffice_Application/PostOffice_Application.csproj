@@ -86,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Common\Password_Reset.aspx" />
-    <Content Include="Customer\Customer_ShipmentDetail.aspx" />
+    <Content Include="Customer\Customer_PackageChecking.aspx" />
     <Content Include="Employee\CreateSuccess.aspx" />
     <Content Include="Employee\EmployeeCustomerCreation.aspx" />
     <Content Include="Employee\EmployeeMaster.Master" />
@@ -129,12 +129,12 @@
     <Compile Include="Common\Password_Reset.aspx.designer.cs">
       <DependentUpon>Password_Reset.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\Customer_ShipmentDetail.aspx.cs">
-      <DependentUpon>Customer_ShipmentDetail.aspx</DependentUpon>
+    <Compile Include="Customer\Customer_PackageChecking.aspx.cs">
+      <DependentUpon>Customer_PackageChecking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer\Customer_ShipmentDetail.aspx.designer.cs">
-      <DependentUpon>Customer_ShipmentDetail.aspx</DependentUpon>
+    <Compile Include="Customer\Customer_PackageChecking.aspx.designer.cs">
+      <DependentUpon>Customer_PackageChecking.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\CreateSuccess.aspx.cs">
       <DependentUpon>CreateSuccess.aspx</DependentUpon>

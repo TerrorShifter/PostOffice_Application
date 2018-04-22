@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-
+using System.Data.SqlClient;
+using System.Data;
 
 namespace PostOffice_Application
 {
@@ -13,16 +14,7 @@ namespace PostOffice_Application
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["CustomerID"] != null)
-            {
-                DropDownList1.Visible = true;
-
-            }
-            else
-            {
-                DropDownList1.Enabled = false;
-              
-            }
+           
         }
 
         protected void btnLogoff_Click(object sender, EventArgs e)
@@ -32,13 +24,6 @@ namespace PostOffice_Application
             Response.Redirect("../Start/Login.aspx");
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Response.Redirect("Customer_ShipmentDetail.aspx");
-        }
-        protected void DropDownList1_DataBound(object sender, EventArgs e)
-        {
-            DropDownList1.Items.Insert(0, new ListItem("--Select Tracking Number--", "0"));
-        }
+       
     }
 }

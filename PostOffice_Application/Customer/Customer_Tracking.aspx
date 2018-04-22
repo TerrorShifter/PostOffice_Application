@@ -51,8 +51,10 @@
         /*This is to change the entire page background color*/
         body {
             background-color: #f3f3f3;
-            height: 437px;
+            height: 629px;
             position: relative;
+            top: 0px;
+            left: 0px;
         }
 
 
@@ -110,6 +112,7 @@
             <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
             <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
             <li class="home"><a href="Customer_Home.aspx">Home</a></li>
+             <li class="home"><a href="Customer_PackageChecking.aspx">Check Package</a></li>
         </ul>
    
 
@@ -124,21 +127,7 @@
 
     <input type="submit" value="Submit"/>  <!--Submit Does nothing at the moment-->
 
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p class="auto-style1">
-            <strong>Select You Username to view your packages:</strong></p>
-
-        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Tracking_Num" DataValueField="Tracking_Num" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Visible="False" ondatabound="DropDownList1_DataBound" >
-        </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Tracking_Num] FROM [SHIPMENT], [CUSTOMER] WHERE [Sender_ID] = [Customer_ID] AND ([Email] = @Email)">
-            <SelectParameters>
-                <asp:SessionParameter Name="Email" SessionField="Username" Type="String" />
-            </SelectParameters>
-        </asp:SqlDataSource>
-         <!--Sidenote to myself Where session = Username -->
+     
     </form>
    
 
