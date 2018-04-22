@@ -49,6 +49,7 @@
     <p>
         Driver ID:
         <asp:TextBox ID="txtDriverID" runat="server"></asp:TextBox>
+        <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument="EMPLOYEE" OnClick="Lookup">Lookup</asp:LinkButton>
     </p>
     <p>
         <asp:Button ID="btnCreateRoute" runat="server" OnClick="btnCreateRoute_Click" Text="Create" />

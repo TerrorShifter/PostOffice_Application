@@ -7,7 +7,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- <asp:ScriptManager EnablePartialRendering="true"
+    <asp:ScriptManager EnablePartialRendering="true"
  ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <h2>Create a new shipment</h2>
     <p style="font-size: medium">
@@ -15,6 +15,7 @@
         <asp:DropDownList ID="DropDownList11" runat="server" DataSourceID="SqlDataSource9" DataTextField="Employee_ID" DataValueField="Employee_ID">
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource9" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Employee_ID] FROM [EMPLOYEE]"></asp:SqlDataSource>
+        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Lookup" CommandArgument="EMPLOYEE">Lookup</asp:LinkButton>
         <asp:Label ID="Label15" runat="server"></asp:Label>
     </p>
     <p style="font-size: medium">
@@ -71,6 +72,7 @@
         ):
         <asp:DropDownList ID="DropDownList9" runat="server" DataSourceID="SqlDataSource5" DataTextField="Address_ID" DataValueField="Address_ID">
         </asp:DropDownList>
+        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="Lookup" CommandArgument="ADDRESS">Lookup</asp:LinkButton>
         <asp:Label ID="Label20" runat="server"></asp:Label>
     </p>
     <p style="font-size: medium">
@@ -137,6 +139,7 @@
         <ContentTemplate>
             <asp:DropDownList ID="DropDownList5" runat="server" DataSourceID="SqlDataSource5" DataTextField="Address_ID" DataValueField="Address_ID">
             </asp:DropDownList>
+            <asp:LinkButton ID="LinkButton3" runat="server" CommandArgument="ADDRESS" OnClick="Lookup">Lookup</asp:LinkButton>
             <asp:Label ID="Label5" runat="server"></asp:Label>
             <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Address_ID] FROM [ADDRESS]"></asp:SqlDataSource>
         </ContentTemplate>
@@ -147,6 +150,7 @@
             <asp:DropDownList ID="DropDownList10" runat="server" DataSourceID="SqlDataSource7" DataTextField="Office_Location_ID" DataValueField="Office_Location_ID">
             </asp:DropDownList>
             <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Office_Location_ID] FROM [OFFICE_LOCATION]"></asp:SqlDataSource>
+            <asp:LinkButton ID="LinkButton5" runat="server" CommandArgument="OFFICE_LOCATION" OnClick="Lookup">Lookup</asp:LinkButton>
         <asp:Label ID="Label6" runat="server"></asp:Label>
     <br />
         <asp:Button ID="Button5" runat="server" OnClick="InternalSubmit1" Text="Submit" />
@@ -157,6 +161,7 @@
         <asp:DropDownList ID="DropDownList6" runat="server" DataSourceID="SqlDataSource6" DataTextField="Customer_ID" DataValueField="Customer_ID">
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Customer_ID] FROM [CUSTOMER]"></asp:SqlDataSource>
+        <asp:LinkButton ID="LinkButton4" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
         <asp:Label ID="Label21" runat="server"></asp:Label>
     </p>
     <p style="font-size: medium">

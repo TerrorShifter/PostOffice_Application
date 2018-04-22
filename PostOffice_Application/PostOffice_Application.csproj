@@ -87,7 +87,6 @@
   <ItemGroup>
     <Content Include="Common\Password_Reset.aspx" />
     <Content Include="Customer\Customer_PackageChecking.aspx" />
-    <Content Include="Employee\CreateSuccess.aspx" />
     <Content Include="Employee\EmployeeCreateRoute.aspx" />
     <Content Include="Employee\EmployeeCustomerCreation.aspx" />
     <Content Include="Employee\EmployeeMaster.Master" />
@@ -112,6 +111,7 @@
     <Content Include="Customer\Customer_Home.aspx" />
     <Content Include="Customer\Customer_Tracking.aspx" />
     <Content Include="email-png-email-png-285.png" />
+    <Content Include="Employee\IDLookup.aspx" />
     <Content Include="Start\ForgotPassword.aspx" />
     <Content Include="Start\Login.aspx" />
     <Content Include="Start\SignUp.aspx" />
@@ -136,13 +136,6 @@
     </Compile>
     <Compile Include="Customer\Customer_PackageChecking.aspx.designer.cs">
       <DependentUpon>Customer_PackageChecking.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Employee\CreateSuccess.aspx.cs">
-      <DependentUpon>CreateSuccess.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Employee\CreateSuccess.aspx.designer.cs">
-      <DependentUpon>CreateSuccess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\EmployeeCreateRoute.aspx.cs">
       <DependentUpon>EmployeeCreateRoute.aspx</DependentUpon>
@@ -199,6 +192,13 @@
     </Compile>
     <Compile Include="Customer\Customer_Tracking.aspx.designer.cs">
       <DependentUpon>Customer_Tracking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\IDLookup.aspx.cs">
+      <DependentUpon>IDLookup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\IDLookup.aspx.designer.cs">
+      <DependentUpon>IDLookup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

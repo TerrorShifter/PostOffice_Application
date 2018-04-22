@@ -4,7 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
  <asp:ScriptManager EnablePartialRendering="true"
- ID="ScriptManager1" runat="server"></asp:ScriptManager>
+ ID="ScriptManager1" runat="server">
+ </asp:ScriptManager>
     <p>
         &nbsp;</p>
     <h2>Create a new customer</h2>
@@ -71,6 +72,7 @@
             </asp:DropDownList>
             <asp:Label ID="Label5" runat="server"></asp:Label>
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Address_ID] FROM [ADDRESS]"></asp:SqlDataSource>
+            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Lookup" CommandArgument="ADDRESS">Lookup</asp:LinkButton>
         </ContentTemplate>
         <Triggers> <asp:AsyncPostBackTrigger ControlID="Button2" EventName="Click" /> </Triggers>
     </asp:UpdatePanel>
@@ -79,6 +81,7 @@
         <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataSource4" DataTextField="Office_Location_ID" DataValueField="Office_Location_ID">
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Office_Location_ID] FROM [OFFICE_LOCATION]"></asp:SqlDataSource>
+        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="Lookup" CommandArgument="OFFICE_LOCATION">Lookup</asp:LinkButton>
         <asp:Label ID="Label6" runat="server"></asp:Label>
     </p>
     <p>
