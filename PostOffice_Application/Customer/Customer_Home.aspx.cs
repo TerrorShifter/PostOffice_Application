@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace PostOffice_Application
 {
@@ -11,7 +13,18 @@ namespace PostOffice_Application
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["CustomerID"] != null)
+            {
 
+    
+
+
+                WelcomeLabel.Text = "Welcome to our Post Office Customer HomePage! "+ Session["Username"].ToString(); //Session[Username] give the username 
+            }
+            else
+            {
+                WelcomeLabel.Text = "Welcome to our Post Office Customer HomePage! There seems to be an error with your session. Please log off and try again!";
+            }
         }
 
         protected void btnLogoff_Click(object sender, EventArgs e)

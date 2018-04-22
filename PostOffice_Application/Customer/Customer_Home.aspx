@@ -8,6 +8,7 @@
     <!-- This shows the little arrow for the drop down menu -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
+ 
 
     <title></title>
     <style>
@@ -71,13 +72,15 @@
             <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
             <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
             <li><a href="Customer_Tracking.aspx">Tracking</a></li>
+            <li><a href="Customer_PackageChecking.aspx">Check Package</a></li>
         </ul>
-    <h2>Customer Page</h2>
+   
     
     </form>
 
      <!-- Placeholder Text just to show that You are in the Home page -->
-    <h3>Welcome to our Post Office Customer HomePage!</h3>
+    <h3 id="WelcomeHeader"
+        <asp:Label ID="WelcomeLabel" runat="server" Text="Label"></asp:Label></h3>
 
 
 

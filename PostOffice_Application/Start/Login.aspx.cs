@@ -42,7 +42,7 @@ namespace PostOffice_Application
 
                         string getid = "SELECT C.Customer_ID FROM CUSTOMER C, LOGIN L WHERE C.Email = L.Username";
                         SqlCommand getcustid = new SqlCommand(getid, connection);
-                        SqlDataReader idreader = getcustid.ExecuteReader();                                     
+                        SqlDataReader idreader = getcustid.ExecuteReader();
                         Session["CustomerID"] = idreader.ToString();
 
                         string destination = "";

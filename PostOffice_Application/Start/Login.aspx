@@ -91,7 +91,8 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Label ID="lblLoginError" runat="server" Text="Invalid login info" ForeColor="Red"></asp:Label></td>
+                        <asp:Label ID="lblLoginError" runat="server" Text="Invalid login info" ForeColor="Red"></asp:Label>
+                    </td>
                     <td class="auto-style4">
                         <asp:Button ID="btnForgot" runat="server" Text="Forgot Password?" Width="160px" OnClick="btnForgot_Click" />
                         </td>

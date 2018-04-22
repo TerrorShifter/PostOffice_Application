@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace PostOffice_Application
 {
@@ -11,7 +14,7 @@ namespace PostOffice_Application
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void btnLogoff_Click(object sender, EventArgs e)
@@ -20,5 +23,7 @@ namespace PostOffice_Application
             Session.Contents.RemoveAll();
             Response.Redirect("../Start/Login.aspx");
         }
+
+       
     }
 }

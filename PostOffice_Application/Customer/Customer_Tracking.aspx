@@ -17,7 +17,7 @@
         /*https://www.w3schools.com/howto/howto_css_contact_form.asp this link is where I got the style block below for my tracking form. I made some slight modifications to the design attributes*/
         /* Style inputs with type="text", select elements and textareas */
         input[type=text], select, textarea {
-            width: 20%; /* Full width */
+            /* Full width */
             padding: 12px; /* Some padding */  
             border: 1px solid #ccc; /* Gray border */
             border-radius: 4px; /* Rounded borders */
@@ -51,6 +51,10 @@
         /*This is to change the entire page background color*/
         body {
             background-color: #f3f3f3;
+            height: 629px;
+            position: relative;
+            top: 0px;
+            left: 0px;
         }
 
 
@@ -96,7 +100,10 @@
 
     /*Header style for double outline*/
     h2 {border-style: double;}
-</style>
+        .auto-style1 {
+            text-decoration: underline;
+        }
+    </style>
 
 </head>
 <body>
@@ -105,16 +112,14 @@
             <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
             <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
             <li class="home"><a href="Customer_Home.aspx">Home</a></li>
+             <li class="home"><a href="Customer_PackageChecking.aspx">Check Package</a></li>
         </ul>
-    </form>
-    <h2>Customer Page</h2>
+   
 
-     <!-- This is just a header to show you have changed to the Tracking Page from Home Page -->
-    <h2>Tracking Page</h2>
+    
 
 
    <!-- Form for entering Trackign Number-->
-  <form>
     <label for="">Please enter your Tracking Number for your Package:</label>
       <br/> <!-- Breaks line  -->
     <input type="text" id="TrackingNum" name="Tracking Number" placeholder="Your Tracking Number.."/>
@@ -122,10 +127,13 @@
 
     <input type="submit" value="Submit"/>  <!--Submit Does nothing at the moment-->
 
-  </form>
+     
+    </form>
+   
+
+ 
 
 
-
-</body>
+   </body>
 
 </html>
