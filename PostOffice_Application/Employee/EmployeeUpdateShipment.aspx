@@ -8,10 +8,11 @@
     <br />
     <br />
     New Delivery status:
-    <asp:DropDownList ID="DropDownList1" runat="server">
+    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Status_String" DataValueField="Status_String">
         <asp:ListItem></asp:ListItem>
         <asp:ListItem>Delivered</asp:ListItem>
         <asp:ListItem>Shipped</asp:ListItem>
     </asp:DropDownList>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Status_String] FROM [DELIVERY_STRING]"></asp:SqlDataSource>
     <asp:Button ID="Button1" runat="server" Text="Submit" />
 </asp:Content>
