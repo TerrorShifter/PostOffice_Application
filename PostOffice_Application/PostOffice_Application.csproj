@@ -15,7 +15,7 @@
     <RootNamespace>PostOffice_Application</RootNamespace>
     <AssemblyName>PostOffice_Application</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -115,7 +115,6 @@
     <Content Include="Employee\AddStops.aspx" />
     <Content Include="Start\ForgotPassword.aspx" />
     <Content Include="Start\Login.aspx" />
-    <Content Include="Start\SignUp.aspx" />
     <Content Include="transparent-green-checkmark-hi.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -201,6 +200,7 @@
     </Compile>
     <Compile Include="Employee\IDLookup.aspx.designer.cs">
       <DependentUpon>IDLookup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Employee\AddStops.aspx.cs">
       <DependentUpon>AddStops.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -262,7 +262,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65516</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
