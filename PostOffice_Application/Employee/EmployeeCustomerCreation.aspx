@@ -75,10 +75,6 @@
         <Triggers> <asp:AsyncPostBackTrigger ControlID="Button2" EventName="Click" /> </Triggers>
     </asp:UpdatePanel>
     <p>
-        &nbsp;</p>
-    <p>
-        &nbsp;</p>
-    <p>
         Local Post Office ID:
         <asp:TextBox ID="TextBox11" runat="server"></asp:TextBox>
         <asp:Label ID="Label6" runat="server"></asp:Label>
