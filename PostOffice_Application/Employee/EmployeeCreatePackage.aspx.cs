@@ -55,6 +55,14 @@ namespace PostOffice_Application
                 DropDownList11.AppendDataBoundItems = true;
             }
         }
+
+        protected void Lookup(object sender, EventArgs e)
+        {
+            string url = "IDLookup.aspx?EntityTable=" + ((LinkButton)sender).CommandArgument.ToString();
+            string s = "window.open('" + url + "', 'popup_window', 'width=300,height=100,left=100,top=100,resizable=yes');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", s, true);
+        }
+
         protected void CreateSubmit(object sender, EventArgs e)
         {
             try
@@ -77,9 +85,15 @@ namespace PostOffice_Application
                 sqlCmd.CommandText = "Insert Into SHIPMENT (Weight, Recipient_FName, Recipient_LName, Recipient_Phone, Recipient_Address_ID, Sender_ID, Package_Type, Delivery_Status, Rate, Priority_ID, Fragile, Contents, Value_Of_Contents) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val7, @Val8, @Val9, @Val10, @Val11, @Val12, @Val13, @Val14)";
                 sqlCmd.Connection = sqlConnection1;
                 bool readyToSubmit = true;
+                float ftemp = 0; int itemp = 0;
                 if (TextBox1.Text == "")
                 {
                     Label16.Text = "Required";
+                    readyToSubmit = false;
+                }
+                else if(!float.TryParse(TextBox1.Text, out ftemp))
+                {
+                    Label16.Text = "Must be a float";
                     readyToSubmit = false;
                 }
                 else
@@ -101,6 +115,11 @@ namespace PostOffice_Application
                 if (TextBox22.Text == "")
                 {
                     Label19.Text = "Required";
+                    readyToSubmit = false;
+                }
+                else if(!Int32.TryParse(TextBox22.Text, out itemp))
+                {
+                    Label19.Text = "Must be an int";
                     readyToSubmit = false;
                 }
                 else
@@ -145,6 +164,11 @@ namespace PostOffice_Application
                     Label22.Text = "Required";
                     readyToSubmit = false;
                 }
+                else if (!float.TryParse(TextBox5.Text, out ftemp))
+                {
+                    Label22.Text = "Must be a float";
+                    readyToSubmit = false;
+                }
                 else
                     sqlCmd.Parameters.AddWithValue("@Val10", TextBox5.Text);
                 if (DropDownList2.SelectedValue == "")
@@ -166,6 +190,11 @@ namespace PostOffice_Application
                 if (TextBox6.Text == "")
                 {
                     Label23.Text = "Required";
+                    readyToSubmit = false;
+                }
+                else if(!float.TryParse(TextBox6.Text, out ftemp))
+                {
+                    Label23.Text = "Must be a float";
                     readyToSubmit = false;
                 }
                 else
@@ -195,6 +224,7 @@ namespace PostOffice_Application
                 sqlCmd.CommandType = System.Data.CommandType.Text;
                 sqlCmd.CommandText = "Insert Into CUSTOMER (Cust_FName, Cust_LName, Phone_Num, Email, Address_ID, Local_Post_Office_ID) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val6)";
                 sqlCmd.Connection = sqlConnection1;
+                int itemp = 0;
                 bool readyToSubmit = true;
                 if (TextBox7.Text == "")
                 {
@@ -215,11 +245,21 @@ namespace PostOffice_Application
                     Label3.Text = "Required";
                     readyToSubmit = false;
                 }
+                else if(!Int32.TryParse(TextBox9.Text, out itemp))
+                {
+                    Label3.Text = "Must be an int";
+                    readyToSubmit = false;
+                }
                 else
                     sqlCmd.Parameters.AddWithValue("@Val3", TextBox9.Text);
                 if (TextBox10.Text == "")
                 {
                     Label4.Text = "Required";
+                    readyToSubmit = false;
+                }
+                else if (!emailCheck(TextBox10.Text))
+                {
+                    Label4.Text = "Must be a valid email";
                     readyToSubmit = false;
                 }
                 else
@@ -343,12 +383,14 @@ namespace PostOffice_Application
                 Label8.Text = "";
                 Label9.Text = "";
                 Label10.Text = "";
+                Label27.Text = "";
                 System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["Post_OfficeConnectionString"].ConnectionString);
                 System.Data.SqlClient.SqlCommand sqlCmd = new System.Data.SqlClient.SqlCommand();
                 sqlCmd.CommandType = System.Data.CommandType.Text;
                 sqlCmd.CommandText = "Insert Into ADDRESS (Country_ID, State_ID, City, Zip, Apartment_Num, Street_Address1, Street_Address2) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val6, @Val7)";
                 sqlCmd.Connection = sqlConnection1;
                 bool readyToSubmit = true;
+                int itemp = 0;
                 if (DropDownList3.SelectedValue == "")
                 {
                     Label7.Text = "Required";
@@ -376,6 +418,11 @@ namespace PostOffice_Application
                     sqlCmd.Parameters.AddWithValue("@Val4", TextBox12.Text);
                 if (TextBox13.Text == "")
                     sqlCmd.Parameters.AddWithValue("@Val5", DBNull.Value);
+                else if(!Int32.TryParse(TextBox13.Text, out itemp))
+                {
+                    Label27.Text = "Must be an int";
+                    readyToSubmit = false;
+                }
                 else
                     sqlCmd.Parameters.AddWithValue("@Val5", TextBox13.Text);
                 if (TextBox14.Text == "")
@@ -415,12 +462,14 @@ namespace PostOffice_Application
                 Label8.Text = "";
                 Label9.Text = "";
                 Label10.Text = "";
+                Label28.Text = "";
                 System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["Post_OfficeConnectionString"].ConnectionString);
                 System.Data.SqlClient.SqlCommand sqlCmd = new System.Data.SqlClient.SqlCommand();
                 sqlCmd.CommandType = System.Data.CommandType.Text;
                 sqlCmd.CommandText = "Insert Into ADDRESS (Country_ID, State_ID, City, Zip, Apartment_Num, Street_Address1, Street_Address2) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val6, @Val7)";
                 sqlCmd.Connection = sqlConnection1;
                 bool readyToSubmit = true;
+                int itemp = 0;
                 if (DropDownList7.SelectedValue == "")
                 {
                     Label11.Text = "Required";
@@ -448,6 +497,11 @@ namespace PostOffice_Application
                     sqlCmd.Parameters.AddWithValue("@Val4", TextBox18.Text);
                 if (TextBox19.Text == "")
                     sqlCmd.Parameters.AddWithValue("@Val5", DBNull.Value);
+                else if(!Int32.TryParse(TextBox19.Text, out itemp))
+                {
+                    Label28.Text = "Must be an int";
+                    readyToSubmit = false;
+                }
                 else
                     sqlCmd.Parameters.AddWithValue("@Val5", TextBox19.Text);
                 if (TextBox20.Text == "")
@@ -478,6 +532,13 @@ namespace PostOffice_Application
                 string display = "Could not create the Address - ERROR: " + ex.Message;
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
             }
+        }
+
+        protected bool emailCheck(string text)
+        {
+            if (!text.Contains("@") || !text.Contains("."))
+                return false;
+            return true;
         }
     }
 }
