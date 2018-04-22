@@ -124,6 +124,8 @@ namespace PostOffice_Application
                 "Tracking_Num = @TrackingID AND Delivery_Status_ID = Delivery_Status";
             string locQuery = "SELECT DISTINCT Street_Address1 FROM ADDRESS AS A, SHIPMENT, PACKAGES_AT_STOP AS P, CURRENT_STOP AS C WHERE " +
                 "P.Package_ID = @TrackingID AND P.Stop_ID = C.Stop_ID AND C.Address_ID = A.Address_ID";
+            string cityQuery = "SELECT DISTINCT CONCAT(City, ', ', State_ID) FROM ADDRESS AS A, SHIPMENT, PACKAGES_AT_STOP AS P, CURRENT_STOP AS C WHERE " +
+                "P.Package_ID = @TrackingID AND P.Stop_ID = C.Stop_ID AND C.Address_ID = A.Address_ID";
 
             switch (status)
             {
@@ -140,7 +142,10 @@ namespace PostOffice_Application
 
                     trans = new SqlCommand(locQuery, connect);
                     trans.Parameters.AddWithValue("@TrackingID", trackingNum);
-                    lblLocate.Text = "Last Location: " + trans.ExecuteScalar().ToString();
+                    lblLocate.Text = "Last Location: " + trans.ExecuteScalar().ToString() + ", ";
+                    trans = new SqlCommand(cityQuery, connect);
+                    trans.Parameters.AddWithValue("@TrackingID", trackingNum);
+                    lblLocate.Text += trans.ExecuteScalar().ToString();
                     lblLocate.Visible = true;
                     break;
                 case "Out for Delivery":
@@ -156,7 +161,11 @@ namespace PostOffice_Application
 
                     outFor = new SqlCommand(locQuery, connect);
                     outFor.Parameters.AddWithValue("@TrackingID", trackingNum);
-                    lblLocate.Text = "Last Location: " + outFor.ExecuteScalar().ToString();
+                    lblLocate.Text = "Last Location: " + outFor.ExecuteScalar().ToString() + ", ";
+                    lblLocate.Visible = true;
+                    outFor = new SqlCommand(cityQuery, connect);
+                    outFor.Parameters.AddWithValue("@TrackingID", trackingNum);
+                    lblLocate.Text += outFor.ExecuteScalar().ToString();
                     lblLocate.Visible = true;
                     break;
                 case "Delivered":
@@ -172,7 +181,11 @@ namespace PostOffice_Application
 
                     deliv = new SqlCommand(locQuery, connect);
                     deliv.Parameters.AddWithValue("@TrackingID", trackingNum);
-                    lblLocate.Text = "Last Location: " + deliv.ExecuteScalar().ToString();
+                    lblLocate.Text = "Last Location: " + deliv.ExecuteScalar().ToString() + ", ";
+                    lblLocate.Visible = true;
+                    deliv = new SqlCommand(cityQuery, connect);
+                    deliv.Parameters.AddWithValue("@TrackingID", trackingNum);
+                    lblLocate.Text += deliv.ExecuteScalar().ToString();
                     lblLocate.Visible = true;
 
                     lblShipped.ForeColor = System.Drawing.Color.Green;
@@ -191,7 +204,11 @@ namespace PostOffice_Application
 
                     retur = new SqlCommand(locQuery, connect);
                     retur.Parameters.AddWithValue("@TrackingID", trackingNum);
-                    lblLocate.Text = "Last Location: " + retur.ExecuteScalar().ToString();
+                    lblLocate.Text = "Last Location: " + retur.ExecuteScalar().ToString() + ", ";
+                    retur = new SqlCommand(cityQuery, connect);
+                    retur.Parameters.AddWithValue("@TrackingID", trackingNum);
+                    lblLocate.Text += retur.ExecuteScalar().ToString();
+                    
                     lblLocate.Visible = true;
                     break;
                 case "Failed to Deliver":
@@ -207,7 +224,11 @@ namespace PostOffice_Application
 
                     fail = new SqlCommand(locQuery, connect);
                     fail.Parameters.AddWithValue("@TrackingID", trackingNum);
-                    lblLocate.Text = "Last Location: " + fail.ExecuteScalar().ToString();
+                    lblLocate.Text = "Last Location: " + fail.ExecuteScalar().ToString() + ", ";
+                    fail = new SqlCommand(cityQuery, connect);
+                    fail.Parameters.AddWithValue("@TrackingID", trackingNum);
+                    lblLocate.Text += fail.ExecuteScalar().ToString();
+                    
                     lblLocate.Visible = true;
                     break;
                 case "Processing":
@@ -218,7 +239,11 @@ namespace PostOffice_Application
 
                     process = new SqlCommand(locQuery, connect);
                     process.Parameters.AddWithValue("@TrackingID", trackingNum);
-                    lblLocate.Text = "Last Location: " + process.ExecuteScalar().ToString();
+                    lblLocate.Text = "Last Location: " + process.ExecuteScalar().ToString() + ", ";
+                    process = new SqlCommand(cityQuery, connect);
+                    process.Parameters.AddWithValue("@TrackingID", trackingNum);
+                    lblLocate.Text += process.ExecuteScalar().ToString();
+
                     lblLocate.Visible = true;
                     break;
 
