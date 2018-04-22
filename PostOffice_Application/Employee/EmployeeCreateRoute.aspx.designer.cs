@@ -7,162 +7,144 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PostOffice_Application {
+namespace PostOffice_Application.Employee {
     
     
-    public partial class EmployeeHome {
+    public partial class EmployeeCreateRoute {
         
         /// <summary>
-        /// Label1 control.
+        /// txtStartStreet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox txtStartStreet;
         
         /// <summary>
-        /// ddl1 control.
+        /// txtStartStreet2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddl1;
+        protected global::System.Web.UI.WebControls.TextBox txtStartStreet2;
         
         /// <summary>
-        /// mv1 control.
+        /// txtStartCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mv1;
+        protected global::System.Web.UI.WebControls.TextBox txtStartCity;
         
         /// <summary>
-        /// View1 control.
+        /// txtStartState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
+        protected global::System.Web.UI.WebControls.TextBox txtStartState;
         
         /// <summary>
-        /// View2 control.
+        /// txtStartZip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
+        protected global::System.Web.UI.WebControls.TextBox txtStartZip;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtStartCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtStartCountry;
         
         /// <summary>
-        /// Button1 control.
+        /// txtEndStreet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.TextBox txtEndStreet;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// txtEndStreet2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.TextBox txtEndStreet2;
         
         /// <summary>
-        /// GridView1 control.
+        /// txtEndCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.TextBox txtEndCity;
         
         /// <summary>
-        /// View3 control.
+        /// txtEndState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3;
+        protected global::System.Web.UI.WebControls.TextBox txtEndState;
         
         /// <summary>
-        /// View4 control.
+        /// txtEndZip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View4;
+        protected global::System.Web.UI.WebControls.TextBox txtEndZip;
         
         /// <summary>
-        /// View5 control.
+        /// txtEndCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View5;
+        protected global::System.Web.UI.WebControls.TextBox txtEndCountry;
         
         /// <summary>
-        /// beginDate control.
+        /// txtDriverID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox beginDate;
+        protected global::System.Web.UI.WebControls.TextBox txtDriverID;
         
         /// <summary>
-        /// endDate control.
+        /// btnCreateRoute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox endDate;
+        protected global::System.Web.UI.WebControls.Button btnCreateRoute;
         
         /// <summary>
-        /// btnGetDateRangeReport control.
+        /// lblCreateRouteInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGetDateRangeReport;
-        
-        /// <summary>
-        /// lblDateRangeError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateRangeError;
-        
-        /// <summary>
-        /// DateRangeTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DateRangeTable;
+        protected global::System.Web.UI.WebControls.Label lblCreateRouteInfo;
     }
 }

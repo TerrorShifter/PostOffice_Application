@@ -1,5 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Employee/EmployeeMaster.Master" AutoEventWireup="true" CodeBehind="EmployeeHome.aspx.cs" Inherits="PostOffice_Application.EmployeeHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style1 {
+            margin-left: 40px;
+        }
+        .auto-style2 {
+            margin-left: 280px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
@@ -13,6 +21,7 @@
             <asp:ListItem Text="Packages on shipment" Value="View2"></asp:ListItem>
             <asp:ListItem Text="Customer order history" Value="View3"></asp:ListItem>
             <asp:ListItem Text="Incomplete packages" Value="View4"></asp:ListItem>
+            <asp:ListItem Text="Packages within a date range" Value="View5"></asp:ListItem>
         </asp:DropDownList>
     </p>
     <p>
@@ -28,7 +37,7 @@
                     runat="server" 
                     DataSourceMode="DataReader" 
                     ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" 
-                    SelectCommand="SELECT S.Tracking_Num, S.Weight, S.Sender_ID, S.Recipient_Address_ID, S.Recipient_Phone, S.Package_Type, S.Delivery_Status, S.Rate, S.Priority_ID, S.Fragile, S.Contents, S.Value_of_Contents FROM SHIPMENT AS S INNER JOIN DELIVERY_STRING AS DS ON S.Delivery_Status = DS.Status_ID CROSS JOIN DELIVERY_ROUTE AS D CROSS JOIN CURRENT_STOP AS C WHERE (DS.Status_String = 'In Transit') AND (S.Recipient_Address_ID = C.Address_ID) AND (C.Stop_ID IN D.Stops)">
+                    SelectCommand="SELECT S.Tracking_Num, S.Weight, S.Sender_ID, S.Recipient_Address_ID, S.Recipient_Phone, S.Package_Type, S.Delivery_Status, S.Rate, S.Priority_ID, S.Fragile, S.Contents, S.Value_of_Contents FROM SHIPMENT AS S INNER JOIN DELIVERY_STRING AS DS ON S.Delivery_Status = DS.Status_ID CROSS JOIN DELIVERY_ROUTE AS D CROSS JOIN CURRENT_STOP AS C WHERE (DS.Status_String = 'In Transit') AND (S.Recipient_Address_ID = C.Address_ID) AND (C.Route_ID = D.Route_ID)">
                 </asp:SqlDataSource>
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!" Visible="False">
                     <Columns>
@@ -54,6 +63,17 @@
             <asp:View ID="View4" runat="server">
                 View4
             </asp:View>
+            <asp:View ID="View5" runat="server">
+                   From:
+                  <asp:TextBox ID="beginDate" runat="server" align="middle"></asp:TextBox>
+                 To:
+                 <asp:TextBox ID="endDate" runat="server" align="middle"></asp:TextBox>
+                 <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" />
+                <asp:Label ID="lblDateRangeError" runat="server" ForeColor="Red" Text="Please enter a date." Visible="False" align="right"></asp:Label>
+                <asp:GridView ID="DateRangeTable" runat="server" align="middle">
+                 </asp:GridView>
+            </asp:View>
         </asp:MultiView>
-    </p>
+  
+    
 </asp:Content>

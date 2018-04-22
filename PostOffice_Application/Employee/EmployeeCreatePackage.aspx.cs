@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace PostOffice_Application
 {
@@ -12,11 +14,356 @@ namespace PostOffice_Application
         protected void Page_Load(object sender, EventArgs e)
         {
             Button btnLogout = this.Master.FindControl("btnLogoff") as Button;
+            if (!Page.IsPostBack)
+            {
+                DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList1.SelectedIndex = 0;
+                DropDownList1.AppendDataBoundItems = true;
+                DropDownList2.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList2.SelectedIndex = 0;
+                DropDownList2.AppendDataBoundItems = true;
+                DropDownList3.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList3.SelectedIndex = 0;
+                DropDownList3.AppendDataBoundItems = true;
+                DropDownList4.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList4.SelectedIndex = 0;
+                DropDownList4.AppendDataBoundItems = true;
+                DropDownList5.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList5.SelectedIndex = 0;
+                DropDownList5.AppendDataBoundItems = true;
+                DropDownList6.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList6.SelectedIndex = 0;
+                DropDownList6.AppendDataBoundItems = true;
+                DropDownList7.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList7.SelectedIndex = 0;
+                DropDownList7.AppendDataBoundItems = true;
+                DropDownList8.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList8.SelectedIndex = 0;
+                DropDownList8.AppendDataBoundItems = true;
+                DropDownList9.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList9.SelectedIndex = 0;
+                DropDownList9.AppendDataBoundItems = true;
+                DropDownList10.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList10.SelectedIndex = 0;
+                DropDownList10.AppendDataBoundItems = true;
+                DropDownList11.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList11.SelectedIndex = 0;
+                DropDownList11.AppendDataBoundItems = true;
+            }
+        }
+        protected void CreateSubmit(object sender, EventArgs e)
+        {
+            Label15.Text = "";
+            Label16.Text = "";
+            Label17.Text = "";
+            Label18.Text = "";
+            Label19.Text = "";
+            Label20.Text = "";
+            Label26.Text = "";
+            Label21.Text = "";
+            Label22.Text = "";
+            Label23.Text = "";
+            Label24.Text = "";
+            Label25.Text = "";
+            System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["Post_OfficeConnectionString"].ConnectionString);
+            System.Data.SqlClient.SqlCommand sqlCmd = new System.Data.SqlClient.SqlCommand();
+            sqlCmd.CommandType = System.Data.CommandType.Text;
+            sqlCmd.CommandText = "Insert Into SHIPMENT (Weight, Recipient_FName, Recipient_LName, Recipient_Phone, Recipient_Address_ID, Sender_ID, Package_Type, Delivery_Status, Rate, Priority_ID, Fragile, Contents, Value_Of_Contents) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val7, @Val8, @Val9, @Val10, @Val11, @Val12, @Val13, @Val14)";
+            sqlCmd.Connection = sqlConnection1;
+            bool readyToSubmit = true;
+            if (TextBox1.Text == "")
+            {
+                Label16.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val1", TextBox1.Text);
+            if (TextBox2.Text == "")
+            {
+                Label17.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val2", TextBox2.Text);
+            if (TextBox3.Text == "")
+            {
+                Label18.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val3", TextBox3.Text);
+            if (TextBox22.Text == "")
+            {
+                Label19.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val4", TextBox22.Text);
+            if (DropDownList9.SelectedValue == "")
+            {
+                Label20.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val5", DropDownList9.SelectedValue);
+            if (DropDownList6.SelectedValue == "")
+            {
+                Label5.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val7", DropDownList6.SelectedValue);
+            if (DropDownList1.SelectedValue == "")
+            {
+                Label24.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val8", DropDownList1.SelectedValue);
+            sqlConnection1.Open();
+            using (SqlCommand cmd = new SqlCommand("Insert Into DELIVERY_STATUS (Status, Estimated_Arrival, Employee) Output INSERTED.Delivery_Status_ID Values (6, DATEADD(week,2,current_timestamp), @Val1)", sqlConnection1))
+            {
+                if (DropDownList11.SelectedValue == "")
+                {
+                    Label15.Text = "Required";
+                    readyToSubmit = false;
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@Val1", DropDownList11.SelectedValue);
+                    sqlCmd.Parameters.AddWithValue("@Val9", (int)cmd.ExecuteScalar());
+                }
+            }
+            if (TextBox5.Text == "")
+            {
+                Label22.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val10", TextBox5.Text);
+            if (DropDownList2.SelectedValue == "")
+            {
+                Label25.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val11", DropDownList2.SelectedValue);
+            sqlCmd.Parameters.AddWithValue("@Val12", (CheckBox1.Checked) ? 2 : 1);
+
+            if (TextBox23.Text == "")
+            {
+                Label26.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val13", TextBox23.Text);
+            if (TextBox6.Text == "")
+            {
+                Label23.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val14", TextBox6.Text);
+            if (readyToSubmit)
+                sqlCmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+        }
+        protected void InternalSubmit1(object sender, EventArgs e)
+        {
+            Label1.Text = "";
+            Label2.Text = "";
+            Label3.Text = "";
+            Label4.Text = "";
+            Label5.Text = "";
+            Label6.Text = "";
+            System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["Post_OfficeConnectionString"].ConnectionString);
+            System.Data.SqlClient.SqlCommand sqlCmd = new System.Data.SqlClient.SqlCommand();
+            sqlCmd.CommandType = System.Data.CommandType.Text;
+            sqlCmd.CommandText = "Insert Into CUSTOMER (Cust_FName, Cust_LName, Phone_Num, Email, Address_ID, Local_Post_Office_ID) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val6)";
+            sqlCmd.Connection = sqlConnection1;
+            bool readyToSubmit = true;
+            if (TextBox7.Text == "")
+            {
+                Label1.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val1", TextBox7.Text);
+            if (TextBox8.Text == "")
+            {
+                Label2.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val2", TextBox8.Text);
+            if (TextBox9.Text == "")
+            {
+                Label3.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val3", TextBox9.Text);
+            if (TextBox10.Text == "")
+            {
+                Label4.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val4", TextBox10.Text);
+            if (DropDownList5.SelectedValue == "")
+            {
+                Label5.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val5", DropDownList5.SelectedValue);
+            if (DropDownList10.SelectedValue == "")
+            {
+                Label6.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val6", DropDownList10.SelectedValue);
+            if (readyToSubmit)
+            {
+                sqlConnection1.Open();
+                sqlCmd.ExecuteNonQuery();
+                sqlConnection1.Close();
+                DropDownList6.AppendDataBoundItems = false;
+                DropDownList6.DataBind();
+                DropDownList6.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList6.SelectedIndex = DropDownList6.Items.Count - 1;
+                MultiView1.SetActiveView(View1);
+            }
         }
 
-        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        protected void InternalSubmit2(object sender, EventArgs e)
         {
-
+            Label7.Text = "";
+            Label8.Text = "";
+            Label9.Text = "";
+            Label10.Text = "";
+            System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["Post_OfficeConnectionString"].ConnectionString);
+            System.Data.SqlClient.SqlCommand sqlCmd = new System.Data.SqlClient.SqlCommand();
+            sqlCmd.CommandType = System.Data.CommandType.Text;
+            sqlCmd.CommandText = "Insert Into ADDRESS (Country_ID, State_ID, City, Zip, Apartment_Num, Street_Address1, Street_Address2) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val6, @Val7)";
+            sqlCmd.Connection = sqlConnection1;
+            bool readyToSubmit = true;
+            if (DropDownList3.SelectedValue == "")
+            {
+                Label7.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val1", DropDownList3.SelectedValue);
+            if (DropDownList4.SelectedValue == "")
+                sqlCmd.Parameters.AddWithValue("@Val2", DBNull.Value);
+            else
+                sqlCmd.Parameters.AddWithValue("@Val2", DropDownList4.SelectedValue);
+            if (TextBox11.Text == "")
+            {
+                Label8.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val3", TextBox11.Text);
+            if (TextBox12.Text == "")
+            {
+                Label9.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val4", TextBox12.Text);
+            if (TextBox13.Text == "")
+                sqlCmd.Parameters.AddWithValue("@Val5", DBNull.Value);
+            else
+                sqlCmd.Parameters.AddWithValue("@Val5", TextBox13.Text);
+            if (TextBox14.Text == "")
+            {
+                Label10.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val6", TextBox14.Text);
+            if (TextBox15.Text == "")
+                sqlCmd.Parameters.AddWithValue("@Val7", DBNull.Value);
+            else
+                sqlCmd.Parameters.AddWithValue("@Val7", TextBox15.Text);
+            if (readyToSubmit)
+            {
+                sqlConnection1.Open();
+                sqlCmd.ExecuteNonQuery();
+                sqlConnection1.Close();
+                DropDownList5.AppendDataBoundItems = false;
+                DropDownList5.DataBind();
+                DropDownList5.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList5.SelectedIndex = DropDownList5.Items.Count - 1;
+                MultiView2.SetActiveView(View4);
+            }
+        }
+        protected void InternalSubmit3(object sender, EventArgs e)
+        {
+            Label7.Text = "";
+            Label8.Text = "";
+            Label9.Text = "";
+            Label10.Text = "";
+            System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["Post_OfficeConnectionString"].ConnectionString);
+            System.Data.SqlClient.SqlCommand sqlCmd = new System.Data.SqlClient.SqlCommand();
+            sqlCmd.CommandType = System.Data.CommandType.Text;
+            sqlCmd.CommandText = "Insert Into ADDRESS (Country_ID, State_ID, City, Zip, Apartment_Num, Street_Address1, Street_Address2) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val6, @Val7)";
+            sqlCmd.Connection = sqlConnection1;
+            bool readyToSubmit = true;
+            if (DropDownList7.SelectedValue == "")
+            {
+                Label11.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val1", DropDownList7.SelectedValue);
+            if (DropDownList8.SelectedValue == "")
+                sqlCmd.Parameters.AddWithValue("@Val2", DBNull.Value);
+            else
+                sqlCmd.Parameters.AddWithValue("@Val2", DropDownList8.SelectedValue);
+            if (TextBox17.Text == "")
+            {
+                Label12.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val3", TextBox17.Text);
+            if (TextBox18.Text == "")
+            {
+                Label13.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val4", TextBox18.Text);
+            if (TextBox19.Text == "")
+                sqlCmd.Parameters.AddWithValue("@Val5", DBNull.Value);
+            else
+                sqlCmd.Parameters.AddWithValue("@Val5", TextBox19.Text);
+            if (TextBox20.Text == "")
+            {
+                Label14.Text = "Required";
+                readyToSubmit = false;
+            }
+            else
+                sqlCmd.Parameters.AddWithValue("@Val6", TextBox20.Text);
+            if (TextBox21.Text == "")
+                sqlCmd.Parameters.AddWithValue("@Val7", DBNull.Value);
+            else
+                sqlCmd.Parameters.AddWithValue("@Val7", TextBox21.Text);
+            if (readyToSubmit)
+            {
+                sqlConnection1.Open();
+                sqlCmd.ExecuteNonQuery();
+                sqlConnection1.Close();
+                MultiView3.SetActiveView(View6);
+                DropDownList9.AppendDataBoundItems = false;
+                DropDownList9.DataBind();
+                DropDownList9.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList9.SelectedIndex = DropDownList9.Items.Count - 1;
+            }
         }
     }
 }
