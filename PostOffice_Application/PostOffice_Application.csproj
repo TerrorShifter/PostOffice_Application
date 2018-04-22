@@ -15,7 +15,7 @@
     <RootNamespace>PostOffice_Application</RootNamespace>
     <AssemblyName>PostOffice_Application</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -89,6 +89,7 @@
     <Content Include="Customer\Customer_PackageChecking.aspx" />
     <Content Include="Employee\CreateSuccess.aspx" />
     <Content Include="Employee\EmployeeCreateRoute.aspx" />
+    <Content Include="Employee\EmployeeCustomerCreation.aspx" />
     <Content Include="Employee\EmployeeMaster.Master" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\team-4-post-office - Web Deploy.pubxml" />
@@ -149,6 +150,13 @@
     </Compile>
     <Compile Include="Employee\EmployeeCreateRoute.aspx.designer.cs">
       <DependentUpon>EmployeeCreateRoute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeCustomerCreation.aspx.cs">
+      <DependentUpon>EmployeeCustomerCreation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeCustomerCreation.aspx.designer.cs">
+      <DependentUpon>EmployeeCustomerCreation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\EmployeeMaster.Master.cs">
       <DependentUpon>EmployeeMaster.Master</DependentUpon>

@@ -19,18 +19,18 @@
     </p>
     <p style="font-size: medium">
         Package weight:
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server" MaxLength="11"></asp:TextBox>
         <asp:Label ID="Label16" runat="server"></asp:Label>
     </p>
     <p style="font-size: medium">
         Recipient first name:
-        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox2" runat="server" MaxLength="25"></asp:TextBox>
         <asp:Label ID="Label17" runat="server"></asp:Label>
         , last name:
-        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox3" runat="server" MaxLength="25"></asp:TextBox>
         <asp:Label ID="Label18" runat="server"></asp:Label>
         , phone number:
-        <asp:TextBox ID="TextBox22" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox22" runat="server" MaxLength="19"></asp:TextBox>
         <asp:Label ID="Label19" runat="server"></asp:Label>
         ,
         Address ID(<asp:MultiView ID="MultiView3" runat="server" ActiveViewIndex="1">
@@ -44,21 +44,22 @@
                 <asp:DropDownList ID="DropDownList8" runat="server" DataSourceID="SqlDataSource4" DataTextField="State_Name" DataValueField="State_ID">
                 </asp:DropDownList>
                 , City:
-                <asp:TextBox ID="TextBox17" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox17" runat="server" MaxLength="50"></asp:TextBox>
                 <asp:Label ID="Label12" runat="server"></asp:Label>
                 , Zip:
-                <asp:TextBox ID="TextBox18" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox18" runat="server" MaxLength="7"></asp:TextBox>
                 <asp:Label ID="Label13" runat="server"></asp:Label>
                 <br />
                 Apartment Number (optional):
-                <asp:TextBox ID="TextBox19" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox19" runat="server" MaxLength="10"></asp:TextBox>
+                <asp:Label ID="Label28" runat="server"></asp:Label>
                 <br />
                 Street Address 1:
-                <asp:TextBox ID="TextBox20" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox20" runat="server" MaxLength="50"></asp:TextBox>
                 <asp:Label ID="Label14" runat="server"></asp:Label>
                 <br />
                 Street Address 2 (optional):
-                <asp:TextBox ID="TextBox21" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox21" runat="server" MaxLength="50"></asp:TextBox>
                 <br />
                 <asp:Button ID="Button6" runat="server" Text="Submit" OnClick="InternalSubmit3"/>
                 <asp:Button ID="Button7" CommandName="NextView" runat="server" Text="Close" />
@@ -80,18 +81,18 @@
         <asp:View ID="View2" runat="server">
         <br />
                 Customer first name:
-        <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox7" runat="server" MaxLength="25"></asp:TextBox>
         <asp:Label ID="Label1" runat="server"></asp:Label>
         , last name:
-        <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox8" runat="server" MaxLength="25"></asp:TextBox>
         <asp:Label ID="Label2" runat="server"></asp:Label>
         <br />
         Phone number:
-        <asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox9" runat="server" MaxLength="10"></asp:TextBox>
         <asp:Label ID="Label3" runat="server"></asp:Label>
         <br />
         Email:
-        <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox10" runat="server" MaxLength="50"></asp:TextBox>
         <asp:Label ID="Label4" runat="server"></asp:Label>
         <br />
         Address ID(<asp:MultiView ID="MultiView2" runat="server" ActiveViewIndex="1">
@@ -107,21 +108,22 @@
                 </asp:DropDownList>
                 <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT * FROM [STATES]"></asp:SqlDataSource>
                 , City:
-                <asp:TextBox ID="TextBox11" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox11" runat="server" MaxLength="50"></asp:TextBox>
                 <asp:Label ID="Label8" runat="server"></asp:Label>
                 , Zip:
-                <asp:TextBox ID="TextBox12" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox12" runat="server" MaxLength="7"></asp:TextBox>
                 <asp:Label ID="Label9" runat="server"></asp:Label>
                 <br />
                 Apartment Number (optional):
-                <asp:TextBox ID="TextBox13" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox13" runat="server" MaxLength="10"></asp:TextBox>
+                <asp:Label ID="Label27" runat="server"></asp:Label>
                 <br />
                 Street Address 1:
-                <asp:TextBox ID="TextBox14" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox14" runat="server" MaxLength="50"></asp:TextBox>
                 <asp:Label ID="Label10" runat="server"></asp:Label>
                 <br />
                 Street Address 2 (optional):
-                <asp:TextBox ID="TextBox15" runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox15" runat="server" MaxLength="50"></asp:TextBox>
                 <br />
                 <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="InternalSubmit2"/>
                 <asp:Button ID="Button3" CommandName="NextView" runat="server" Text="Close" />
@@ -159,12 +161,12 @@
     </p>
     <p style="font-size: medium">
         Rate:
-        <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox5" runat="server" MaxLength="20"></asp:TextBox>
         <asp:Label ID="Label22" runat="server"></asp:Label>
     </p>
     <p style="font-size: medium">
         Value of Contents:
-        <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox6" runat="server" MaxLength="20"></asp:TextBox>
         <asp:Label ID="Label23" runat="server"></asp:Label>
     </p>
     <p style="font-size: medium">
