@@ -87,7 +87,7 @@
   <ItemGroup>
     <Content Include="Common\Password_Reset.aspx" />
     <Content Include="Employee\CreateSuccess.aspx" />
-    <Content Include="Employee\EmployeeCustomerCreation.aspx" />
+    <Content Include="Employee\EmployeeCreateRoute.aspx" />
     <Content Include="Employee\EmployeeMaster.Master" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\team-4-post-office - Web Deploy.pubxml" />
@@ -135,12 +135,12 @@
     <Compile Include="Employee\CreateSuccess.aspx.designer.cs">
       <DependentUpon>CreateSuccess.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Employee\EmployeeCustomerCreation.aspx.cs">
-      <DependentUpon>EmployeeCustomerCreation.aspx</DependentUpon>
+    <Compile Include="Employee\EmployeeCreateRoute.aspx.cs">
+      <DependentUpon>EmployeeCreateRoute.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Employee\EmployeeCustomerCreation.aspx.designer.cs">
-      <DependentUpon>EmployeeCustomerCreation.aspx</DependentUpon>
+    <Compile Include="Employee\EmployeeCreateRoute.aspx.designer.cs">
+      <DependentUpon>EmployeeCreateRoute.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\EmployeeMaster.Master.cs">
       <DependentUpon>EmployeeMaster.Master</DependentUpon>
@@ -231,6 +231,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -246,7 +249,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65516</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65516/</IISUrl>
+          <IISUrl>http://localhost/PostOffice_Application</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://team-4-post-office-test.azurewebsites.net</CustomServerUrl>
