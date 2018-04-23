@@ -24,7 +24,11 @@
             box-sizing: border-box; /* Make sure that padding and width stays in place */
             margin-top: 6px; /* Add a top margin */
             margin-bottom: 16px; /* Bottom margin */
-            resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+            resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */;
+            z-index: 1;
+            left: 3px;
+            top: 171px;
+            position: absolute;
         }
         /* Style the submit button with a specific background color etc */
         input[type=submit] {
@@ -101,9 +105,9 @@
     /*Header style for double outline*/
     h2 {border-style: double;}
         .auto-style1 {
-            text-decoration: underline;
+            background-color: #666666;
         }
-    </style>
+        </style>
 
 </head>
 <body>
@@ -116,15 +120,15 @@
    
 
     
-
-
+        <p>
+            &nbsp;</p>
    
-        <p>
+
+    
+        <h1 <span class="fa-inverse"> <span class="auto-style1">&nbsp; Select a Tracking Number to view the package details&nbsp;&nbsp; </span></span></h1>
+        <p style="margin-left: 40px">
             &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p class="auto-style1">
-            <strong>Select a Tracking Number to view your package details:</strong></p>
+
 
         <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Tracking_Num" DataValueField="Tracking_Num" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Visible="False" ondatabound="DropDownList1_DataBound" >
         </asp:DropDownList>
@@ -136,7 +140,7 @@
          <!--Sidenote to myself Where session = Username -->
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="View1" runat="server">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource2" Width="696px">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource2" Width="696px" style="height: 0px; z-index: 1; left: 7px; top: 268px; position: absolute; width: 696px; background-color: #D2D2D2;">
                     <Columns>
                         <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking_Num" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
                         <asp:BoundField DataField="Status_String" HeaderText="Status_String" SortExpression="Status_String" />
