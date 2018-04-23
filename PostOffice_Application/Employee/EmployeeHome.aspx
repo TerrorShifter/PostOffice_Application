@@ -6,7 +6,7 @@
  ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <p>
-        Welcome, <asp:Label ID="Label1" runat="server" Text='<%= Session["Username"]%>'></asp:Label></p>
+        Welcome, <asp:Label ID="Label1" runat="server" Text=""></asp:Label></p>
     <h2>
         Generate a report</h2>
     <p>
