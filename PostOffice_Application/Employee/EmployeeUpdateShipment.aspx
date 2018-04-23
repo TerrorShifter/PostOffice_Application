@@ -11,11 +11,12 @@
     New Delivery status:
     <asp:DropDownList ID="DeliveryStatusList" runat="server">
         <asp:ListItem></asp:ListItem>
-        <asp:ListItem>Pre-Shipment</asp:ListItem>
         <asp:ListItem>In Transit</asp:ListItem>
-        <asp:ListItem>Out For Delivery</asp:ListItem>
+        <asp:ListItem>Out for Delivery</asp:ListItem>
         <asp:ListItem>Delivered</asp:ListItem>
-        <asp:ListItem>Failed</asp:ListItem>
+        <asp:ListItem>Returned</asp:ListItem>
+        <asp:ListItem>Failed to Deliver</asp:ListItem>
+        <asp:ListItem>Processing</asp:ListItem>
     </asp:DropDownList>
     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
     <asp:Label ID="lblInvalidInfo" runat="server" ForeColor="Red" Text="lblInvalidInfo" Visible="False"></asp:Label>
