@@ -1,14 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Employee/EmployeeMaster.Master" AutoEventWireup="true" CodeBehind="EmployeeHome.aspx.cs" Inherits="PostOffice_Application.EmployeeHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            margin-left: 40px;
-        }
-        .auto-style2 {
-            margin-left: 280px;
-        }
-    </style>
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
         Welcome, <asp:Label ID="Label1" runat="server" Text='<%= Session["Username"]%>'></asp:Label></p>
@@ -29,30 +21,38 @@
             <asp:View ID="View1" runat="server">
             </asp:View>
             <asp:View ID="View2" runat="server">
-                Enter stop ID:<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                <asp:Button ID="Button1" runat="server" Text="Fetch packages" OnClick="Button1OnClick" />
+                Enter route ID:<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="Route_ID" DataValueField="Route_ID" OnSelectedIndexChanged="DropDownList1_ChangeSelection">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Route_ID] FROM [DELIVERY_ROUTE]"></asp:SqlDataSource>
+                <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument="DELIVERY_ROUTE" OnClick="Lookup">Lookup</asp:LinkButton> | 
+                <asp:LinkButton ID="LinkButton2" runat="server" CommandArgument="EMPLOYEE" OnClick="Lookup">Employee Lookup</asp:LinkButton> | 
+                <asp:LinkButton ID="LinkButton3" runat="server" CommandArgument="ADDRESS" OnClick="Lookup">Address Lookup</asp:LinkButton>
                 <br />  
                 <asp:SqlDataSource
                     ID="SqlDataSource1" 
                     runat="server" 
                     DataSourceMode="DataReader" 
                     ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" 
-                    SelectCommand="SELECT S.Tracking_Num, S.Weight, S.Sender_ID, S.Recipient_Address_ID, S.Recipient_Phone, S.Package_Type, S.Delivery_Status, S.Rate, S.Priority_ID, S.Fragile, S.Contents, S.Value_of_Contents FROM SHIPMENT AS S INNER JOIN DELIVERY_STRING AS DS ON S.Delivery_Status = DS.Status_ID CROSS JOIN DELIVERY_ROUTE AS D CROSS JOIN CURRENT_STOP AS C WHERE (DS.Status_String = 'In Transit') AND (S.Recipient_Address_ID = C.Address_ID) AND (C.Route_ID = D.Route_ID)">
+                    SelectCommand="SELECT SHIPMENT.Tracking_Num, SHIPMENT.Weight, SHIPMENT.Sender_ID, SHIPMENT.Recipient_Address_ID, SHIPMENT.Recipient_Phone, SHIPMENT.Rate, SHIPMENT.Contents, SHIPMENT.Value_of_Contents, SHIPMENT.Recipient_FName, SHIPMENT.Recipient_LName, PACKAGE_TYPE.Package_Type_string, FRAGILITY.Fragility_Level, PRIORITY.Priority_Type FROM SHIPMENT INNER JOIN PACKAGES_AT_STOP ON SHIPMENT.Tracking_Num = PACKAGES_AT_STOP.Package_ID INNER JOIN PACKAGE_TYPE ON SHIPMENT.Package_Type = PACKAGE_TYPE.Package_Type_ID INNER JOIN DELIVERY_STATUS AS D ON SHIPMENT.Delivery_Status = D.Delivery_Status_ID INNER JOIN DELIVERY_STRING AS DS ON D.Status = DS.Status_ID INNER JOIN CURRENT_STOP AS CS ON PACKAGES_AT_STOP.Stop_ID = CS.Stop_ID INNER JOIN FRAGILITY ON SHIPMENT.Fragile = FRAGILITY.Fragility_ID INNER JOIN PRIORITY ON SHIPMENT.Priority_ID = PRIORITY.Priority_ID WHERE (CS.Route_ID = @Value) AND (DS.Status_String = 'In Transit')">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="DropDownList1" Name="Value" PropertyName="SelectedValue" />
+                    </SelectParameters>
                 </asp:SqlDataSource>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!" Visible="False">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!">
                     <Columns>
-                        <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking_Num" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
+                        <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking #" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
                         <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
-                        <asp:BoundField DataField="Sender_ID" HeaderText="Sender_ID" SortExpression="Sender_ID" />
-                        <asp:BoundField DataField="Recipient_Address_ID" HeaderText="Recipient_Address_ID" SortExpression="Recipient_Address_ID" />
-                        <asp:BoundField DataField="Recipient_Phone" HeaderText="Recipient_Phone" SortExpression="Recipient_Phone" />
-                        <asp:BoundField DataField="Package_Type" HeaderText="Package_Type" SortExpression="Package_Type" />
-                        <asp:BoundField DataField="Delivery_Status" HeaderText="Delivery_Status" SortExpression="Delivery_Status" />
+                        <asp:BoundField DataField="Sender_ID" HeaderText="Sender ID" SortExpression="Sender_ID" />
+                        <asp:BoundField DataField="Recipient_Address_ID" HeaderText="Recipient Address ID" SortExpression="Recipient_Address_ID" />
+                        <asp:BoundField DataField="Recipient_Phone" HeaderText="Recipient Phone #" SortExpression="Recipient_Phone" />
                         <asp:BoundField DataField="Rate" HeaderText="Rate" SortExpression="Rate" />
-                        <asp:BoundField DataField="Priority_ID" HeaderText="Priority_ID" SortExpression="Priority_ID" />
-                        <asp:BoundField DataField="Fragile" HeaderText="Fragile" SortExpression="Fragile" />
                         <asp:BoundField DataField="Contents" HeaderText="Contents" SortExpression="Contents" />
-                        <asp:BoundField DataField="Value_of_Contents" HeaderText="Value_of_Contents" SortExpression="Value_of_Contents" />
+                        <asp:BoundField DataField="Value_of_Contents" HeaderText="Value of Contents" SortExpression="Value_of_Contents" />
+                        <asp:BoundField DataField="Fragility_Level" HeaderText="Fragility" SortExpression="Fragility_Level" />
+                        <asp:BoundField DataField="Recipient_FName" HeaderText="Recipient First Name" SortExpression="Recipient_FName" />
+                        <asp:BoundField DataField="Recipient_LName" HeaderText="Recipient Last Name" SortExpression="Recipient_LName" />
+                        <asp:BoundField DataField="Priority_Type" HeaderText="Priority" SortExpression="Priority_Type" />
+                        <asp:BoundField DataField="Package_Type_string" HeaderText="Package Type" SortExpression="Package_Type_string" />
                     </Columns>
                     <EmptyDataRowStyle BorderStyle="None" />
                 </asp:GridView>
