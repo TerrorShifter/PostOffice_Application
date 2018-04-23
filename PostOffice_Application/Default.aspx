@@ -54,7 +54,7 @@
         }
                 
         .auto-style3 {
-            height: 180px;
+            height: 196px;
             margin-top: 0px;
         }
         
@@ -66,11 +66,16 @@
             text-align: center;
         }
 
+        .auto-style8 {
+            font-size: x-large;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .auto-style9 {}
+
         </style>
 </head>
 <body style="height: 73px">
     <ul>
-        <li><a href="Start/SignUp.aspx">Register</a></li> 
         <li><a href="Start/Login.aspx">Login</a></li>               
     </ul>
     <form id="form1" runat="server">
@@ -88,9 +93,11 @@
                     <br />
                     <asp:Label ID="lblError" runat="server" ForeColor="Red" Text="Invalid Tracking Number" Visible="False"></asp:Label>
                     <br />
+                    <asp:Label ID="lblLocate" runat="server" CssClass="auto-style8" Text="Label"></asp:Label>
                     <br />
                     <br />
                     <asp:Label ID="lblShipped" runat="server" CssClass="auto-style7" Text="Label"></asp:Label>
+                    <asp:Image ID="imgCheck" runat="server" CssClass="auto-style9" Height="16px" ImageUrl="~/transparent-green-checkmark-hi.png" Width="26px" />
                     <br />
                     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                     <br />
