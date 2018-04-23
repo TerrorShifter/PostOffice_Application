@@ -89,11 +89,22 @@ namespace PostOffice_Application
                         //Updates a row in the shipment table that matches the given tracking number with the new given delivery status.
                         con.Open();
                         string updateShipmentQuery = "UPDATE DELIVERY_STATUS SET DELIVERY_STATUS.Status = @newStatus WHERE Delivery_Status_ID=(SELECT SHIPMENT.Delivery_Status FROM SHIPMENT WHERE SHIPMENT.Tracking_Num = @trackingNo); ";
-
-                        SqlCommand cmd = new SqlCommand(updateShipmentQuery, con);
-                        cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
-                        cmd.Parameters.AddWithValue("@trackingNo", txtTrackingNumber.Text.Trim());
-                        cmd.ExecuteNonQuery();
+                        string checkStatusQuery = "SELECT CASE WHEN EXISTS (SELECT Tracking_Num FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID WHERE DELIVERY_STATUS.Status = 3 AND Tracking_Num = @tNo) THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END;";
+                        SqlCommand cmd = new SqlCommand(checkStatusQuery, con);
+                        //cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
+                        cmd.Parameters.AddWithValue("@tNo", txtTrackingNumber.Text.Trim());
+                        bool isDelivered=((bool?)cmd.ExecuteScalar()).GetValueOrDefault();
+                        if (isDelivered)
+                        {
+                            lblInvalidInfo.Text = "Cannot change the status of a delivered shipment.";
+                            lblInvalidInfo.Visible = true;
+                        }
+                        else
+                        {
+                            cmd.CommandText = updateShipmentQuery;
+                            cmd.Parameters.AddWithValue("@trackingNo", txtTrackingNumber.Text.Trim());
+                            cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
+                        }
                     }
                 }
                 catch (SqlException ex)

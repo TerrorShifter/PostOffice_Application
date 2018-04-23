@@ -41,12 +41,11 @@
                         <asp:ControlParameter ControlID="DropDownList1" Name="Value" PropertyName="SelectedValue"  />
                     </SelectParameters>
                 </asp:SqlDataSource>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!" CellPadding="4" ForeColor="#333333" GridLines="None">
-                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!">
-                    <Columns>
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" /><Columns>
                         <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking #" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
                         <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
                         <asp:BoundField DataField="Sender_ID" HeaderText="Sender ID" SortExpression="Sender_ID" />
