@@ -98,7 +98,7 @@
             <asp:Label ID="Label6" runat="server"></asp:Label>
             <asp:LinkButton ID="LinkButton3" runat="server" OnClick="Lookup" CommandArgument="ADDRESS">Lookup</asp:LinkButton>
         </ContentTemplate>
-        <Triggers> <asp:AsyncPostBackTrigger ControlID="Button2" EventName="Click" /> </Triggers>
+        <Triggers> <asp:AsyncPostBackTrigger ControlID="Button4" EventName="Click" /> </Triggers>
     </asp:UpdatePanel>
     </p>
     <p>

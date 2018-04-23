@@ -92,9 +92,9 @@ namespace PostOffice_Application.Employee
         protected void InternalSubmit2(object sender, EventArgs e)
         {
             Label1.Text = "";
-            Label8.Text = "";
-            Label9.Text = "";
-            Label10.Text = "";
+            Label2.Text = "";
+            Label3.Text = "";
+            Label4.Text = "";
             System.Data.SqlClient.SqlConnection sqlConnection1 = new System.Data.SqlClient.SqlConnection(ConfigurationManager.ConnectionStrings["Post_OfficeConnectionString"].ConnectionString);
             System.Data.SqlClient.SqlCommand sqlCmd = new System.Data.SqlClient.SqlCommand();
             sqlCmd.CommandType = System.Data.CommandType.Text;
@@ -180,7 +180,7 @@ namespace PostOffice_Application.Employee
                 sqlCmdT.CommandText = "Select O.Office_Location_ID From OFFICE_LOCATION AS O Where O.Office_Address_ID = @Val1";
                 sqlCmdT.Parameters.AddWithValue("@Val1", DropDownList5.SelectedValue);
                 sqlCmdT.Connection = sqlConnection1;
-                if (sqlCmdT.ExecuteScalar() == DBNull.Value)
+                if (sqlCmdT.ExecuteScalar() == null)
                 {
                     sqlCmd2.CommandType = System.Data.CommandType.Text;
                     sqlCmd2.CommandText = "Insert Into OFFICE_LOCATION (Office_Address_ID) Output INSERTED.Office_Location_ID Values (@Val1)";
@@ -189,7 +189,10 @@ namespace PostOffice_Application.Employee
                     sqlCmd.Parameters.AddWithValue("@Val1", (int)sqlCmd2.ExecuteScalar());
                 }
                 else
-                    sqlCmd.Parameters.AddWithValue("@Val1", (int)sqlCmdT.ExecuteScalar());
+                {
+                    int i = (int)sqlCmdT.ExecuteScalar();
+                    sqlCmd.Parameters.AddWithValue("@Val1", i);
+                }
             }
             if (DropDownList6.SelectedValue == "")
             {
@@ -203,7 +206,7 @@ namespace PostOffice_Application.Employee
                 sqlCmdT.CommandText = "Select O.Office_Location_ID From OFFICE_LOCATION AS O Where O.Office_Address_ID = @Val1";
                 sqlCmdT.Parameters.AddWithValue("@Val1", DropDownList6.SelectedValue);
                 sqlCmdT.Connection = sqlConnection1;
-                if (sqlCmdT.ExecuteScalar() == DBNull.Value)
+                if (sqlCmdT.ExecuteScalar() == null)
                 {
                     sqlCmd3.CommandType = System.Data.CommandType.Text;
                     sqlCmd3.CommandText = "Insert Into OFFICE_LOCATION (Office_Address_ID) Output INSERTED.Office_Location_ID Values (@Val1)";
