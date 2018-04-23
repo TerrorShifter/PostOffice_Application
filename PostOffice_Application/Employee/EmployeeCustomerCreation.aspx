@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Employee/EmployeeMaster.Master" AutoEventWireup="true" CodeBehind="EmployeeCustomerCreation.aspx.cs" Inherits="PostOffice_Application.EmployeeCustomerCreation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Employee/EmployeeMaster.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="EmployeeCustomerCreation.aspx.cs" Inherits="PostOffice_Application.EmployeeCustomerCreation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -73,6 +73,7 @@
             <asp:Label ID="Label5" runat="server"></asp:Label>
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Address_ID] FROM [ADDRESS]"></asp:SqlDataSource>
             <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Lookup" CommandArgument="ADDRESS">Lookup</asp:LinkButton>
+            <asp:Label ID="AddressCreated" runat="server" style="font-weight: 700" Text="Address Successfully Created" Visible="False"></asp:Label>
         </ContentTemplate>
         <Triggers> <asp:AsyncPostBackTrigger ControlID="Button2" EventName="Click" /> </Triggers>
     </asp:UpdatePanel>
@@ -86,5 +87,6 @@
     </p>
     <p>
         <asp:Button ID="Button4" runat="server" OnClick="CreateSubmit" Text="Submit" />
+        <asp:Label ID="CustomerCreated" runat="server" style="font-weight: 700" Text="Customer Successfully Created" Visible="False"></asp:Label>
     </p>
 </asp:Content>

@@ -106,6 +106,7 @@ namespace PostOffice_Application
                     sqlConnection1.Open();
                     sqlCmd.ExecuteNonQuery();
                     sqlConnection1.Close();
+                    CustomerCreated.Visible = true;
                 }
             }
             catch(SqlException ex)
@@ -178,6 +179,7 @@ namespace PostOffice_Application
                     DropDownList3.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                     DropDownList3.SelectedIndex = DropDownList3.Items.Count - 1;
                     MultiView1.SetActiveView(View1);
+                    AddressCreated.Visible = true;
                 }
             }
             catch (SqlException ex)

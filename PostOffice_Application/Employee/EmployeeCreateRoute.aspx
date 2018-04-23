@@ -43,7 +43,7 @@
                 <asp:Button ID="Button1" CommandName="PrevView" runat="server" Text="Create new" />
             </asp:View>
         </asp:MultiView>
-        ):
+        ):&nbsp;
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:DropDownList ID="DropDownList5" runat="server" DataSourceID="SqlDataSource5" DataTextField="Address_ID" DataValueField="Address_ID">
@@ -51,6 +51,7 @@
             <asp:Label ID="Label5" runat="server"></asp:Label>
             <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Address_ID] FROM [ADDRESS]"></asp:SqlDataSource>
             <asp:LinkButton ID="LinkButton2" runat="server" OnClick="Lookup" CommandArgument="ADDRESS">Lookup</asp:LinkButton>
+            <asp:Label ID="AddressCreated" runat="server" style="font-weight: 700" Text="Address Successfully Created!" Visible="False"></asp:Label>
         </ContentTemplate>
         <Triggers> <asp:AsyncPostBackTrigger ControlID="Button2" EventName="Click" /> </Triggers>
     </asp:UpdatePanel>
@@ -96,6 +97,7 @@
             </asp:DropDownList>
             <asp:Label ID="Label6" runat="server"></asp:Label>
             <asp:LinkButton ID="LinkButton3" runat="server" OnClick="Lookup" CommandArgument="ADDRESS">Lookup</asp:LinkButton>
+            <asp:Label ID="AddressDestCreated" runat="server" style="font-weight: 700" Text="Address Successfully Created!" Visible="False"></asp:Label>
         </ContentTemplate>
         <Triggers> <asp:AsyncPostBackTrigger ControlID="Button4" EventName="Click" /> </Triggers>
     </asp:UpdatePanel>
@@ -109,6 +111,7 @@
     </p>
     <p>
         <asp:Button ID="btnCreateRoute" runat="server" OnClick="CreateSubmit" Text="Submit" />
+        <asp:Label ID="RouteCreated" runat="server" style="font-weight: 700" Text="Route Successfully Created!" Visible="False"></asp:Label>
     </p>
     <p>
         &nbsp;</p>
