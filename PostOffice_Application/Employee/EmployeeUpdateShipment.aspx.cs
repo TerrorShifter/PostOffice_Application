@@ -63,11 +63,13 @@ namespace PostOffice_Application
         {
             if (!isValidText(txtTrackingNumber.Text))
             {
+                lblInvalidInfo.ForeColor = System.Drawing.Color.Red;
                 lblInvalidInfo.Text = "Invalid tracking number.";
                 lblInvalidInfo.Visible = true;
             }
             else if (!isValidText(DeliveryStatusList.SelectedValue))
             {
+                lblInvalidInfo.ForeColor = System.Drawing.Color.Red;
                 lblInvalidInfo.Text = "Please choose a new delivery status.";
                 lblInvalidInfo.Visible = true;
             }
@@ -89,11 +91,24 @@ namespace PostOffice_Application
                         //Updates a row in the shipment table that matches the given tracking number with the new given delivery status.
                         con.Open();
                         string updateShipmentQuery = "UPDATE DELIVERY_STATUS SET DELIVERY_STATUS.Status = @newStatus WHERE Delivery_Status_ID=(SELECT SHIPMENT.Delivery_Status FROM SHIPMENT WHERE SHIPMENT.Tracking_Num = @trackingNo); ";
-
+                        string updateDateQuery = "UPDATE DELIVERY_STATUS SET Arrival_Date = NULL FROM DELIVERY_STATUS INNER JOIN SHIPMENT ON DELIVERY_STATUS.Delivery_Status_ID = SHIPMENT.Delivery_Status WHERE (SHIPMENT.Tracking_Num = 9);";
                         SqlCommand cmd = new SqlCommand(updateShipmentQuery, con);
                         cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
                         cmd.Parameters.AddWithValue("@trackingNo", txtTrackingNumber.Text.Trim());
                         cmd.ExecuteNonQuery();
+                        lblInvalidInfo.ForeColor = System.Drawing.Color.Green;
+                        lblInvalidInfo.Text = "Shipment Status Updated.";
+                        lblInvalidInfo.Visible = true;
+                        if(DeliveryStatusList.SelectedValue=="Delivered")
+                        {
+                            cmd.CommandText = "UPDATE DELIVERY_STATUS SET Arrival_Date = @cDate FROM DELIVERY_STATUS INNER JOIN SHIPMENT ON DELIVERY_STATUS.Delivery_Status_ID = SHIPMENT.Delivery_Status WHERE (SHIPMENT.Tracking_Num = @tNo)";
+                            cmd.Parameters.AddWithValue("@tNo", txtTrackingNumber.Text.Trim());
+                            cmd.Parameters.AddWithValue("@cDate", DateTime.Now);
+                            cmd.ExecuteNonQuery();
+                            lblInvalidInfo.ForeColor = System.Drawing.Color.Green;
+                            lblInvalidInfo.Text = "Shipment Status Updated. Since package was delivered, arrival date was added.";
+                            lblInvalidInfo.Visible = true;
+                        }
                     }
                 }
                 catch (SqlException ex)
