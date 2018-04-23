@@ -107,7 +107,9 @@ namespace PostOffice_Application
                     DropDownList5.DataBind();
                     DropDownList5.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                     DropDownList5.SelectedIndex = DropDownList5.Items.Count - 1;
+                    AddressCreated.Visible = true;
                     MultiView1.SetActiveView(View1);
+                    
                 }
             } catch (SqlException ex)
             {
@@ -119,6 +121,7 @@ namespace PostOffice_Application
         {
             try
             {
+                AddressDestCreated.Visible = false;
                 Label1.Text = "";
                 Label2.Text = "";
                 Label3.Text = "";
@@ -178,7 +181,9 @@ namespace PostOffice_Application
                     DropDownList6.DataBind();
                     DropDownList6.Items.Insert(0, new ListItem(String.Empty, String.Empty));
                     DropDownList6.SelectedIndex = DropDownList6.Items.Count - 1;
+                    AddressDestCreated.Visible = true;
                     MultiView2.SetActiveView(View4);
+                    
                 }
             }
             catch(SqlException ex)
@@ -262,6 +267,7 @@ namespace PostOffice_Application
                 if (readyToSubmit)
                 {
                     sqlCmd.ExecuteNonQuery();
+                    RouteCreated.Visible = true;
                 }
                 sqlConnection1.Close();
             }
@@ -270,5 +276,6 @@ namespace PostOffice_Application
 
             }
         }
+        
     }
 }
