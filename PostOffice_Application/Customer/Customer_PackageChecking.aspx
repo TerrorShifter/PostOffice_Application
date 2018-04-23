@@ -154,9 +154,11 @@
                         <asp:BoundField DataField="Rate" HeaderText="Rate" SortExpression="Rate" />
                         <asp:BoundField DataField="Value_of_Contents" HeaderText="Value_of_Contents" SortExpression="Value_of_Contents" />
                         <asp:BoundField DataField="Contents" HeaderText="Contents" SortExpression="Contents" />
+                        <asp:BoundField DataField="Recipient_FName" HeaderText="Recipient_FName" SortExpression="Recipient_FName" />
+                        <asp:BoundField DataField="Recipient_LNAme" HeaderText="Recipient_LNAme" SortExpression="Recipient_LNAme" />
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Tracking_Num], [Status_String],[Priority_Type], [Weight], [Fragility_Level], [Rate], [Value_of_Contents],[Contents] FROM [SHIPMENT], [DELIVERY_STRING], [DELIVERY_STATUS], [PRIORITY], [FRAGILITY] WHERE ([Tracking_Num] = @Tracking_Num) AND [Delivery_Status] = [Delivery_Status_ID] AND [Status] = [Status_ID] AND ([SHIPMENT].Priority_ID = [PRIORITY].Priority_ID) AND ([Fragile] = [Fragility_ID]) ">
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Tracking_Num], [Status_String],[Priority_Type], [Weight], [Fragility_Level], [Rate], [Value_of_Contents],[Contents],[Recipient_FName],[Recipient_LNAme] FROM [SHIPMENT], [DELIVERY_STRING], [DELIVERY_STATUS], [PRIORITY], [FRAGILITY] WHERE ([Tracking_Num] = @Tracking_Num) AND [Delivery_Status] = [Delivery_Status_ID] AND [Status] = [Status_ID] AND ([SHIPMENT].Priority_ID = [PRIORITY].Priority_ID) AND ([Fragile] = [Fragility_ID]) ">
                     <SelectParameters>
                         <asp:SessionParameter Name="Tracking_Num" SessionField="TrackingID" Type="Int32" />
                     </SelectParameters>

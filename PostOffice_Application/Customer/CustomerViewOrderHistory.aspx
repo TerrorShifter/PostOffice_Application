@@ -106,7 +106,9 @@
    
         <div>
         </div>
-        <h2>View Shipment History</h2>
+        <h1 <span class="auto-style3"> <span class="auto-style2">&nbsp; View Shipment History&nbsp;&nbsp; </span> </span></h1>
+        <p style="margin-left: 40px">
+  <!--      <h2>View Shipment History</h2> -->
         <p>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT S.Weight, S.Recipient_Phone, S.Rate, S.Contents, S.Value_of_Contents, S.Recipient_FName, S.Recipient_LName, S.Tracking_Num, PA.Package_Type_string, FR.Fragility_Level, PR.Priority_Type, DS.Status_String FROM SHIPMENT AS S INNER JOIN DELIVERY_STATUS AS D ON S.Delivery_Status = D.Delivery_Status_ID INNER JOIN DELIVERY_STRING AS DS ON D.Status = DS.Status_ID INNER JOIN PRIORITY AS PR ON S.Priority_ID = PR.Priority_ID INNER JOIN FRAGILITY AS FR ON S.Fragile = FR.Fragility_ID INNER JOIN PACKAGE_TYPE AS PA ON S.Package_Type = PA.Package_Type_ID INNER JOIN CUSTOMER AS C ON S.Sender_ID = C.Customer_ID WHERE (C.Email = @Email)">
                 <SelectParameters>
