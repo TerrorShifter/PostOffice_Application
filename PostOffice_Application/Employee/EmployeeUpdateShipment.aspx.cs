@@ -63,11 +63,13 @@ namespace PostOffice_Application
         {
             if (!isValidText(txtTrackingNumber.Text))
             {
+                lblInvalidInfo.ForeColor = System.Drawing.Color.Red;
                 lblInvalidInfo.Text = "Invalid tracking number.";
                 lblInvalidInfo.Visible = true;
             }
             else if (!isValidText(DeliveryStatusList.SelectedValue))
             {
+                lblInvalidInfo.ForeColor = System.Drawing.Color.Red;
                 lblInvalidInfo.Text = "Please choose a new delivery status.";
                 lblInvalidInfo.Visible = true;
             }
@@ -96,6 +98,7 @@ namespace PostOffice_Application
                         bool isDelivered=((bool?)cmd.ExecuteScalar()).GetValueOrDefault();
                         if (isDelivered)
                         {
+                            lblInvalidInfo.ForeColor = System.Drawing.Color.Red;
                             lblInvalidInfo.Text = "Cannot change the status of a delivered shipment.";
                             lblInvalidInfo.Visible = true;
                         }
@@ -104,6 +107,10 @@ namespace PostOffice_Application
                             cmd.CommandText = updateShipmentQuery;
                             cmd.Parameters.AddWithValue("@trackingNo", txtTrackingNumber.Text.Trim());
                             cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
+                            cmd.ExecuteNonQuery();
+                            lblInvalidInfo.ForeColor = System.Drawing.Color.Green;
+                            lblInvalidInfo.Text = "Shipment Status Updated.";
+                            lblInvalidInfo.Visible = true;
                         }
                     }
                 }
