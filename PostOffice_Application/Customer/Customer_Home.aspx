@@ -71,20 +71,69 @@
         <ul>
             <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
             <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
-            <li><a href="Customer_PackageChecking.aspx">Check Package</a></li>
+          <!--<li><a href="Customer_PackageChecking.aspx">Check Package</a></li>-->
             <li><a href="CustomerViewOrderHistory.aspx">View Shipment History</a></li>
             <asp:Label ID="USERNAME" runat="server" Text=" Label"></asp:Label>
         </ul>
    
+    <p>
+            &nbsp;</p>
+   
+
     
+        <h1 <span class="auto-style3"> <span class="auto-style2">&nbsp; Select a Tracking Number to view the package details&nbsp;&nbsp; </span> </span></h1>
+        <p style="margin-left: 40px">
+            &nbsp;</p>
+
+
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Tracking_Num" DataValueField="Tracking_Num" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Visible="False" ondatabound="DropDownList1_DataBound" Height="48px" Width="199px" >
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Tracking_Num] FROM [SHIPMENT], [CUSTOMER] WHERE [Sender_ID] = [Customer_ID] AND ([Email] = @Email)">
+            <SelectParameters>
+                <asp:SessionParameter Name="Email" SessionField="Username" Type="String" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+         <!--Sidenote to myself Where session = Username -->
+        <asp:MultiView ID="MultiView1" runat="server">
+            <asp:View ID="View1" runat="server">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource2" Width="696px" style="height: 0px; z-index: 1; left: 7px; top: 268px; position: absolute; width: 696px; background-color: #F3F3F3;" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                    <Columns>
+                        <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking_Num" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
+                        <asp:BoundField DataField="Status_String" HeaderText="Status_String" SortExpression="Status_String" />
+                        <asp:BoundField DataField="Priority_Type" HeaderText="Priority_Type" SortExpression="Priority_Type" />
+                        <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
+                        <asp:BoundField DataField="Fragility_Level" HeaderText="Fragility_Level" SortExpression="Fragility_Level" />
+                        <asp:BoundField DataField="Rate" HeaderText="Rate" SortExpression="Rate" />
+                        <asp:BoundField DataField="Value_of_Contents" HeaderText="Value_of_Contents" SortExpression="Value_of_Contents" />
+                        <asp:BoundField DataField="Contents" HeaderText="Contents" SortExpression="Contents" />
+                        <asp:BoundField DataField="Recipient_FName" HeaderText="Recipient_FName" SortExpression="Recipient_FName" />
+                        <asp:BoundField DataField="Recipient_LNAme" HeaderText="Recipient_LNAme" SortExpression="Recipient_LNAme" />
+                    </Columns>
+                    <EditRowStyle BackColor="#999999" />
+                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Tracking_Num], [Status_String],[Priority_Type], [Weight], [Fragility_Level], [Rate], [Value_of_Contents],[Contents],[Recipient_FName],[Recipient_LNAme] FROM [SHIPMENT], [DELIVERY_STRING], [DELIVERY_STATUS], [PRIORITY], [FRAGILITY] WHERE ([Tracking_Num] = @Tracking_Num) AND [Delivery_Status] = [Delivery_Status_ID] AND [Status] = [Status_ID] AND ([SHIPMENT].Priority_ID = [PRIORITY].Priority_ID) AND ([Fragile] = [Fragility_ID]) ">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="Tracking_Num" SessionField="TrackingID" Type="Int32" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </asp:View>
+        </asp:MultiView>
     </form>
+   
 
-     <!-- Placeholder Text just to show that You are in the Home page -->
-    <h3 id="WelcomeHeader"
-        <asp:Label ID="WelcomeLabel" runat="server" Text="Label"></asp:Label></h3>
-
+ 
 
 
-</body>
+   </body>
 
 </html>

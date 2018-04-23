@@ -238,6 +238,15 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
         
         /// <summary>
+        /// AddressCreated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AddressCreated;
+        
+        /// <summary>
         /// MultiView2 control.
         /// </summary>
         /// <remarks>
@@ -427,6 +436,15 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
         
         /// <summary>
+        /// AddressDestCreated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AddressDestCreated;
+        
+        /// <summary>
         /// DropDownList7 control.
         /// </summary>
         /// <remarks>
@@ -470,5 +488,14 @@ namespace PostOffice_Application {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCreateRoute;
+        
+        /// <summary>
+        /// RouteCreated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label RouteCreated;
     }
 }
