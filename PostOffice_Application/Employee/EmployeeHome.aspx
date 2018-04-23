@@ -12,7 +12,7 @@
             <asp:ListItem Text="" Value="View1"></asp:ListItem>
             <asp:ListItem Text="Packages on shipment" Value="View2"></asp:ListItem>
             <asp:ListItem Text="Customer order history" Value="View3"></asp:ListItem>
-            <asp:ListItem Text="Incomplete packages" Value="View4"></asp:ListItem>
+            <asp:ListItem Text="Failed Packages" Value="View4"></asp:ListItem>
             <asp:ListItem Text="Packages within a date range" Value="View5"></asp:ListItem>
         </asp:DropDownList>
     </p>
@@ -55,12 +55,12 @@
                 &nbsp;
                 <asp:Label ID="lblCustHistory" runat="server" Text="Label" Visible="False"></asp:Label>
                 <br />
-                <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Get Package History" />
+                <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Fetch Package History" />
                 <asp:GridView ID="CustHistoryTable" runat="server">
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View4" runat="server">
-                <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Failed Shipments" />
+                <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Packages" />
                 <asp:GridView ID="FailedShipmentsTable" runat="server">
                 </asp:GridView>
             </asp:View>
