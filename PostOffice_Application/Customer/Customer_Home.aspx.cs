@@ -15,11 +15,11 @@ namespace PostOffice_Application
         {
             if (Session["CustomerID"] != null)
             {
+                USERNAME.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
 
-    
 
-
-                WelcomeLabel.Text = "Welcome to our Post Office Customer HomePage! "+ Session["Username"].ToString(); //Session[Username] give the username 
+                USERNAME.Text = "Signed In: " + Session["Username"].ToString();
+                WelcomeLabel.Text = "Welcome to your Post Office HomePage! "; //Session[Username] give the username 
             }
             else
             {
