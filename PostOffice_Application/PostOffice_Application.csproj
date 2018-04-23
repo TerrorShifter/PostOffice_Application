@@ -110,7 +110,6 @@
     <Content Include="Employee\EmployeeHome.aspx" />
     <Content Include="Employee\EmployeeUpdateShipment.aspx" />
     <Content Include="Customer\Customer_Home.aspx" />
-    <Content Include="Customer\Customer_Tracking.aspx" />
     <Content Include="email-png-email-png-285.png" />
     <Content Include="Employee\IDLookup.aspx" />
     <Content Include="Employee\AddStops.aspx" />
@@ -194,13 +193,6 @@
     </Compile>
     <Compile Include="Customer\Customer_Home.aspx.designer.cs">
       <DependentUpon>Customer_Home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Customer\Customer_Tracking.aspx.cs">
-      <DependentUpon>Customer_Tracking.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Customer\Customer_Tracking.aspx.designer.cs">
-      <DependentUpon>Customer_Tracking.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\IDLookup.aspx.cs">
       <DependentUpon>IDLookup.aspx</DependentUpon>
