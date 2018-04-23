@@ -20,5 +20,4 @@
     </asp:DropDownList>
     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
     <asp:Label ID="lblInvalidInfo" runat="server" ForeColor="Red" Text="lblInvalidInfo" Visible="False"></asp:Label>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="UPDATE DELIVERY_STATUS SET Arrival_Date = NULL FROM DELIVERY_STATUS INNER JOIN SHIPMENT ON DELIVERY_STATUS.Delivery_Status_ID = SHIPMENT.Delivery_Status WHERE (SHIPMENT.Tracking_Num = 9)"></asp:SqlDataSource>
-</asp:Content>
+    </asp:Content>
