@@ -16,6 +16,7 @@ namespace PostOffice_Application
         {
             Button btnLogout = this.Master.FindControl("btnLogoff") as Button;
             Label1.Text = (string)Session["Username"];
+
         }
 
         protected void Lookup(object sender, EventArgs e)
@@ -186,6 +187,16 @@ namespace PostOffice_Application
                     System.Diagnostics.Debug.WriteLine(ex.ToString());
                 }
             }
+        }
+
+        protected void CalendarBegin_SelectionChanged(object sender, EventArgs e)
+        {
+            beginDate.Text = CalendarBegin.SelectedDate.ToShortDateString();
+        }
+
+        protected void CalendarEnd_SelectionChanged(object sender, EventArgs e)
+        {
+            endDate.Text = CalendarEnd.SelectedDate.ToShortDateString();
         }
     }
 }
