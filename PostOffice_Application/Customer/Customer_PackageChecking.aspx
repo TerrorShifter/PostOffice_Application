@@ -136,25 +136,19 @@
          <!--Sidenote to myself Where session = Username -->
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="View1" runat="server">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource2">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource2" Width="696px">
                     <Columns>
                         <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking_Num" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
+                        <asp:BoundField DataField="Status_String" HeaderText="Status_String" SortExpression="Status_String" />
+                        <asp:BoundField DataField="Priority_Type" HeaderText="Priority_Type" SortExpression="Priority_Type" />
                         <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
-                        <asp:BoundField DataField="Sender_ID" HeaderText="Sender_ID" SortExpression="Sender_ID" />
-                        <asp:BoundField DataField="Recipient_Address_ID" HeaderText="Recipient_Address_ID" SortExpression="Recipient_Address_ID" />
-                        <asp:BoundField DataField="Recipient_Phone" HeaderText="Recipient_Phone" SortExpression="Recipient_Phone" />
-                        <asp:BoundField DataField="Package_Type" HeaderText="Package_Type" SortExpression="Package_Type" />
-                        <asp:BoundField DataField="Delivery_Status" HeaderText="Delivery_Status" SortExpression="Delivery_Status" />
+                        <asp:BoundField DataField="Fragility_Level" HeaderText="Fragility_Level" SortExpression="Fragility_Level" />
                         <asp:BoundField DataField="Rate" HeaderText="Rate" SortExpression="Rate" />
-                        <asp:BoundField DataField="Priority_ID" HeaderText="Priority_ID" SortExpression="Priority_ID" />
-                        <asp:BoundField DataField="Fragile" HeaderText="Fragile" SortExpression="Fragile" />
-                        <asp:BoundField DataField="Contents" HeaderText="Contents" SortExpression="Contents" />
                         <asp:BoundField DataField="Value_of_Contents" HeaderText="Value_of_Contents" SortExpression="Value_of_Contents" />
-                        <asp:BoundField DataField="Recipient_FName" HeaderText="Recipient_FName" SortExpression="Recipient_FName" />
-                        <asp:BoundField DataField="Recipient_LName" HeaderText="Recipient_LName" SortExpression="Recipient_LName" />
+                        <asp:BoundField DataField="Contents" HeaderText="Contents" SortExpression="Contents" />
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT * FROM [SHIPMENT] WHERE ([Tracking_Num] = @Tracking_Num)">
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Tracking_Num], [Status_String],[Priority_Type], [Weight], [Fragility_Level], [Rate], [Value_of_Contents],[Contents] FROM [SHIPMENT], [DELIVERY_STRING], [DELIVERY_STATUS], [PRIORITY], [FRAGILITY] WHERE ([Tracking_Num] = @Tracking_Num) AND [Delivery_Status] = [Delivery_Status_ID] AND [Status] = [Status_ID] AND ([SHIPMENT].Priority_ID = [PRIORITY].Priority_ID) AND ([Fragile] = [Fragility_ID]) ">
                     <SelectParameters>
                         <asp:SessionParameter Name="Tracking_Num" SessionField="TrackingID" Type="Int32" />
                     </SelectParameters>
