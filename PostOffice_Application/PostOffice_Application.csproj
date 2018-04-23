@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Common\Password_Reset.aspx" />
+    <Content Include="Customer\CustomerViewOrderHistory.aspx" />
     <Content Include="Customer\Customer_PackageChecking.aspx" />
     <Content Include="Employee\EmployeeCreateRoute.aspx" />
     <Content Include="Employee\EmployeeCustomerCreation.aspx" />
@@ -130,6 +131,13 @@
     </Compile>
     <Compile Include="Common\Password_Reset.aspx.designer.cs">
       <DependentUpon>Password_Reset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CustomerViewOrderHistory.aspx.cs">
+      <DependentUpon>CustomerViewOrderHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CustomerViewOrderHistory.aspx.designer.cs">
+      <DependentUpon>CustomerViewOrderHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\Customer_PackageChecking.aspx.cs">
       <DependentUpon>Customer_PackageChecking.aspx</DependentUpon>

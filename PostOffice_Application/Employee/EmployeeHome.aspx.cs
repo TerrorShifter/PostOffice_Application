@@ -45,9 +45,12 @@ namespace PostOffice_Application
                     break;
             }
         }
-        protected void Button1OnClick(object sender, EventArgs e)
+
+        protected void Lookup(object sender, EventArgs e)
         {
-            GridView1.Visible = true;
+            string url = "IDLookup.aspx?EntityTable=" + ((LinkButton)sender).CommandArgument.ToString();
+            string s = "window.open('" + url + "', 'popup_window', 'width=300,height=100,left=100,top=100,resizable=yes');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", s, true);
         }
 
         //used for view5, date report
@@ -60,6 +63,16 @@ namespace PostOffice_Application
                 return true;
         }
 
+        protected void DropDownList1_ChangeSelection(object sender, EventArgs e)
+        {
+            if (DropDownList1.SelectedValue == "")
+                GridView1.Visible = false;
+            else
+            {
+                GridView1.Visible = true;
+                GridView1.DataBind();
+            }
+        }
         
         protected void btnGetDateRangeReport_Click(object sender, EventArgs e)
         {
