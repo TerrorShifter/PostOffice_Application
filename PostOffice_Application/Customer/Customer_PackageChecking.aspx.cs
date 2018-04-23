@@ -41,5 +41,10 @@ namespace PostOffice_Application.Customer
         {
             DropDownList1.Items.Insert(0, new ListItem("--Select Tracking Number--", "0"));
         }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
