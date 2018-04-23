@@ -74,6 +74,7 @@ namespace PostOffice_Application
                 Label2.Visible = false;
                 lblLocate.Visible = false;
                 lblShipped.ForeColor = System.Drawing.Color.Black;
+                lblShipped.Visible = false;
                 imgCheck.Visible = false;
                 try
                 {
@@ -117,6 +118,8 @@ namespace PostOffice_Application
         {
             string shipQuery = "SELECT Date_Shipped FROM SHIPMENT, DELIVERY_STRING, DELIVERY_STATUS WHERE " +
                 "Tracking_Num = @TrackingID AND Delivery_Status_ID = Delivery_Status";
+            string delivQuery = "SELECT DISTINCT Street_Address1 FROM ADDRESS, SHIPMENT WHERE " +
+                "Tracking_Num = @TrackingID AND Recipient_Address_ID = Address_ID";
             string estQuery = "SELECT Estimated_Arrival FROM SHIPMENT, DELIVERY_STRING, DELIVERY_STATUS WHERE " +
                 "Tracking_Num = @TrackingID AND Delivery_Status_ID = Delivery_Status";
             string arrQuery = "SELECT Arrival_Date FROM SHIPMENT, DELIVERY_STRING, DELIVERY_STATUS WHERE " +
@@ -178,7 +181,7 @@ namespace PostOffice_Application
                     Label2.Text = "Date Arrived: " + deliv.ExecuteScalar().ToString();
                     Label2.Visible = true;
 
-                    deliv = new SqlCommand(locQuery, connect);
+                    deliv = new SqlCommand(delivQuery, connect);
                     deliv.Parameters.AddWithValue("@TrackingID", trackingNum);
                     lblLocate.Text = "Last Location: " + deliv.ExecuteScalar().ToString() + ", ";
                     lblLocate.Visible = true;
@@ -233,7 +236,7 @@ namespace PostOffice_Application
                 case "Processing":
                     SqlCommand process = new SqlCommand(estQuery, connect);
                     process.Parameters.AddWithValue("@TrackingID", trackingNum);
-                    Label1.Text = "Est. Shipping: " + process.ExecuteScalar().ToString();
+                    Label1.Text = "Est. Arrival: " + process.ExecuteScalar().ToString();
                     Label1.Visible = true;
 
                     process = new SqlCommand(locQuery, connect);

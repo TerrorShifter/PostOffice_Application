@@ -81,10 +81,25 @@
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View5" runat="server">
-                   From:
-                  <asp:TextBox ID="beginDate" runat="server" align="middle"></asp:TextBox>
-                 To:
-                 <asp:TextBox ID="endDate" runat="server" align="middle"></asp:TextBox>
+                   From:<asp:TextBox ID="beginDate" runat="server" align="middle"></asp:TextBox>
+                  <asp:Calendar ID="CalendarBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarBegin_SelectionChanged" Width="350px">
+                      <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                      <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                      <OtherMonthDayStyle ForeColor="#999999" />
+                      <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                      <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                      <TodayDayStyle BackColor="#CCCCCC" />
+                   </asp:Calendar>
+                  
+                 To:<asp:TextBox ID="endDate" runat="server" align="middle"></asp:TextBox>
+                 <asp:Calendar ID="CalendarEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarEnd_SelectionChanged" Width="350px">
+                     <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                     <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                     <OtherMonthDayStyle ForeColor="#999999" />
+                     <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                     <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                     <TodayDayStyle BackColor="#CCCCCC" />
+                   </asp:Calendar>              
                  <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" />
                 <asp:Label ID="lblDateRangeError" runat="server" ForeColor="Red" Text="Please enter a date." Visible="False" align="right"></asp:Label>
                 <asp:GridView ID="DateRangeTable" runat="server" align="middle">
