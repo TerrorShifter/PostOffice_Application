@@ -19,11 +19,13 @@ namespace PostOffice_Application
 
 
                 USERNAME.Text = "Account: " + Session["Username"].ToString();
-                WelcomeLabel.Text = "Welcome to your Post Office HomePage! "; //Session[Username] give the username 
+                DropDownList1.Visible = true;
+               // WelcomeLabel.Text = "Welcome to your Post Office HomePage! "; //Session[Username] give the username 
             }
             else
             {
-                WelcomeLabel.Text = "Welcome to our Post Office Customer HomePage! There seems to be an error with your session. Please log off and try again!";
+                DropDownList1.Enabled = false;
+                // WelcomeLabel.Text = "Welcome to our Post Office Customer HomePage! There seems to be an error with your session. Please log off and try again!";
             }
         }
 
@@ -32,6 +34,18 @@ namespace PostOffice_Application
             Session.Abandon();
             Session.Contents.RemoveAll();
             Response.Redirect("../Start/Login.aspx");
+        }
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["TrackingID"] = DropDownList1.SelectedValue;
+            // int SelectedValue = int.Parse(DropDownList1.SelectedValue.Trim());
+            MultiView1.SetActiveView(View1);
+
+            //Response.Redirect("Customer_ShipmentDetail.aspx?id=@Tracking_Num");
+        }
+        protected void DropDownList1_DataBound(object sender, EventArgs e)
+        {
+            DropDownList1.Items.Insert(0, new ListItem("--Select Tracking Number--", "0"));
         }
     }
 }
