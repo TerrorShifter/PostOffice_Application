@@ -88,7 +88,7 @@ namespace PostOffice_Application
                     {
                         //Updates a row in the shipment table that matches the given tracking number with the new given delivery status.
                         con.Open();
-                        string updateShipmentQuery = "UPDATE DELIVERY_STATUS SET DELIVERY_STATUS.Status = @newStatus WHERE EXISTS(SELECT* FROM SHIPMENT WHERE SHIPMENT.Tracking_Num = @trackingNo); ";
+                        string updateShipmentQuery = "UPDATE DELIVERY_STATUS SET DELIVERY_STATUS.Status = @newStatus WHERE Delivery_Status_ID=(SELECT SHIPMENT.Delivery_Status FROM SHIPMENT WHERE SHIPMENT.Tracking_Num = @trackingNo); ";
 
                         SqlCommand cmd = new SqlCommand(updateShipmentQuery, con);
                         cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
