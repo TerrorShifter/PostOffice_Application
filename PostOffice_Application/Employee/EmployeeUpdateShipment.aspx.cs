@@ -105,6 +105,9 @@ namespace PostOffice_Application
                             cmd.Parameters.AddWithValue("@tNo", txtTrackingNumber.Text.Trim());
                             cmd.Parameters.AddWithValue("@cDate", DateTime.Now);
                             cmd.ExecuteNonQuery();
+                            lblInvalidInfo.ForeColor = System.Drawing.Color.Green;
+                            lblInvalidInfo.Text = "Shipment Status Updated. Since package was delivered, arrival date was added.";
+                            lblInvalidInfo.Visible = true;
                         }
                     }
                 }
