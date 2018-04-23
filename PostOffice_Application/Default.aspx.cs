@@ -74,6 +74,7 @@ namespace PostOffice_Application
                 Label2.Visible = false;
                 lblLocate.Visible = false;
                 lblShipped.ForeColor = System.Drawing.Color.Black;
+                lblShipped.Visible = false;
                 imgCheck.Visible = false;
                 try
                 {
@@ -233,7 +234,7 @@ namespace PostOffice_Application
                 case "Processing":
                     SqlCommand process = new SqlCommand(estQuery, connect);
                     process.Parameters.AddWithValue("@TrackingID", trackingNum);
-                    Label1.Text = "Est. Shipping: " + process.ExecuteScalar().ToString();
+                    Label1.Text = "Est. Arrival: " + process.ExecuteScalar().ToString();
                     Label1.Visible = true;
 
                     process = new SqlCommand(locQuery, connect);
