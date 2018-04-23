@@ -144,7 +144,8 @@
          <!--Sidenote to myself Where session = Username -->
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="View1" runat="server">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource2" Width="696px" style="height: 0px; z-index: 1; left: 7px; top: 268px; position: absolute; width: 696px; background-color: #F3F3F3;">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource2" Width="696px" style="height: 0px; z-index: 1; left: 7px; top: 268px; position: absolute; width: 696px; background-color: #F3F3F3;" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking_Num" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
                         <asp:BoundField DataField="Status_String" HeaderText="Status_String" SortExpression="Status_String" />
@@ -157,6 +158,16 @@
                         <asp:BoundField DataField="Recipient_FName" HeaderText="Recipient_FName" SortExpression="Recipient_FName" />
                         <asp:BoundField DataField="Recipient_LNAme" HeaderText="Recipient_LNAme" SortExpression="Recipient_LNAme" />
                     </Columns>
+                    <EditRowStyle BackColor="#999999" />
+                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Tracking_Num], [Status_String],[Priority_Type], [Weight], [Fragility_Level], [Rate], [Value_of_Contents],[Contents],[Recipient_FName],[Recipient_LNAme] FROM [SHIPMENT], [DELIVERY_STRING], [DELIVERY_STATUS], [PRIORITY], [FRAGILITY] WHERE ([Tracking_Num] = @Tracking_Num) AND [Delivery_Status] = [Delivery_Status_ID] AND [Status] = [Status_ID] AND ([SHIPMENT].Priority_ID = [PRIORITY].Priority_ID) AND ([Fragile] = [Fragility_ID]) ">
                     <SelectParameters>
