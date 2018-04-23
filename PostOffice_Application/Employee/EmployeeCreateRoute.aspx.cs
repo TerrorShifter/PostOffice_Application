@@ -7,13 +7,33 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace PostOffice_Application.Employee
+namespace PostOffice_Application
 {
     public partial class EmployeeCreateRoute : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList1.SelectedIndex = DropDownList1.Items.Count - 1;
+                DropDownList1.AppendDataBoundItems = true;
+                DropDownList2.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList2.SelectedIndex = DropDownList2.Items.Count - 1;
+                DropDownList2.AppendDataBoundItems = true;
+                DropDownList3.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList3.SelectedIndex = DropDownList3.Items.Count - 1;
+                DropDownList3.AppendDataBoundItems = true;
+                DropDownList4.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList4.SelectedIndex = DropDownList4.Items.Count - 1;
+                DropDownList4.AppendDataBoundItems = true;
+                DropDownList5.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList5.SelectedIndex = DropDownList5.Items.Count - 1;
+                DropDownList5.AppendDataBoundItems = true;
+                DropDownList6.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList6.SelectedIndex = DropDownList6.Items.Count - 1;
+                DropDownList6.AppendDataBoundItems = true;
+            }
         }
 
 

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PostOffice_Application.Employee {
+namespace PostOffice_Application {
     
     
     public partial class EmployeeCreateRoute {

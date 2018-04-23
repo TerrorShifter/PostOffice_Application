@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Employee/EmployeeMaster.Master" CodeBehind="EmployeeCreateRoute.aspx.cs" Inherits="PostOffice_Application.Employee.EmployeeCreateRoute" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  MasterPageFile="~/Employee/EmployeeMaster.Master" EnableEventValidation="false" CodeBehind="EmployeeCreateRoute.aspx.cs" Inherits="PostOffice_Application.EmployeeCreateRoute" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -6,7 +6,7 @@
  ID="ScriptManager1" runat="server">
  </asp:ScriptManager>
     <h1>Create New Delivery Route</h1>
-    <p>
+    <br />
          Starting Address ID(<asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="1">
             <asp:View ID="View2" runat="server">
                 <br />
@@ -54,8 +54,7 @@
         </ContentTemplate>
         <Triggers> <asp:AsyncPostBackTrigger ControlID="Button2" EventName="Click" /> </Triggers>
     </asp:UpdatePanel>
-        </p>
-    <p>
+    <br />
          Destination Address ID(<asp:MultiView ID="MultiView2" runat="server" ActiveViewIndex="1">
             <asp:View ID="View3" runat="server">
                 <br />
@@ -100,7 +99,6 @@
         </ContentTemplate>
         <Triggers> <asp:AsyncPostBackTrigger ControlID="Button4" EventName="Click" /> </Triggers>
     </asp:UpdatePanel>
-    </p>
     <p>
         Driver ID:
         <asp:DropDownList ID="DropDownList7" runat="server" DataSourceID="SqlDataSource7" DataTextField="Employee_ID" DataValueField="Employee_ID">
