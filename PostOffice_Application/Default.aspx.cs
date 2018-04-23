@@ -120,6 +120,8 @@ namespace PostOffice_Application
                 "Tracking_Num = @TrackingID AND Delivery_Status_ID = Delivery_Status";
             string delivQuery = "SELECT DISTINCT Street_Address1 FROM ADDRESS, SHIPMENT WHERE " +
                 "Tracking_Num = @TrackingID AND Recipient_Address_ID = Address_ID";
+            string deliv2Query = "SELECT DISTINCT CONCAT(City, ', ', State_ID) FROM ADDRESS, SHIPMENT WHERE " +
+                "Tracking_Num = @TrackingID AND Recipient_Address_ID = Address_ID";
             string estQuery = "SELECT Estimated_Arrival FROM SHIPMENT, DELIVERY_STRING, DELIVERY_STATUS WHERE " +
                 "Tracking_Num = @TrackingID AND Delivery_Status_ID = Delivery_Status";
             string arrQuery = "SELECT Arrival_Date FROM SHIPMENT, DELIVERY_STRING, DELIVERY_STATUS WHERE " +
@@ -185,7 +187,7 @@ namespace PostOffice_Application
                     deliv.Parameters.AddWithValue("@TrackingID", trackingNum);
                     lblLocate.Text = "Last Location: " + deliv.ExecuteScalar().ToString() + ", ";
                     lblLocate.Visible = true;
-                    deliv = new SqlCommand(cityQuery, connect);
+                    deliv = new SqlCommand(deliv2Query, connect);
                     deliv.Parameters.AddWithValue("@TrackingID", trackingNum);
                     lblLocate.Text += deliv.ExecuteScalar().ToString();
                     lblLocate.Visible = true;
