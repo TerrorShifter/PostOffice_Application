@@ -112,6 +112,24 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.View View4;
         
         /// <summary>
+        /// btnFailedPackages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFailedPackages;
+        
+        /// <summary>
+        /// FailedShipmentsTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView FailedShipmentsTable;
+        
+        /// <summary>
         /// View5 control.
         /// </summary>
         /// <remarks>

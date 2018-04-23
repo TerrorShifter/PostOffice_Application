@@ -1,14 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Employee/EmployeeMaster.Master" AutoEventWireup="true" CodeBehind="EmployeeHome.aspx.cs" Inherits="PostOffice_Application.EmployeeHome" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            margin-left: 40px;
-        }
-        .auto-style2 {
-            margin-left: 280px;
-        }
-    </style>
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
         Welcome, <asp:Label ID="Label1" runat="server" Text='<%= Session["Username"]%>'></asp:Label></p>
@@ -61,7 +53,9 @@
                 View3
             </asp:View>
             <asp:View ID="View4" runat="server">
-                View4
+                <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Failed Shipments" />
+                <asp:GridView ID="FailedShipmentsTable" runat="server">
+                </asp:GridView>
             </asp:View>
             <asp:View ID="View5" runat="server">
                    From:

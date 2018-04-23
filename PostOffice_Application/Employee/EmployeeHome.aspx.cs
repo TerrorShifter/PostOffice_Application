@@ -43,7 +43,7 @@ namespace PostOffice_Application
         }
 
         //used for view5, date report
-        bool isValidDate(string text)
+        bool isValidText(string text)
         {
             
             if (text == "")
@@ -56,7 +56,7 @@ namespace PostOffice_Application
         protected void btnGetDateRangeReport_Click(object sender, EventArgs e)
         {
             
-            if (!isValidDate(beginDate.Text) || !isValidDate(endDate.Text))
+            if (!isValidText(beginDate.Text) || !isValidText(endDate.Text))
                 lblDateRangeError.Visible = true;
 
             else
@@ -95,6 +95,38 @@ namespace PostOffice_Application
                 {
                     Console.WriteLine(ex.ToString());
                 }
+            }
+        }
+
+        protected void btnFailedPackages_Click(object sender, EventArgs e)
+        {
+            string getFailedPackagesQuery = "SELECT Tracking_Num, concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name], CUSTOMER.Phone_Num AS [Sender Phone Number], CUSTOMER.Email AS [Sender Email], concat(Recipient_FName, ' ', Recipient_LName) AS [Recipient Name], DELIVERY_STATUS.Date_Shipped AS [Date Shipped] FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN CUSTOMER ON  SHIPMENT.Sender_ID = CUSTOMER.Customer_ID WHERE DELIVERY_STATUS.Status = 5; ";
+            try
+            {
+                var constr = new SqlConnectionStringBuilder
+                {
+                    DataSource = "team-4-post-office-dbs.database.windows.net",
+                    InitialCatalog = "Post_Office",
+                    UserID = "luisflores",
+                    Password = "luisf%1220"
+                };
+                using (SqlConnection con = new SqlConnection(constr.ConnectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(getFailedPackagesQuery, con);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    FailedShipmentsTable.DataSource = dt;
+                    FailedShipmentsTable.DataBind();
+                    con.Close();
+                }
+                
+            }
+            catch(SqlException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
     }
