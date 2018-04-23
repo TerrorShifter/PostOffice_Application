@@ -18,7 +18,7 @@ namespace PostOffice_Application
                 USERNAME.ForeColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
 
 
-                USERNAME.Text = "Signed In: " + Session["Username"].ToString();
+                USERNAME.Text = "Account: " + Session["Username"].ToString();
                 WelcomeLabel.Text = "Welcome to your Post Office HomePage! "; //Session[Username] give the username 
             }
             else

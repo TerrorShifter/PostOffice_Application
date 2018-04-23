@@ -104,8 +104,11 @@
 
     /*Header style for double outline*/
     h2 {border-style: double;}
-        .auto-style1 {
-            background-color: #666666;
+        .auto-style2 {
+            background-color: #F3F3F3;
+        }
+        .auto-style3 {
+            color: #000000
         }
         </style>
 
@@ -125,7 +128,7 @@
    
 
     
-        <h1 <span class="fa-inverse"> <span class="auto-style1">&nbsp; Select a Tracking Number to view the package details&nbsp;&nbsp; </span></span></h1>
+        <h1 <span class="auto-style3"> <span class="auto-style2">&nbsp; Select a Tracking Number to view the package details&nbsp;&nbsp; </span> </span></h1>
         <p style="margin-left: 40px">
             &nbsp;</p>
 
