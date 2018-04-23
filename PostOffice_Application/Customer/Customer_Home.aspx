@@ -73,6 +73,7 @@
             <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
             <li><a href="Customer_Tracking.aspx">Tracking</a></li>
             <li><a href="Customer_PackageChecking.aspx">Check Package</a></li>
+            <li><a href="CustomerViewOrderHistory.aspx">View Shipment History</a></li>
         </ul>
    
     
