@@ -140,34 +140,44 @@ namespace PostOffice_Application
 
         protected void btnCustHistory_Click(object sender, EventArgs e)
         {
-            string getCustHistoryQuery = "SELECT * FROM SHIPMENT LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID = Customer.Customer_ID WHERE Customer.Customer_ID = @cID;";
-            try
+            if (!isValidText(txtCustomerID.Text))
             {
-                var constr = new SqlConnectionStringBuilder
-                {
-                    DataSource = "team-4-post-office-dbs.database.windows.net",
-                    InitialCatalog = "Post_Office",
-                    UserID = "luisflores",
-                    Password = "luisf%1220"
-                };
-                using (SqlConnection con = new SqlConnection(constr.ConnectionString))
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand(getCustHistoryQuery, con);
-                    cmd.Parameters.AddWithValue("@cID", txtCustomerID.Text.Trim());
-                    cmd.CommandType = System.Data.CommandType.Text;
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    CustHistoryTable.DataSource = dt;
-                   CustHistoryTable.DataBind();
-                    con.Close();
-                }
-
+                lblCustHistory.ForeColor = System.Drawing.Color.Red;
+                lblCustHistory.Text = "Please enter an ID";
+                lblCustHistory.Visible = true;
             }
-            catch (SqlException ex)
+            else
             {
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                lblCustHistory.Visible = false;
+                string getCustHistoryQuery = "SELECT * FROM SHIPMENT LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID = Customer.Customer_ID WHERE Customer.Customer_ID = @cID;";
+                try
+                {
+                    var constr = new SqlConnectionStringBuilder
+                    {
+                        DataSource = "team-4-post-office-dbs.database.windows.net",
+                        InitialCatalog = "Post_Office",
+                        UserID = "luisflores",
+                        Password = "luisf%1220"
+                    };
+                    using (SqlConnection con = new SqlConnection(constr.ConnectionString))
+                    {
+                        con.Open();
+                        SqlCommand cmd = new SqlCommand(getCustHistoryQuery, con);
+                        cmd.Parameters.AddWithValue("@cID", txtCustomerID.Text.Trim());
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        CustHistoryTable.DataSource = dt;
+                        CustHistoryTable.DataBind();
+                        con.Close();
+                    }
+
+                }
+                catch (SqlException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                }
             }
         }
     }

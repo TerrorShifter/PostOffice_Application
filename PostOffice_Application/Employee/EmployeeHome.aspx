@@ -52,6 +52,8 @@
             <asp:View ID="View3" runat="server">
                 Enter Customer ID:<asp:TextBox ID="txtCustomerID" runat="server"></asp:TextBox>
                 <asp:LinkButton ID="lbtnCustomerLookup" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
+                &nbsp;
+                <asp:Label ID="lblCustHistory" runat="server" Text="Label" Visible="False"></asp:Label>
                 <br />
                 <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Get Package History" />
                 <asp:GridView ID="CustHistoryTable" runat="server">
