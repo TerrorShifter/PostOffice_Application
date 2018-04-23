@@ -16,6 +16,14 @@ namespace PostOffice_Application
         {
             Button btnLogout = this.Master.FindControl("btnLogoff") as Button;
         }
+
+        protected void Lookup(object sender, EventArgs e)
+        {
+            string url = "IDLookup.aspx?EntityTable=" + ((LinkButton)sender).CommandArgument.ToString();
+            string s = "window.open('" + url + "', 'popup_window', 'width=300,height=100,left=100,top=100,resizable=yes');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", s, true);
+        }
+
         protected void ddl1_changeView(object sender, EventArgs e)
         {
             switch (ddl1.SelectedValue)
@@ -61,8 +69,8 @@ namespace PostOffice_Application
 
             else
             {
-                string begin = beginDate.Text;
-                string end = endDate.Text;
+                string begin = beginDate.Text.Trim();
+                string end = endDate.Text.Trim();
                 lblDateRangeError.Visible = false;
                 try
                 {
@@ -125,6 +133,39 @@ namespace PostOffice_Application
                 
             }
             catch(SqlException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        protected void btnCustHistory_Click(object sender, EventArgs e)
+        {
+            string getCustHistoryQuery = "SELECT * FROM SHIPMENT LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID = Customer.Customer_ID WHERE Customer.Customer_ID = @cID;";
+            try
+            {
+                var constr = new SqlConnectionStringBuilder
+                {
+                    DataSource = "team-4-post-office-dbs.database.windows.net",
+                    InitialCatalog = "Post_Office",
+                    UserID = "luisflores",
+                    Password = "luisf%1220"
+                };
+                using (SqlConnection con = new SqlConnection(constr.ConnectionString))
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(getCustHistoryQuery, con);
+                    cmd.Parameters.AddWithValue("@cID", txtCustomerID.Text.Trim());
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    CustHistoryTable.DataSource = dt;
+                   CustHistoryTable.DataBind();
+                    con.Close();
+                }
+
+            }
+            catch (SqlException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }

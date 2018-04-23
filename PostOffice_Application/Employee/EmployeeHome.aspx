@@ -50,7 +50,12 @@
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View3" runat="server">
-                View3
+                Enter Customer ID:<asp:TextBox ID="txtCustomerID" runat="server"></asp:TextBox>
+                <asp:LinkButton ID="lbtnCustomerLookup" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
+                <br />
+                <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Get Package History" />
+                <asp:GridView ID="CustHistoryTable" runat="server">
+                </asp:GridView>
             </asp:View>
             <asp:View ID="View4" runat="server">
                 <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Failed Shipments" />

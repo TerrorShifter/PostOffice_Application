@@ -103,6 +103,42 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
+        /// txtCustomerID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerID;
+        
+        /// <summary>
+        /// lbtnCustomerLookup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnCustomerLookup;
+        
+        /// <summary>
+        /// btnCustHistory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCustHistory;
+        
+        /// <summary>
+        /// CustHistoryTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView CustHistoryTable;
+        
+        /// <summary>
         /// View4 control.
         /// </summary>
         /// <remarks>
