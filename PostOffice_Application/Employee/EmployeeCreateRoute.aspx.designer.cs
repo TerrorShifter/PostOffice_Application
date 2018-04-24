@@ -130,6 +130,15 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.TextBox TextBox7;
         
         /// <summary>
+        /// Label13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label13;
+        
+        /// <summary>
         /// TextBox8 control.
         /// </summary>
         /// <remarks>
@@ -335,6 +344,15 @@ namespace PostOffice_Application {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        
+        /// <summary>
+        /// Label12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
         /// TextBox4 control.

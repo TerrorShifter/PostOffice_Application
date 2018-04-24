@@ -66,22 +66,28 @@
                     </asp:UpdatePanel>
             </asp:View>
             <asp:View ID="View3" runat="server">
-                Enter Customer ID:<asp:TextBox ID="txtCustomerID" runat="server"></asp:TextBox>
+                Enter Customer ID:<asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="Customer_ID" DataValueField="Customer_ID" OnSelectedIndexChanged="ddl2_ChangeSelection" AutoPostBack="True">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Customer_ID] FROM [CUSTOMER] ORDER BY [Customer_ID]"></asp:SqlDataSource>
                 <asp:LinkButton ID="lbtnCustomerLookup" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
                 &nbsp;
-                <asp:Label ID="lblCustHistory" runat="server" Text="Label" Visible="False"></asp:Label>
                 <br />
-                <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Fetch Package History" />
-                <asp:GridView ID="CustHistoryTable" runat="server">
+                
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
+                <asp:GridView ID="CustHistoryTable" runat="server" EmptyDataText="No packages found!">
                 </asp:GridView>
+                    </ContentTemplate>
+                    <Triggers> <asp:AsyncPostBackTrigger ControlID="DropDownList2" EventName="SelectedIndexChanged" /> </Triggers>
+                    </asp:UpdatePanel>
             </asp:View>
             <asp:View ID="View4" runat="server">
                 <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Packages" />
-                <asp:GridView ID="FailedShipmentsTable" runat="server">
+                <asp:GridView ID="FailedShipmentsTable" runat="server" EmptyDataText="No packages found!">
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View5" runat="server">
-                   From:<asp:TextBox ID="beginDate" runat="server" align="middle"></asp:TextBox>
+                   From:<asp:TextBox ID="beginDate" runat="server" align="middle" TextMode="Date"></asp:TextBox>
                   <asp:Calendar ID="CalendarBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarBegin_SelectionChanged" Width="350px">
                       <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                       <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
@@ -91,7 +97,7 @@
                       <TodayDayStyle BackColor="#CCCCCC" />
                    </asp:Calendar>
                   
-                 To:<asp:TextBox ID="endDate" runat="server" align="middle"></asp:TextBox>
+                 To:<asp:TextBox ID="endDate" runat="server" align="middle" TextMode="Date"></asp:TextBox>
                  <asp:Calendar ID="CalendarEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarEnd_SelectionChanged" Width="350px">
                      <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                      <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />

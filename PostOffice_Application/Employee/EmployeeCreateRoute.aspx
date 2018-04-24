@@ -28,6 +28,7 @@
                 <br />
                 Apartment Number (optional):
                 <asp:TextBox ID="TextBox7" runat="server" MaxLength="19"></asp:TextBox>
+                <asp:Label ID="Label13" runat="server"></asp:Label>
                 <br />
                 Street Address 1:
                 <asp:TextBox ID="TextBox8" runat="server" MaxLength="50"></asp:TextBox>
@@ -75,6 +76,7 @@
                 <br />
                 Apartment Number (optional):
                 <asp:TextBox ID="TextBox3" runat="server" MaxLength="19"></asp:TextBox>
+                <asp:Label ID="Label12" runat="server"></asp:Label>
                 <br />
                 Street Address 1:
                 <asp:TextBox ID="TextBox4" runat="server" MaxLength="50"></asp:TextBox>

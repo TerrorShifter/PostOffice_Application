@@ -148,13 +148,22 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
-        /// txtCustomerID control.
+        /// DropDownList2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustomerID;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        
+        /// <summary>
+        /// SqlDataSource3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
         
         /// <summary>
         /// lbtnCustomerLookup control.
@@ -166,22 +175,13 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.LinkButton lbtnCustomerLookup;
         
         /// <summary>
-        /// lblCustHistory control.
+        /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCustHistory;
-        
-        /// <summary>
-        /// btnCustHistory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCustHistory;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
         /// CustHistoryTable control.
