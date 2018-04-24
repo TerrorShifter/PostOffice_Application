@@ -116,7 +116,7 @@
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View4" runat="server">
-                From:<asp:Calendar ID="CalendarFailedBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarFailedBegin_SelectionChanged" Width="350px">
+                From:<asp:Calendar ID="CalendarFailedBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
                     <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                     <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
                     <OtherMonthDayStyle ForeColor="#999999" />
@@ -125,7 +125,7 @@
                     <TodayDayStyle BackColor="#CCCCCC" />
                 </asp:Calendar>
                 <br />
-                To:<asp:Calendar ID="CalendarFailedEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarFailedEnd_SelectionChanged" Width="350px">
+                To:<asp:Calendar ID="CalendarFailedEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
                     <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                     <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
                     <OtherMonthDayStyle ForeColor="#999999" />
@@ -151,7 +151,7 @@
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View5" runat="server">
-                   From:<asp:Calendar ID="CalendarBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarBegin_SelectionChanged" Width="350px">
+                   From:<asp:Calendar ID="CalendarBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
                       <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                       <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
                       <OtherMonthDayStyle ForeColor="#999999" />
@@ -160,7 +160,7 @@
                       <TodayDayStyle BackColor="#CCCCCC" />
                    </asp:Calendar>
                   
-                 To:<asp:Calendar ID="CalendarEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarEnd_SelectionChanged" Width="350px">
+                 To:<asp:Calendar ID="CalendarEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
                      <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                      <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
                      <OtherMonthDayStyle ForeColor="#999999" />
