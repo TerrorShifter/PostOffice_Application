@@ -50,16 +50,6 @@ namespace PostOffice_Application
             }
         }
 
-        //used for view5, date report
-        bool isValidText(string text)
-        {
-            
-            if (text == "")
-                return false;
-            else
-                return true;
-        }
-
         protected void DropDownList1_ChangeSelection(object sender, EventArgs e)
         {
             if (DropDownList1.SelectedValue == "")
@@ -226,22 +216,6 @@ namespace PostOffice_Application
                 }
             }
         }
-
-        protected void CalendarBegin_SelectionChanged(object sender, EventArgs e) => begin = CalendarBegin.SelectedDate.ToShortDateString();
-
-        protected void CalendarEnd_SelectionChanged(object sender, EventArgs e)
-        {
-            end = CalendarEnd.SelectedDate.ToShortDateString();
-        }
-
-        protected void CalendarFailedBegin_SelectionChanged(object sender, EventArgs e)
-        {
-            begin = CalendarFailedBegin.SelectedDate.ToShortDateString();
-        }
-
-        protected void CalendarFailedEnd_SelectionChanged(object sender, EventArgs e)
-        {
-            end = CalendarFailedEnd.SelectedDate.ToShortDateString();
-        }
+        
     }
 }
