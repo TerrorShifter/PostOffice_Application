@@ -85,7 +85,7 @@ namespace PostOffice_Application
                             cmd.Parameters.AddWithValue("@cDate", DateTime.Now);
                             cmd.ExecuteNonQuery();
                             lblSuccess.ForeColor = System.Drawing.Color.Green;
-                            lblSuccess.Text = "Shipment Status Updated. Since package was delivered, arrival date was added.";
+                            lblSuccess.Text = "Shipment Status Updated. Since the package was delivered, arrival date was added.";
                         }
                         else if (DeliveryStatusList.SelectedValue == "1")
                         {
@@ -95,12 +95,12 @@ namespace PostOffice_Application
                             cmd.ExecuteNonQuery();
 
                             lblSuccess.ForeColor = System.Drawing.Color.Green;
-                            lblSuccess.Text = "Shipment Status Updated. Since the package was delivered, arrival date was added.";
+                            lblSuccess.Text = "Shipment Status Updated. Since the package is in transit, shipment date was added or updated.";
                             lblSuccess.Visible = true;
                         }
                         else
                             lblSuccess.Text = "Shipment Status Updated.";
-                        cmd.CommandText = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], DELIVERY_STATUS.Arrival_Date AS [Arrival Date], DELIVERY_STRING.Status_String AS [Updated Shipping Status] FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID WHERE Tracking_Num = @tNo;";
+                        cmd.CommandText = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], DELIVERY_STATUS.Arrival_Date AS [Arrival Date], DELIVERY_STRING.Status_String AS [Updated Shipping Status] FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID WHERE Tracking_Num = @trackingNo;";
                        
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
