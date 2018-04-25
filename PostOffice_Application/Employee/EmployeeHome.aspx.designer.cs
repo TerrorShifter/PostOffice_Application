@@ -148,49 +148,49 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// txtCustomerID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerID;
         
         /// <summary>
-        /// SqlDataSource3 control.
+        /// LinkButton4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton4;
         
         /// <summary>
-        /// lbtnCustomerLookup control.
+        /// lblCustHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnCustomerLookup;
+        protected global::System.Web.UI.WebControls.Label lblCustHistory;
         
         /// <summary>
-        /// UpdatePanel2 control.
+        /// btnCustHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        protected global::System.Web.UI.WebControls.Button btnCustHistory;
         
         /// <summary>
-        /// CustHistoryTable control.
+        /// GridView2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView CustHistoryTable;
+        protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
         /// View4 control.
