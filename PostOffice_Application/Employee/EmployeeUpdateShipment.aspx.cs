@@ -12,7 +12,15 @@ namespace PostOffice_Application
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.IsPostBack)
+            {
+                DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList1.SelectedIndex = 0;
+                DropDownList1.AppendDataBoundItems = true;
+                DeliveryStatusList.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DeliveryStatusList.SelectedIndex = 0;
+                DeliveryStatusList.AppendDataBoundItems = true;
+            }
         }
 
         //Used on dropdown list and tracking number field
@@ -31,51 +39,23 @@ namespace PostOffice_Application
             ScriptManager.RegisterStartupScript(this, this.GetType(), "script", s, true);
         }
 
-        //Since the Delivery_Status value is an int type in the database, the dropdown list selection must be converted to a corresponding integer.
-        int statusToInt(string status)
-        {
-            int stat_int = 0;
-            switch (status)
-            {
-                case "In Transit":
-                    stat_int = 1;
-                    break;
-                case "Out for Delivery":
-                    stat_int = 2;
-                    break;
-                case "Delivered":
-                    stat_int = 3;
-                    break;
-                case "Returned":
-                    stat_int = 4;
-                    break;
-                case "Failed to Deliver":
-                    stat_int = 5;
-                    break;
-                case "Processing":
-                    stat_int = 6;
-                    break;
-            }
-            return stat_int;
-        }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (!isValidText(txtTrackingNumber.Text))
+            Label1.Text = "";
+            Label2.Text = "";
+            bool readyToSubmit = true;
+            if (DropDownList1.SelectedValue == "")
             {
-                lblInvalidInfo.ForeColor = System.Drawing.Color.Red;
-                lblInvalidInfo.Text = "Invalid tracking number.";
-                lblInvalidInfo.Visible = true;
+                Label2.Text = "Required";
+                readyToSubmit = false;
             }
-            else if (!isValidText(DeliveryStatusList.SelectedValue))
+            if (DeliveryStatusList.SelectedValue == "")
             {
-                lblInvalidInfo.ForeColor = System.Drawing.Color.Red;
-                lblInvalidInfo.Text = "Please choose a new delivery status.";
-                lblInvalidInfo.Visible = true;
+                Label1.Text = "Required";
+                readyToSubmit = false;
             }
-            else
+            if(readyToSubmit)
             {
-                lblInvalidInfo.Visible = false;
                 try
                 {
                     var constr = new SqlConnectionStringBuilder
@@ -92,18 +72,27 @@ namespace PostOffice_Application
                         con.Open();
                         string updateShipmentQuery = "UPDATE DELIVERY_STATUS SET DELIVERY_STATUS.Status = @newStatus WHERE Delivery_Status_ID=(SELECT SHIPMENT.Delivery_Status FROM SHIPMENT WHERE SHIPMENT.Tracking_Num = @trackingNo); ";
                         SqlCommand cmd = new SqlCommand(updateShipmentQuery, con);
-                        cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
-                        cmd.Parameters.AddWithValue("@trackingNo", txtTrackingNumber.Text.Trim());
-                        cmd.ExecuteNonQuery();
-                        lblInvalidInfo.ForeColor = System.Drawing.Color.Green;
-                        lblInvalidInfo.Text = "Shipment Status Updated.";
-                        lblInvalidInfo.Visible = true;
-                        if(DeliveryStatusList.SelectedValue=="Delivered")
+                        cmd.Parameters.AddWithValue("@newStatus", DeliveryStatusList.SelectedValue);
+                        cmd.Parameters.AddWithValue("@trackingNo", DropDownList1.SelectedValue);
+                        cmd.Parameters.AddWithValue("@trackingNo", DropDownList1.SelectedValue);
+                        lblSuccess.ForeColor = System.Drawing.Color.Green;
+                        lblSuccess.Text = "Shipment Status Updated.";
+                        if (DeliveryStatusList.SelectedValue == "Delivered")
                         {
                             cmd.CommandText = "UPDATE DELIVERY_STATUS SET Arrival_Date = @cDate FROM DELIVERY_STATUS INNER JOIN SHIPMENT ON DELIVERY_STATUS.Delivery_Status_ID = SHIPMENT.Delivery_Status WHERE (SHIPMENT.Tracking_Num = @tNo)";
-                            cmd.Parameters.AddWithValue("@tNo", txtTrackingNumber.Text.Trim());
+                            cmd.Parameters.AddWithValue("@tNo", DropDownList1.SelectedValue);
                             cmd.Parameters.AddWithValue("@cDate", DateTime.Now);
                             cmd.ExecuteNonQuery();
+                            lblSuccess.ForeColor = System.Drawing.Color.Green;
+                            lblSuccess.Text = "Shipment Status Updated. Since package was delivered, arrival date was added.";
+                        }
+                        else if (DeliveryStatusList.SelectedValue == "In Transit")
+                        {
+                            cmd.CommandText = "UPDATE DELIVERY_STATUS SET Date_Shipped = @cDate FROM DELIVERY_STATUS INNER JOIN SHIPMENT ON DELIVERY_STATUS.Delivery_Status_ID = SHIPMENT.Delivery_Status WHERE (SHIPMENT.Tracking_Num = @tNo)";
+                            cmd.Parameters.AddWithValue("@tNo", DropDownList1.SelectedValue);
+                            cmd.Parameters.AddWithValue("@cDate", DateTime.Now);
+                            cmd.ExecuteNonQuery();
+
                             lblInvalidInfo.ForeColor = System.Drawing.Color.Green;
                             lblInvalidInfo.Text = "Shipment Status Updated. Since the package was delivered, arrival date was added.";
                             lblInvalidInfo.Visible = true;

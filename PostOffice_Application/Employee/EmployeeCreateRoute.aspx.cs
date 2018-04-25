@@ -58,6 +58,7 @@ namespace PostOffice_Application
                 sqlCmd.CommandText = "Insert Into ADDRESS (Country_ID, State_ID, City, Zip, Apartment_Num, Street_Address1, Street_Address2) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val6, @Val7)";
                 sqlCmd.Connection = sqlConnection1;
                 bool readyToSubmit = true;
+                int itemp = 0;
                 if (DropDownList1.SelectedValue == "")
                 {
                     Label7.Text = "Required";
@@ -85,6 +86,16 @@ namespace PostOffice_Application
                     sqlCmd.Parameters.AddWithValue("@Val4", TextBox6.Text);
                 if (TextBox7.Text == "")
                     sqlCmd.Parameters.AddWithValue("@Val5", DBNull.Value);
+                else if(!Int32.TryParse(TextBox7.Text, out itemp))
+                {
+                    Label13.Text = "Must be an integer";
+                    readyToSubmit = false;
+                }
+                else if(itemp < 0)
+                {
+                    Label13.Text = "Cannot be negative";
+                    readyToSubmit = false;
+                }
                 else
                     sqlCmd.Parameters.AddWithValue("@Val5", TextBox7.Text);
                 if (TextBox8.Text == "")
@@ -132,6 +143,7 @@ namespace PostOffice_Application
                 sqlCmd.CommandText = "Insert Into ADDRESS (Country_ID, State_ID, City, Zip, Apartment_Num, Street_Address1, Street_Address2) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val6, @Val7)";
                 sqlCmd.Connection = sqlConnection1;
                 bool readyToSubmit = true;
+                int itemp = 0;
                 if (DropDownList3.SelectedValue == "")
                 {
                     Label1.Text = "Required";
@@ -159,6 +171,16 @@ namespace PostOffice_Application
                     sqlCmd.Parameters.AddWithValue("@Val4", TextBox2.Text);
                 if (TextBox3.Text == "")
                     sqlCmd.Parameters.AddWithValue("@Val5", DBNull.Value);
+                else if(!Int32.TryParse(TextBox3.Text, out itemp))
+                {
+                    Label12.Text = "Must be an integer";
+                    readyToSubmit = false;
+                }
+                else if(itemp < 0)
+                {
+                    Label12.Text = "Cannot be negative";
+                    readyToSubmit = false;
+                }
                 else
                     sqlCmd.Parameters.AddWithValue("@Val5", TextBox3.Text);
                 if (TextBox4.Text == "")

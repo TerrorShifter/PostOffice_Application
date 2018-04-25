@@ -60,7 +60,7 @@ namespace PostOffice_Application
                 GridView1.DataBind();
             }
         }
-        
+
         protected void btnGetDateRangeReport_Click(object sender, EventArgs e)
         {
 
@@ -109,7 +109,7 @@ namespace PostOffice_Application
                     Console.WriteLine(ex.ToString());
                 }
             }
-            
+
         }
 
         protected void btnFailedPackages_Click(object sender, EventArgs e)
@@ -162,7 +162,8 @@ namespace PostOffice_Application
 
         protected void btnCustHistory_Click(object sender, EventArgs e)
         {
-            if (txtCustomerID.Text=="")
+            if (txtCustomerID.Text == "")
+
             {
                 lblCustHistory.ForeColor = System.Drawing.Color.Red;
                 lblCustHistory.Text = "Please enter an ID";
@@ -216,6 +217,6 @@ namespace PostOffice_Application
                 }
             }
         }
-        
+
     }
 }
