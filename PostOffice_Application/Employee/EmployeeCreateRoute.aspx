@@ -107,7 +107,7 @@
         Driver ID:
         <asp:DropDownList ID="DropDownList7" runat="server" DataSourceID="SqlDataSource7" DataTextField="Employee_ID" DataValueField="Employee_ID">
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Employee_ID] FROM [EMPLOYEE]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Employee_ID] FROM [EMPLOYEE]WHERE [EMPLOYEE].Position = 4"></asp:SqlDataSource>
         <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument="EMPLOYEE" OnClick="Lookup">Lookup</asp:LinkButton>
         <asp:Label ID="Label11" runat="server"></asp:Label>
     </p>
