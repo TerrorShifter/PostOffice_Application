@@ -43,7 +43,7 @@
                 </asp:SqlDataSource>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!" CellPadding="4" ForeColor="#333333" GridLines="None" Visible="False">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking #" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
@@ -77,31 +77,21 @@
                     </asp:UpdatePanel>
             </asp:View>
             <asp:View ID="View3" runat="server">
-                From:<asp:Calendar ID="CalendarCustBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                </asp:Calendar>
+                From:
+                <asp:TextBox ID="View3From" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v3fLabel" runat="server"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To:&nbsp;<asp:TextBox ID="View3To" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v3tLabel" runat="server"></asp:Label>
                 <br />
-                To:<asp:Calendar ID="CalendarCustEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                </asp:Calendar>
-                <br />
-                Enter Customer ID:<asp:TextBox ID="txtCustomerID" runat="server"></asp:TextBox>
+                Enter Customer ID:<asp:DropDownList ID="ddlCustID" runat="server" DataSourceID="SqlDataSource3" DataTextField="Customer_ID" DataValueField="Customer_ID">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Customer_ID] FROM [CUSTOMER]"></asp:SqlDataSource>
                 <asp:LinkButton ID="lbtnCustomerLookup" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
                 &nbsp;
-                <asp:Label ID="lblCustHistory" runat="server" Text="Label" Visible="False"></asp:Label>
+                <asp:Label ID="lblCustID" runat="server"></asp:Label>
                 <br />
                 <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Fetch Package History" />
-                <asp:GridView ID="CustHistoryTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="CustHistoryTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No packages found!" Visible="False">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -116,27 +106,13 @@
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View4" runat="server">
-                From:<asp:Calendar ID="CalendarFailedBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                </asp:Calendar>
-                <br />
-                To:<asp:Calendar ID="CalendarFailedEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                </asp:Calendar>
-                <asp:Label ID="FailedPackageInfo" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
+                From:<asp:TextBox ID="View4From" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v4fLabel" runat="server"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To:<asp:TextBox ID="View4To" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v4tLabel" runat="server" Visible="False"></asp:Label>
                 <br />
                 <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Packages" />
-                <asp:GridView ID="FailedShipmentsTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="FailedShipmentsTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No packages found!" Visible="False">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -151,26 +127,14 @@
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View5" runat="server">
-                   From:<asp:Calendar ID="CalendarBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                      <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                      <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                      <OtherMonthDayStyle ForeColor="#999999" />
-                      <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                      <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                      <TodayDayStyle BackColor="#CCCCCC" />
-                   </asp:Calendar>
-                  
-                 To:<asp:Calendar ID="CalendarEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                     <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                     <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                     <OtherMonthDayStyle ForeColor="#999999" />
-                     <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                     <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                     <TodayDayStyle BackColor="#CCCCCC" />
-                   </asp:Calendar>              
-                 <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" />
-                <asp:Label ID="lblDateRangeError" runat="server" ForeColor="Red" Text="Please enter a date." Visible="False" align="right"></asp:Label>
-                <asp:GridView ID="DateRangeTable" runat="server" align="middle" CellPadding="4" ForeColor="#333333" GridLines="None">
+                   From:<asp:TextBox ID="View5From" runat="server" TextMode="Date"></asp:TextBox>
+                   &nbsp;<asp:Label ID="v5fLabel" runat="server"></asp:Label>
+                   &nbsp;&nbsp;&nbsp;&nbsp; To:<asp:TextBox ID="View5To" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v5tLabel" runat="server" align="right"></asp:Label>
+                   <br />
+                   <br />
+                   <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" />
+                <asp:GridView ID="DateRangeTable" runat="server" align="middle" CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No packages found!">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
