@@ -67,6 +67,7 @@ namespace PostOffice_Application
         Decimal totalvalue = 0, totalrate = 0;
         protected void GridView1_RowDataBound1(object sender, GridViewRowEventArgs e)
         {
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 totalvalue += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Value_Of_Contents"));
@@ -84,6 +85,7 @@ namespace PostOffice_Application
 
         protected void btnGetDateRangeReport_Click(object sender, EventArgs e)
         {
+
             DateRangeTable.Visible = false;
             v5fLabel.Text = "";
             v5tLabel.Text = "";
@@ -99,6 +101,7 @@ namespace PostOffice_Application
                 v5tLabel.Text = "Please select a valid end date.";
                 readyToSubmit = false;
             }
+
             if (readyToSubmit)
             {
                 if (temp2.Ticks >= temp.Ticks)
@@ -161,6 +164,7 @@ namespace PostOffice_Application
                 readyToSubmit = false;
             }
             if (readyToSubmit)
+
             {
                 if (temp2.Ticks >= temp.Ticks)
                 {
@@ -224,6 +228,7 @@ namespace PostOffice_Application
                 v3tLabel.Text = "Please select a valid end date.";
                 readyToSubmit = false;
             }
+
             if (readyToSubmit)
             {
                 if (temp2.Ticks >= temp.Ticks)
