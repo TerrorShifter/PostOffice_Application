@@ -93,17 +93,17 @@ namespace PostOffice_Application
                             cmd.Parameters.AddWithValue("@cDate", DateTime.Now);
                             cmd.ExecuteNonQuery();
 
-                            lblInvalidInfo.ForeColor = System.Drawing.Color.Green;
-                            lblInvalidInfo.Text = "Shipment Status Updated. Since the package was delivered, arrival date was added.";
-                            lblInvalidInfo.Visible = true;
+                            lblSuccess.ForeColor = System.Drawing.Color.Green;
+                            lblSuccess.Text = "Shipment Status Updated. Since the package was delivered, arrival date was added.";
+                            lblSuccess.Visible = true;
                         }
                     }
                 }
                 catch (SqlException ex)
                 {
-                    lblInvalidInfo.ForeColor = System.Drawing.Color.Red;
-                    lblInvalidInfo.Text = "There was an error querying the database. Please try again.";
-                    lblInvalidInfo.Visible = true;
+                    lblSuccess.ForeColor = System.Drawing.Color.Red;
+                    lblSuccess.Text = "There was an error querying the database. Please try again.";
+                    lblSuccess.Visible = true;
                     Console.WriteLine(ex.ToString());
                 }
             }
