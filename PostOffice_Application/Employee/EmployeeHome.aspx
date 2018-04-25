@@ -15,8 +15,8 @@
             <asp:ListItem Text="" Value="View1"></asp:ListItem>
             <asp:ListItem Text="Packages on shipment" Value="View2"></asp:ListItem>
             <asp:ListItem Text="Customer order history" Value="View3"></asp:ListItem>
-            <asp:ListItem Text="Failed packages" Value="View4"></asp:ListItem>
-            <asp:ListItem Text="Packages shipped within a date range" Value="View5"></asp:ListItem>
+            <asp:ListItem Text="Failed Packages" Value="View4"></asp:ListItem>
+            <asp:ListItem Text="Packages within a date range" Value="View5"></asp:ListItem>
         </asp:DropDownList>
     </p>
     <p>
@@ -67,25 +67,39 @@
             </asp:View>
             <asp:View ID="View3" runat="server">
                 Enter Customer ID:<asp:TextBox ID="txtCustomerID" runat="server"></asp:TextBox>
-                <asp:LinkButton ID="LinkButton4" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
+                <asp:LinkButton ID="lbtnCustomerLookup" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
                 &nbsp;
                 <asp:Label ID="lblCustHistory" runat="server" Text="Label" Visible="False"></asp:Label>
                 <br />
                 <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Fetch Package History" />
-                <asp:GridView ID="GridView2" runat="server">
+                <asp:GridView ID="CustHistoryTable" runat="server">
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View4" runat="server">
                 <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Packages" />
-                <asp:GridView ID="FailedShipmentsTable" runat="server" EmptyDataText="No packages found!">
+                <asp:GridView ID="FailedShipmentsTable" runat="server">
                 </asp:GridView>
-                s
             </asp:View>
             <asp:View ID="View5" runat="server">
-                   From:<asp:TextBox ID="beginDate" runat="server" align="middle" TextMode="Date">
-                        </asp:TextBox>
+                   From:<asp:TextBox ID="beginDate" runat="server" align="middle"></asp:TextBox>
+                  <asp:Calendar ID="CalendarBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarBegin_SelectionChanged" Width="350px">
+                      <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                      <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                      <OtherMonthDayStyle ForeColor="#999999" />
+                      <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                      <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                      <TodayDayStyle BackColor="#CCCCCC" />
+                   </asp:Calendar>
                   
-                 To:<asp:TextBox ID="endDate" runat="server" align="middle" TextMode="Date"></asp:TextBox>
+                 To:<asp:TextBox ID="endDate" runat="server" align="middle"></asp:TextBox>
+                 <asp:Calendar ID="CalendarEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" OnSelectionChanged="CalendarEnd_SelectionChanged" Width="350px">
+                     <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                     <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                     <OtherMonthDayStyle ForeColor="#999999" />
+                     <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                     <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                     <TodayDayStyle BackColor="#CCCCCC" />
+                   </asp:Calendar>              
                  <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" />
                 <asp:Label ID="lblDateRangeError" runat="server" ForeColor="Red" Text="Please enter a date." Visible="False" align="right"></asp:Label>
                 <asp:GridView ID="DateRangeTable" runat="server" align="middle">
