@@ -12,8 +12,6 @@ namespace PostOffice_Application
 {
     public partial class EmployeeHome : System.Web.UI.Page
     {
-        string begin;
-        string end;
         protected void Page_Load(object sender, EventArgs e)
         {
             Button btnLogout = this.Master.FindControl("btnLogoff") as Button;
@@ -63,158 +61,185 @@ namespace PostOffice_Application
 
         protected void btnGetDateRangeReport_Click(object sender, EventArgs e)
         {
-
-            if ((CalendarBegin.SelectedDate) == DateTime.MinValue)
+            DateRangeTable.Visible = false;
+            v5fLabel.Text = "";
+            v5tLabel.Text = "";
+            bool readyToSubmit = true;
+            DateTime temp = new DateTime(0), temp2 = new DateTime(0);
+            if (!DateTime.TryParse(View5From.Text, out temp))
             {
-                lblDateRangeError.Text = "Please select a start date.";
-                lblDateRangeError.Visible = true;
+                v5fLabel.Text = "Please select a valid start date.";
+                readyToSubmit = false;
             }
-            else if ((CalendarEnd.SelectedDate) == DateTime.MinValue)
+            if (!DateTime.TryParse(View5To.Text, out temp2))
             {
-                lblDateRangeError.Text = "Please select an end date.";
-                lblDateRangeError.Visible = true;
+                v5tLabel.Text = "Please select a valid end date.";
+                readyToSubmit = false;
             }
-            else
+            if(readyToSubmit)
             {
-                lblDateRangeError.Visible = false;
-                try
+                if (temp2.Ticks >= temp.Ticks)
                 {
-                    var constr = new SqlConnectionStringBuilder
+                    DateRangeTable.Visible = true;
+                    try
                     {
-                        DataSource = "team-4-post-office-dbs.database.windows.net",
-                        InitialCatalog = "Post_Office",
-                        UserID = "luisflores",
-                        Password = "luisf%1220"
-                    };
-                    using (SqlConnection con = new SqlConnection(constr.ConnectionString))
+                        var constr = new SqlConnectionStringBuilder
+                        {
+                            DataSource = "team-4-post-office-dbs.database.windows.net",
+                            InitialCatalog = "Post_Office",
+                            UserID = "luisflores",
+                            Password = "luisf%1220"
+                        };
+                        using (SqlConnection con = new SqlConnection(constr.ConnectionString))
+                        {
+                            con.Open();
+                            //Returns a table with the columns: Tracking Number, Package Type, Contents, Value of the contents, and the full address associated with the package
+                            //based on given dates
+                            string getPackageInfoQuery = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STRING.Status_String AS [Delivery Status],PRIORITY.Priority_Type AS Priority, Package_Type.Package_Type_string AS [Package Type], SHIPMENT.Contents, SHIPMENT.Weight, SHIPMENT.Value_Of_Contents AS Value, SHIPMENT.Rate AS [Rate], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name] ,concat(SHIPMENT.Recipient_FName ,' ', SHIPMENT.Recipient_LName) AS [Recipient Name],concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID LEFT JOIN PRIORITY ON SHIPMENT.Priority_ID = Priority.Priority_ID LEFT JOIN Address ON SHIPMENT.Recipient_Address_ID = Address.Address_ID LEFT JOIN COUNTRY ON Address.Country_ID = Country.Country_ID LEFT JOIN STATES ON Address.State_ID = STATES.State_ID LEFT JOIN PACKAGE_TYPE ON PACKAGE_TYPE.Package_Type_ID=SHIPMENT.Package_Type LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID=CUSTOMER.Customer_ID WHERE NOT SHIPMENT.Delivery_Status = 5 AND NOT SHIPMENT.Delivery_Status = 6 AND DELIVERY_STATUS.Date_Shipped BETWEEN @startDate AND @endDate";
+                            SqlCommand cmd = new SqlCommand(getPackageInfoQuery, con);
+                            cmd.Parameters.AddWithValue("@startDate", View5From.Text);
+                            cmd.Parameters.AddWithValue("@endDate", View5To.Text);
+                            cmd.CommandType = System.Data.CommandType.Text;
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            DateRangeTable.DataSource = dt;
+                            DateRangeTable.DataBind();
+                            con.Close();
+                        }
+                    }
+                    catch (SqlException ex)
                     {
-                        con.Open();
-                        //Returns a table with the columns: Tracking Number, Package Type, Contents, Value of the contents, and the full address associated with the package
-                        //based on given dates
-                        string getPackageInfoQuery = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STRING.Status_String AS [Delivery Status],PRIORITY.Priority_Type AS Priority, Package_Type.Package_Type_string AS [Package Type], SHIPMENT.Contents, SHIPMENT.Weight, SHIPMENT.Value_Of_Contents AS Value, SHIPMENT.Rate AS [Rate], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name] ,concat(SHIPMENT.Recipient_FName ,' ', SHIPMENT.Recipient_LName) AS [Recipient Name],concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID LEFT JOIN PRIORITY ON SHIPMENT.Priority_ID = Priority.Priority_ID LEFT JOIN Address ON SHIPMENT.Recipient_Address_ID = Address.Address_ID LEFT JOIN COUNTRY ON Address.Country_ID = Country.Country_ID LEFT JOIN STATES ON Address.State_ID = STATES.State_ID LEFT JOIN PACKAGE_TYPE ON PACKAGE_TYPE.Package_Type_ID=SHIPMENT.Package_Type LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID=CUSTOMER.Customer_ID WHERE NOT SHIPMENT.Delivery_Status = 5 AND NOT SHIPMENT.Delivery_Status = 6 AND DELIVERY_STATUS.Date_Shipped BETWEEN @startDate AND @endDate";
-                        SqlCommand cmd = new SqlCommand(getPackageInfoQuery, con);
-                        cmd.Parameters.AddWithValue("@startDate", CalendarBegin.SelectedDate);
-                        cmd.Parameters.AddWithValue("@endDate", CalendarEnd.SelectedDate);
-                        cmd.CommandType = System.Data.CommandType.Text;
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        DateRangeTable.DataSource = dt;
-                        DateRangeTable.DataBind();
-                        con.Close();
+                        Console.WriteLine(ex.ToString());
+                        v5tLabel.Text = "SQLERROR: " + e.ToString();
                     }
                 }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                }
+                else
+                    v5tLabel.Text = "To date must come after From date";
             }
 
         }
 
         protected void btnFailedPackages_Click(object sender, EventArgs e)
         {
-            if ((CalendarFailedBegin.SelectedDate) == DateTime.MinValue)
+            FailedShipmentsTable.Visible = false;
+            v4fLabel.Text = "";
+            v4tLabel.Text = "";
+            DateTime temp = new DateTime(0), temp2 = new DateTime(0);
+            bool readyToSubmit = true;
+            if (!DateTime.TryParse(View4From.Text, out temp))
             {
-                FailedPackageInfo.Text = "Please select a start date.";
-                FailedPackageInfo.Visible = true;
+                v4fLabel.Text = "Please select a valid start date.";
+                readyToSubmit = false;
             }
-            else if ((CalendarFailedEnd.SelectedDate) == DateTime.MinValue)
+            if (!DateTime.TryParse(View4To.Text, out temp2))
             {
-                FailedPackageInfo.Text = "Please select an end date.";
-                FailedPackageInfo.Visible = true;
+                v4tLabel.Text = "Please select a valid end date.";
+                readyToSubmit = false;
             }
-            else
+            if(readyToSubmit)
             {
-                FailedPackageInfo.Visible = false;
-                string getFailedPackagesQuery = "SELECT Tracking_Num AS [Tracking Number], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name], CUSTOMER.Phone_Num AS [Sender Phone Number], CUSTOMER.Email AS [Sender Email], concat(Recipient_FName, ' ', Recipient_LName) AS [Recipient Name], DELIVERY_STATUS.Date_Shipped AS [Date Shipped] FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN CUSTOMER ON  SHIPMENT.Sender_ID = CUSTOMER.Customer_ID WHERE DELIVERY_STATUS.Status = 5 AND Date_Shipped BETWEEN @startDate AND @endDate;";
-                try
+                if (temp2.Ticks >= temp.Ticks)
                 {
-                    var constr = new SqlConnectionStringBuilder
+                    FailedShipmentsTable.Visible = true;
+                    string getFailedPackagesQuery = "SELECT Tracking_Num AS [Tracking Number], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name], CUSTOMER.Phone_Num AS [Sender Phone Number], CUSTOMER.Email AS [Sender Email], concat(Recipient_FName, ' ', Recipient_LName) AS [Recipient Name], DELIVERY_STATUS.Date_Shipped AS [Date Shipped] FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN CUSTOMER ON  SHIPMENT.Sender_ID = CUSTOMER.Customer_ID WHERE DELIVERY_STATUS.Status = 5 AND Date_Shipped BETWEEN @startDate AND @endDate;";
+                    try
                     {
-                        DataSource = "team-4-post-office-dbs.database.windows.net",
-                        InitialCatalog = "Post_Office",
-                        UserID = "luisflores",
-                        Password = "luisf%1220"
-                    };
-                    using (SqlConnection con = new SqlConnection(constr.ConnectionString))
-                    {
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand(getFailedPackagesQuery, con);
-                        cmd.CommandType = System.Data.CommandType.Text;
-                        cmd.Parameters.AddWithValue("@startDate", CalendarFailedBegin.SelectedDate);
-                        cmd.Parameters.AddWithValue("@endDate", CalendarFailedEnd.SelectedDate);
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        FailedShipmentsTable.DataSource = dt;
-                        FailedShipmentsTable.DataBind();
-                        con.Close();
-                    }
+                        var constr = new SqlConnectionStringBuilder
+                        {
+                            DataSource = "team-4-post-office-dbs.database.windows.net",
+                            InitialCatalog = "Post_Office",
+                            UserID = "luisflores",
+                            Password = "luisf%1220"
+                        };
+                        using (SqlConnection con = new SqlConnection(constr.ConnectionString))
+                        {
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand(getFailedPackagesQuery, con);
+                            cmd.CommandType = System.Data.CommandType.Text;
+                            cmd.Parameters.AddWithValue("@startDate", View4From.Text);
+                            cmd.Parameters.AddWithValue("@endDate", View4To.Text);
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            FailedShipmentsTable.DataSource = dt;
+                            FailedShipmentsTable.DataBind();
+                            con.Close();
+                        }
 
+                    }
+                    catch (SqlException ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.ToString());
+                    }
                 }
-                catch (SqlException ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
-                }
+                else
+                    v4tLabel.Text = "To date must come after From date";
             }
         }
 
         protected void btnCustHistory_Click(object sender, EventArgs e)
         {
-            if (txtCustomerID.Text == "")
-
+            CustHistoryTable.Visible = false;
+            lblCustID.Text = "";
+            v3fLabel.Text = "";
+            v3tLabel.Text = "";
+            DateTime temp = new DateTime(0), temp2 = new DateTime(0);
+            bool readyToSubmit = true;
+            if (ddlCustID.SelectedValue == "")
             {
-                lblCustHistory.ForeColor = System.Drawing.Color.Red;
-                lblCustHistory.Text = "Please enter an ID";
-                lblCustHistory.Visible = true;
+                lblCustID.Text = "Required";
+                readyToSubmit = false;
             }
-            else if ((CalendarCustBegin.SelectedDate) == DateTime.MinValue)
+            if (!DateTime.TryParse(View3From.Text, out temp))
             {
-                lblCustHistory.ForeColor = System.Drawing.Color.Red;
-                lblCustHistory.Text = "Please select a start date.";
-                lblCustHistory.Visible = true;
+                v3fLabel.Text = "Please select a valid start date.";
+                readyToSubmit = false;
             }
-            else if ((CalendarCustEnd.SelectedDate) == DateTime.MinValue)
+            if (!DateTime.TryParse(View3To.Text, out temp2))
             {
-                lblCustHistory.ForeColor = System.Drawing.Color.Red;
-                lblCustHistory.Text = "Please select an end date.";
-                lblCustHistory.Visible = true;
+                v3tLabel.Text = "Please select a valid end date.";
+                readyToSubmit = false;
             }
-            else
+            if(readyToSubmit)
             {
-                lblCustHistory.Visible = false;
-                string getCustHistoryQuery = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STRING.Status_String AS [Delivery Status],PRIORITY.Priority_Type AS Priority, Package_Type.Package_Type_string AS [Package Type], SHIPMENT.Contents, SHIPMENT.Weight, SHIPMENT.Value_Of_Contents AS Value, SHIPMENT.Rate AS [Rate], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name] ,concat(SHIPMENT.Recipient_FName ,' ', SHIPMENT.Recipient_LName) AS [Recipient Name],concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID LEFT JOIN PRIORITY ON SHIPMENT.Priority_ID = Priority.Priority_ID LEFT JOIN Address ON SHIPMENT.Recipient_Address_ID = Address.Address_ID LEFT JOIN COUNTRY ON Address.Country_ID = Country.Country_ID LEFT JOIN STATES ON Address.State_ID = STATES.State_ID LEFT JOIN PACKAGE_TYPE ON PACKAGE_TYPE.Package_Type_ID=SHIPMENT.Package_Type LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID=CUSTOMER.Customer_ID WHERE Customer.Customer_ID = @cID AND Date_Shipped BETWEEN @startDate AND @endDate;";
-                try
+                if (temp2.Ticks >= temp.Ticks)
                 {
-                    var constr = new SqlConnectionStringBuilder
+                    CustHistoryTable.Visible = true;
+                    string getCustHistoryQuery = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STRING.Status_String AS [Delivery Status],PRIORITY.Priority_Type AS Priority, Package_Type.Package_Type_string AS [Package Type], SHIPMENT.Contents, SHIPMENT.Weight, SHIPMENT.Value_Of_Contents AS Value, SHIPMENT.Rate AS [Rate], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name] ,concat(SHIPMENT.Recipient_FName ,' ', SHIPMENT.Recipient_LName) AS [Recipient Name],concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID LEFT JOIN PRIORITY ON SHIPMENT.Priority_ID = Priority.Priority_ID LEFT JOIN Address ON SHIPMENT.Recipient_Address_ID = Address.Address_ID LEFT JOIN COUNTRY ON Address.Country_ID = Country.Country_ID LEFT JOIN STATES ON Address.State_ID = STATES.State_ID LEFT JOIN PACKAGE_TYPE ON PACKAGE_TYPE.Package_Type_ID=SHIPMENT.Package_Type LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID=CUSTOMER.Customer_ID WHERE Customer.Customer_ID = @cID AND Date_Shipped BETWEEN @startDate AND @endDate;";
+                    try
                     {
-                        DataSource = "team-4-post-office-dbs.database.windows.net",
-                        InitialCatalog = "Post_Office",
-                        UserID = "luisflores",
-                        Password = "luisf%1220"
-                    };
-                    using (SqlConnection con = new SqlConnection(constr.ConnectionString))
-                    {
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand(getCustHistoryQuery, con);
-                        cmd.Parameters.AddWithValue("@cID", txtCustomerID.Text.Trim());
-                        cmd.Parameters.AddWithValue("@startDate", CalendarCustBegin.SelectedDate);
-                        cmd.Parameters.AddWithValue("@endDate", CalendarCustEnd.SelectedDate);
-                        cmd.CommandType = System.Data.CommandType.Text;
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        CustHistoryTable.DataSource = dt;
-                        CustHistoryTable.DataBind();
-                        con.Close();
+                        var constr = new SqlConnectionStringBuilder
+                        {
+                            DataSource = "team-4-post-office-dbs.database.windows.net",
+                            InitialCatalog = "Post_Office",
+                            UserID = "luisflores",
+                            Password = "luisf%1220"
+                        };
+                        using (SqlConnection con = new SqlConnection(constr.ConnectionString))
+                        {
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand(getCustHistoryQuery, con);
+                            cmd.Parameters.AddWithValue("@cID", ddlCustID.SelectedValue);
+                            cmd.Parameters.AddWithValue("@startDate", View3From.Text);
+                            cmd.Parameters.AddWithValue("@endDate", View3To.Text);
+                            cmd.CommandType = System.Data.CommandType.Text;
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            CustHistoryTable.DataSource = dt;
+                            CustHistoryTable.DataBind();
+                            con.Close();
+                        }
+
                     }
-
+                    catch (SqlException ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.ToString());
+                    }
                 }
-                catch (SqlException ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
-                }
+                else
+                    v3tLabel.Text = "To date must come after From date";
             }
         }
 
