@@ -15,7 +15,7 @@
             <asp:ListItem Text="" Value="View1"></asp:ListItem>
             <asp:ListItem Text="Packages on shipment" Value="View2"></asp:ListItem>
             <asp:ListItem Text="Customer order history" Value="View3"></asp:ListItem>
-            <asp:ListItem Text="Failed Packages" Value="View4"></asp:ListItem>
+            <asp:ListItem Text="Failed packages" Value="View4"></asp:ListItem>
             <asp:ListItem Text="Packages within a date range" Value="View5"></asp:ListItem>
         </asp:DropDownList>
     </p>
@@ -43,22 +43,119 @@
                 </asp:SqlDataSource>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" EmptyDataText="No packages found!" CellPadding="4" ForeColor="#333333" GridLines="None" Visible="False" OnRowDataBound="GridView1_RowDataBound1" ShowFooter="True">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
-                        <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking #" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
-                        <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
-                        <asp:BoundField DataField="Sender_ID" HeaderText="Sender ID" SortExpression="Sender_ID" />
-                        <asp:BoundField DataField="Recipient_Address_ID" HeaderText="Recipient Address ID" SortExpression="Recipient_Address_ID" />
-                        <asp:BoundField DataField="Recipient_Phone" HeaderText="Recipient Phone #" SortExpression="Recipient_Phone" />
-                        <asp:BoundField DataField="Rate" HeaderText="Rate" SortExpression="Rate" />
-                        <asp:BoundField DataField="Contents" HeaderText="Contents" SortExpression="Contents" />
-                        <asp:BoundField DataField="Value_of_Contents" HeaderText="Value of Contents" SortExpression="Value_of_Contents" />
-                        <asp:BoundField DataField="Fragility_Level" HeaderText="Fragility" SortExpression="Fragility_Level" />
-                        <asp:BoundField DataField="Recipient_FName" HeaderText="Recipient First Name" SortExpression="Recipient_FName" />
-                        <asp:BoundField DataField="Recipient_LName" HeaderText="Recipient Last Name" SortExpression="Recipient_LName" />
-                        <asp:BoundField DataField="Priority_Type" HeaderText="Priority" SortExpression="Priority_Type" />
-                        <asp:BoundField DataField="Package_Type_string" HeaderText="Package Type" SortExpression="Package_Type_string" />
+                        <asp:TemplateField HeaderText="Tracking #" InsertVisible="False" SortExpression="Tracking_Num" FooterText="Total:">
+                            <EditItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Tracking_Num") %>'></asp:Label>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Tracking_Num") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Weight" SortExpression="Weight">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Weight") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Weight") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Sender ID" SortExpression="Sender_ID">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Sender_ID") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("Sender_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Recipient Address ID" SortExpression="Recipient_Address_ID">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Recipient_Address_ID") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label4" runat="server" Text='<%# Bind("Recipient_Address_ID") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Recipient Phone #" SortExpression="Recipient_Phone">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Recipient_Phone") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label5" runat="server" Text='<%# Bind("Recipient_Phone") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Contents" SortExpression="Contents">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Contents") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label7" runat="server" Text='<%# Bind("Contents") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Value of Contents" SortExpression="Value_of_Contents">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Value_of_Contents") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label8" runat="server" Text='<%# Bind("Value_of_Contents") %>'></asp:Label>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label runat="server" ID="lblTotalValue" Text='<%# Eval("Value_of_Contents") %>'></asp:Label>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Fragility" SortExpression="Fragility_Level">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("Fragility_Level") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label9" runat="server" Text='<%# Bind("Fragility_Level") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Recipient First Name" SortExpression="Recipient_FName">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox9" runat="server" Text='<%# Bind("Recipient_FName") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label10" runat="server" Text='<%# Bind("Recipient_FName") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Recipient Last Name" SortExpression="Recipient_LName">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox10" runat="server" Text='<%# Bind("Recipient_LName") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label11" runat="server" Text='<%# Bind("Recipient_LName") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Priority" SortExpression="Priority_Type">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox11" runat="server" Text='<%# Bind("Priority_Type") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label12" runat="server" Text='<%# Bind("Priority_Type") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Rate" SortExpression="Rate">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Rate") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label6" runat="server" Text='<%# Bind("Rate") %>'></asp:Label>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                <asp:Label runat="server" ID="lblTotalRate" Text='<%# Eval("Rate") %>'></asp:Label>
+                            </FooterTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Package Type" SortExpression="Package_Type_string">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox12" runat="server" Text='<%# Bind("Package_Type_string") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label13" runat="server" Text='<%# Bind("Package_Type_string") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataRowStyle BorderStyle="None" />
@@ -77,31 +174,21 @@
                     </asp:UpdatePanel>
             </asp:View>
             <asp:View ID="View3" runat="server">
-                From:<asp:Calendar ID="CalendarCustBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                </asp:Calendar>
+                From:
+                <asp:TextBox ID="View3From" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v3fLabel" runat="server"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To:&nbsp;<asp:TextBox ID="View3To" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v3tLabel" runat="server"></asp:Label>
                 <br />
-                To:<asp:Calendar ID="CalendarCustEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                </asp:Calendar>
-                <br />
-                Enter Customer ID:<asp:TextBox ID="txtCustomerID" runat="server"></asp:TextBox>
+                Enter Customer ID:<asp:DropDownList ID="ddlCustID" runat="server" DataSourceID="SqlDataSource3" DataTextField="Customer_ID" DataValueField="Customer_ID">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Customer_ID] FROM [CUSTOMER]"></asp:SqlDataSource>
                 <asp:LinkButton ID="lbtnCustomerLookup" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
                 &nbsp;
-                <asp:Label ID="lblCustHistory" runat="server" Text="Label" Visible="False"></asp:Label>
+                <asp:Label ID="lblCustID" runat="server"></asp:Label>
                 <br />
                 <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Fetch Package History" />
-                <asp:GridView ID="CustHistoryTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="CustHistoryTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No packages found!" Visible="False">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -116,27 +203,13 @@
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View4" runat="server">
-                From:<asp:Calendar ID="CalendarFailedBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                </asp:Calendar>
-                <br />
-                To:<asp:Calendar ID="CalendarFailedEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                    <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                    <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#999999" />
-                    <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                    <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                    <TodayDayStyle BackColor="#CCCCCC" />
-                </asp:Calendar>
-                <asp:Label ID="FailedPackageInfo" runat="server" ForeColor="Red" Text="Label" Visible="False"></asp:Label>
+                From:<asp:TextBox ID="View4From" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v4fLabel" runat="server"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To:<asp:TextBox ID="View4To" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v4tLabel" runat="server" Visible="False"></asp:Label>
                 <br />
                 <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Packages" />
-                <asp:GridView ID="FailedShipmentsTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="FailedShipmentsTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No packages found!" Visible="False">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -151,26 +224,14 @@
                 </asp:GridView>
             </asp:View>
             <asp:View ID="View5" runat="server">
-                   From:<asp:Calendar ID="CalendarBegin" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                      <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                      <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                      <OtherMonthDayStyle ForeColor="#999999" />
-                      <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                      <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                      <TodayDayStyle BackColor="#CCCCCC" />
-                   </asp:Calendar>
-                  
-                 To:<asp:Calendar ID="CalendarEnd" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                     <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                     <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                     <OtherMonthDayStyle ForeColor="#999999" />
-                     <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                     <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                     <TodayDayStyle BackColor="#CCCCCC" />
-                   </asp:Calendar>              
-                 <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" />
-                <asp:Label ID="lblDateRangeError" runat="server" ForeColor="Red" Text="Please enter a date." Visible="False" align="right"></asp:Label>
-                <asp:GridView ID="DateRangeTable" runat="server" align="middle" CellPadding="4" ForeColor="#333333" GridLines="None">
+                   From:<asp:TextBox ID="View5From" runat="server" TextMode="Date"></asp:TextBox>
+                   &nbsp;<asp:Label ID="v5fLabel" runat="server"></asp:Label>
+                   &nbsp;&nbsp;&nbsp;&nbsp; To:<asp:TextBox ID="View5To" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="v5tLabel" runat="server" align="right"></asp:Label>
+                   <br />
+                   <br />
+                   <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" />
+                <asp:GridView ID="DateRangeTable" runat="server" align="middle" CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No packages found!">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

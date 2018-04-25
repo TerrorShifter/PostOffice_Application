@@ -148,31 +148,58 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
-        /// CalendarCustBegin control.
+        /// View3From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarCustBegin;
+        protected global::System.Web.UI.WebControls.TextBox View3From;
         
         /// <summary>
-        /// CalendarCustEnd control.
+        /// v3fLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarCustEnd;
+        protected global::System.Web.UI.WebControls.Label v3fLabel;
         
         /// <summary>
-        /// txtCustomerID control.
+        /// View3To control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustomerID;
+        protected global::System.Web.UI.WebControls.TextBox View3To;
+        
+        /// <summary>
+        /// v3tLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label v3tLabel;
+        
+        /// <summary>
+        /// ddlCustID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustID;
+        
+        /// <summary>
+        /// SqlDataSource3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
         
         /// <summary>
         /// lbtnCustomerLookup control.
@@ -184,13 +211,13 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.LinkButton lbtnCustomerLookup;
         
         /// <summary>
-        /// lblCustHistory control.
+        /// lblCustID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCustHistory;
+        protected global::System.Web.UI.WebControls.Label lblCustID;
         
         /// <summary>
         /// btnCustHistory control.
@@ -220,31 +247,40 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.View View4;
         
         /// <summary>
-        /// CalendarFailedBegin control.
+        /// View4From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarFailedBegin;
+        protected global::System.Web.UI.WebControls.TextBox View4From;
         
         /// <summary>
-        /// CalendarFailedEnd control.
+        /// v4fLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarFailedEnd;
+        protected global::System.Web.UI.WebControls.Label v4fLabel;
         
         /// <summary>
-        /// FailedPackageInfo control.
+        /// View4To control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FailedPackageInfo;
+        protected global::System.Web.UI.WebControls.TextBox View4To;
+        
+        /// <summary>
+        /// v4tLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label v4tLabel;
         
         /// <summary>
         /// btnFailedPackages control.
@@ -274,22 +310,40 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.View View5;
         
         /// <summary>
-        /// CalendarBegin control.
+        /// View5From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarBegin;
+        protected global::System.Web.UI.WebControls.TextBox View5From;
         
         /// <summary>
-        /// CalendarEnd control.
+        /// v5fLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarEnd;
+        protected global::System.Web.UI.WebControls.Label v5fLabel;
+        
+        /// <summary>
+        /// View5To control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox View5To;
+        
+        /// <summary>
+        /// v5tLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label v5tLabel;
         
         /// <summary>
         /// btnGetDateRangeReport control.
@@ -299,15 +353,6 @@ namespace PostOffice_Application {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGetDateRangeReport;
-        
-        /// <summary>
-        /// lblDateRangeError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDateRangeError;
         
         /// <summary>
         /// DateRangeTable control.
