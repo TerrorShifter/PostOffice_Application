@@ -163,6 +163,7 @@ namespace PostOffice_Application
         protected void btnCustHistory_Click(object sender, EventArgs e)
         {
             if (txtCustomerID.Text == "")
+
             {
                 lblCustHistory.ForeColor = System.Drawing.Color.Red;
                 lblCustHistory.Text = "Please enter an ID";
