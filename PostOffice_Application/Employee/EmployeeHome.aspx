@@ -47,18 +47,11 @@
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking #" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />
+                        <asp:BoundField DataField="Package_Type_string" HeaderText="Package Type" SortExpression="Package_Type_string" />
                         <asp:BoundField DataField="Weight" HeaderText="Weight" SortExpression="Weight" />
-                        <asp:BoundField DataField="Sender_ID" HeaderText="Sender ID" SortExpression="Sender_ID" />
-                        <asp:BoundField DataField="Recipient_Address_ID" HeaderText="Recipient Address ID" SortExpression="Recipient_Address_ID" />
-                        <asp:BoundField DataField="Recipient_Phone" HeaderText="Recipient Phone #" SortExpression="Recipient_Phone" />
-                        <asp:BoundField DataField="Rate" HeaderText="Rate" SortExpression="Rate" />
+                        <asp:BoundField DataField="Fragility_Level" HeaderText="Fragility" SortExpression="Fragility_Level" />
                         <asp:BoundField DataField="Contents" HeaderText="Contents" SortExpression="Contents" />
                         <asp:BoundField DataField="Value_of_Contents" HeaderText="Value of Contents" SortExpression="Value_of_Contents" />
-                        <asp:BoundField DataField="Fragility_Level" HeaderText="Fragility" SortExpression="Fragility_Level" />
-                        <asp:BoundField DataField="Recipient_FName" HeaderText="Recipient First Name" SortExpression="Recipient_FName" />
-                        <asp:BoundField DataField="Recipient_LName" HeaderText="Recipient Last Name" SortExpression="Recipient_LName" />
-                        <asp:BoundField DataField="Priority_Type" HeaderText="Priority" SortExpression="Priority_Type" />
-                        <asp:BoundField DataField="Package_Type_string" HeaderText="Package Type" SortExpression="Package_Type_string" />
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <EmptyDataRowStyle BorderStyle="None" />
