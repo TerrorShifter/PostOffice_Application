@@ -85,19 +85,24 @@ namespace PostOffice_Application
                 sqlCmd.CommandText = "Insert Into SHIPMENT (Weight, Recipient_FName, Recipient_LName, Recipient_Phone, Recipient_Address_ID, Sender_ID, Package_Type, Delivery_Status, Rate, Priority_ID, Fragile, Contents, Value_Of_Contents) Values (@Val1, @Val2, @Val3, @Val4, @Val5, @Val7, @Val8, @Val9, @Val10, @Val11, @Val12, @Val13, @Val14)";
                 sqlCmd.Connection = sqlConnection1;
                 bool readyToSubmit = true;
-                float ftemp = 0; int itemp = 0;
+                decimal ftemp = 0; int itemp = 0;
                 if (TextBox1.Text == "")
                 {
                     Label16.Text = "Required";
                     readyToSubmit = false;
                 }
-                else if(!float.TryParse(TextBox1.Text, out ftemp))
+                else if(!decimal.TryParse(TextBox1.Text, out ftemp))
                 {
-                    Label16.Text = "Must be a float";
+                    Label16.Text = "Must be a decimal number";
+                    readyToSubmit = false;
+                }
+                else if (ftemp <= 0)
+                {
+                    Label16.Text = "Must be greater than 0";
                     readyToSubmit = false;
                 }
                 else
-                    sqlCmd.Parameters.AddWithValue("@Val1", TextBox1.Text);
+                    sqlCmd.Parameters.AddWithValue("@Val1", decimal.Round(ftemp, 4));
                 if (TextBox2.Text == "")
                 {
                     Label17.Text = "Required";
@@ -117,13 +122,24 @@ namespace PostOffice_Application
                     Label19.Text = "Required";
                     readyToSubmit = false;
                 }
-                else if(!Int32.TryParse(TextBox22.Text, out itemp))
+                else if (!Int32.TryParse(TextBox22.Text, out itemp))
                 {
-                    Label19.Text = "Must be an int";
+                    Label19.Text = "Must be an integer";
+                    readyToSubmit = false;
+                }
+                else if (itemp < 0)
+                {
+
+                    Label19.Text = "Cannot be negative";
+                    readyToSubmit = false;
+                }
+                else if (TextBox22.Text.Length < 7)
+                {
+                    Label19.Text = "Must be at least 7 digits";
                     readyToSubmit = false;
                 }
                 else
-                    sqlCmd.Parameters.AddWithValue("@Val4", TextBox22.Text);
+                    sqlCmd.Parameters.AddWithValue("@Val4", itemp);
                 if (DropDownList9.SelectedValue == "")
                 {
                     Label20.Text = "Required";
@@ -164,13 +180,18 @@ namespace PostOffice_Application
                     Label22.Text = "Required";
                     readyToSubmit = false;
                 }
-                else if (!float.TryParse(TextBox5.Text, out ftemp))
+                else if (!decimal.TryParse(TextBox5.Text, out ftemp))
                 {
-                    Label22.Text = "Must be a float";
+                    Label22.Text = "Must be a decimal number";
+                    readyToSubmit = false;
+                }
+                else if (ftemp <= 0)
+                {
+                    Label22.Text = "Must be greater than 0";
                     readyToSubmit = false;
                 }
                 else
-                    sqlCmd.Parameters.AddWithValue("@Val10", TextBox5.Text);
+                    sqlCmd.Parameters.AddWithValue("@Val10", decimal.Round(ftemp, 2));
                 if (DropDownList2.SelectedValue == "")
                 {
                     Label25.Text = "Required";
@@ -192,13 +213,18 @@ namespace PostOffice_Application
                     Label23.Text = "Required";
                     readyToSubmit = false;
                 }
-                else if(!float.TryParse(TextBox6.Text, out ftemp))
+                else if(!decimal.TryParse(TextBox6.Text, out ftemp))
                 {
-                    Label23.Text = "Must be a float";
+                    Label23.Text = "Must be a decimal number";
+                    readyToSubmit = false;
+                }
+                else if (ftemp <= 0)
+                {
+                    Label23.Text = "Must be greater than 0";
                     readyToSubmit = false;
                 }
                 else
-                    sqlCmd.Parameters.AddWithValue("@Val14", TextBox6.Text);
+                    sqlCmd.Parameters.AddWithValue("@Val14", decimal.Round(ftemp, 2));
                 if (readyToSubmit)
                     sqlCmd.ExecuteNonQuery();
                 sqlConnection1.Close();
@@ -247,11 +273,21 @@ namespace PostOffice_Application
                 }
                 else if(!Int32.TryParse(TextBox9.Text, out itemp))
                 {
-                    Label3.Text = "Must be an int";
+                    Label3.Text = "Must be an integer";
+                    readyToSubmit = false;
+                }
+                else if (itemp < 0)
+                {
+                    Label3.Text = "Cannot be negative";
+                    readyToSubmit = false;
+                }
+                else if (TextBox9.Text.Length < 7)
+                {
+                    Label3.Text = "Must be at least 7 digits";
                     readyToSubmit = false;
                 }
                 else
-                    sqlCmd.Parameters.AddWithValue("@Val3", TextBox9.Text);
+                    sqlCmd.Parameters.AddWithValue("@Val3", itemp);
                 if (TextBox10.Text == "")
                 {
                     Label4.Text = "Required";
@@ -420,7 +456,12 @@ namespace PostOffice_Application
                     sqlCmd.Parameters.AddWithValue("@Val5", DBNull.Value);
                 else if(!Int32.TryParse(TextBox13.Text, out itemp))
                 {
-                    Label27.Text = "Must be an int";
+                    Label27.Text = "Must be an integer";
+                    readyToSubmit = false;
+                }
+                else if(itemp < 0)
+                {
+                    Label27.Text = "Cannot be negative";
                     readyToSubmit = false;
                 }
                 else
@@ -499,7 +540,12 @@ namespace PostOffice_Application
                     sqlCmd.Parameters.AddWithValue("@Val5", DBNull.Value);
                 else if(!Int32.TryParse(TextBox19.Text, out itemp))
                 {
-                    Label28.Text = "Must be an int";
+                    Label28.Text = "Must be an integer";
+                    readyToSubmit = false;
+                }
+                else if (itemp < 0)
+                {
+                    Label28.Text = "Cannot be negative";
                     readyToSubmit = false;
                 }
                 else
