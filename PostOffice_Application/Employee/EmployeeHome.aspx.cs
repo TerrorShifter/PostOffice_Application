@@ -16,7 +16,12 @@ namespace PostOffice_Application
         {
             Button btnLogout = this.Master.FindControl("btnLogoff") as Button;
             Label1.Text = (string)Session["Username"];
-
+            if (!Page.IsPostBack)
+            {
+                DropDownList1.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+                DropDownList1.SelectedIndex = 0;
+                DropDownList1.AppendDataBoundItems = true;
+            }
         }
 
         protected void Lookup(object sender, EventArgs e)
@@ -59,8 +64,28 @@ namespace PostOffice_Application
             }
         }
 
+        Decimal totalvalue = 0, totalrate = 0;
+        protected void GridView1_RowDataBound1(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                totalvalue += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Value_Of_Contents"));
+                totalrate += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Rate"));
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                Label lblval = (Label)e.Row.FindControl("lblTotalValue"), lblrate = (Label)e.Row.FindControl("lblTotalRate");
+                Decimal.Round(totalvalue, 2);
+                Decimal.Round(totalrate, 2);
+                lblval.Text = totalvalue.ToString();
+                lblrate.Text = totalrate.ToString();
+            }
+        }
+
         protected void btnGetDateRangeReport_Click(object sender, EventArgs e)
         {
+
             DateRangeTable.Visible = false;
             v5fLabel.Text = "";
             v5tLabel.Text = "";
@@ -76,7 +101,8 @@ namespace PostOffice_Application
                 v5tLabel.Text = "Please select a valid end date.";
                 readyToSubmit = false;
             }
-            if(readyToSubmit)
+
+            if (readyToSubmit)
             {
                 if (temp2.Ticks >= temp.Ticks)
                 {
@@ -137,7 +163,8 @@ namespace PostOffice_Application
                 v4tLabel.Text = "Please select a valid end date.";
                 readyToSubmit = false;
             }
-            if(readyToSubmit)
+            if (readyToSubmit)
+
             {
                 if (temp2.Ticks >= temp.Ticks)
                 {
@@ -201,7 +228,8 @@ namespace PostOffice_Application
                 v3tLabel.Text = "Please select a valid end date.";
                 readyToSubmit = false;
             }
-            if(readyToSubmit)
+
+            if (readyToSubmit)
             {
                 if (temp2.Ticks >= temp.Ticks)
                 {

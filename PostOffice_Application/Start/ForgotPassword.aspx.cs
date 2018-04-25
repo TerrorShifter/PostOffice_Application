@@ -22,6 +22,7 @@ namespace PostOffice_Application
                 Response.Redirect("Login.aspx");
             }
             lblBadEmail.Visible = false;
+            
         }
 
         protected string saveTempPassword()
@@ -55,30 +56,44 @@ namespace PostOffice_Application
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            string tempPW = saveTempPassword();
-            try
+            //bool result = root.Equals(root2, StringComparison.OrdinalIgnoreCase);
+            //bool areEqual = String.Equals(root, root2, StringComparison.OrdinalIgnoreCase);
+            int comparison = String.Compare(Session["Username"].ToString(), txtUsername.Text.Trim(), ignoreCase: true);
+            if (comparison == 0)
             {
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.To.Add(txtUsername.Text.Trim());
-                mailMessage.From = new MailAddress("team4post.office@gmail.com");
-                mailMessage.Subject = "Your Post Office password has been reset";
-                mailMessage.Body = "Hello, \n\nWe've assigned a new temporary password to " + Session["Username"] + " as requested. The new password is " + tempPW + " and you may use it to login and reset to a new custom password. \n\nThanks, \n\nTeam 4";
-                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
+                string tempPW = saveTempPassword();
+                try
                 {
-                    Credentials = new NetworkCredential("team4post.office@gmail.com", "mail!youve4got"),
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network
-                };                
-                smtpClient.Send(mailMessage);
-                Session["Username"] = null;
-                string display = "New Password Emailed";
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');window.location='Login.aspx';", true);
+                    MailMessage mailMessage = new MailMessage();
+                    mailMessage.To.Add(txtUsername.Text.Trim());
+                    mailMessage.From = new MailAddress("team4post.office@gmail.com");
+                    mailMessage.Subject = "Your Post Office password has been reset";
+                    mailMessage.Body = "Hello, \n\nWe've assigned a new temporary password to " + Session["Username"] + " as requested. The new password is " + tempPW + " and you may use it to login and reset to a new custom password. \n\nThanks, \n\nTeam 4";
+                    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
+                    {
+                        Credentials = new NetworkCredential("team4post.office@gmail.com", "mail!youve4got"),
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network
+                    };
+                    smtpClient.Send(mailMessage);
+                    Session["Username"] = null;
+                    string display = "New Password Emailed";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');window.location='Login.aspx';", true);
+                }
+                catch (Exception ex)
+                {
+                    string display = "Could not send the Email - ERROR: " + ex.Message;
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
+                }
             }
-            catch(Exception ex)
+            else
             {
-                string display = "Could not send the Email - ERROR: " + ex.Message;
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
+
+                lblBadEmail.Visible = true;
+                
+
             }
+            
         }
     }
 }
