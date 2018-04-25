@@ -72,12 +72,12 @@ namespace PostOffice_Application
                         con.Open();
                         string updateShipmentQuery = "UPDATE DELIVERY_STATUS SET DELIVERY_STATUS.Status = @newStatus WHERE Delivery_Status_ID=(SELECT SHIPMENT.Delivery_Status FROM SHIPMENT WHERE SHIPMENT.Tracking_Num = @trackingNo); ";
                         SqlCommand cmd = new SqlCommand(updateShipmentQuery, con);
-                        cmd.Parameters.AddWithValue("@newStatus", DeliveryStatusList.SelectedValue);
-                        cmd.Parameters.AddWithValue("@trackingNo", DropDownList1.SelectedValue);
-                        cmd.Parameters.AddWithValue("@trackingNo", DropDownList1.SelectedValue);
+                        cmd.Parameters.AddWithValue("@newStatus", Convert.ToInt32(DeliveryStatusList.SelectedValue));
+                        cmd.Parameters.AddWithValue("@trackingNo", Convert.ToInt32(DropDownList1.SelectedValue));
+                        cmd.ExecuteNonQuery();
                         lblSuccess.ForeColor = System.Drawing.Color.Green;
-                        lblSuccess.Text = "Shipment Status Updated.";
-                        if (DeliveryStatusList.SelectedValue == "Delivered")
+                        
+                        if (DeliveryStatusList.SelectedValue == "3")
                         {
                             cmd.CommandText = "UPDATE DELIVERY_STATUS SET Arrival_Date = @cDate FROM DELIVERY_STATUS INNER JOIN SHIPMENT ON DELIVERY_STATUS.Delivery_Status_ID = SHIPMENT.Delivery_Status WHERE (SHIPMENT.Tracking_Num = @tNo)";
                             cmd.Parameters.AddWithValue("@tNo", DropDownList1.SelectedValue);
@@ -86,7 +86,7 @@ namespace PostOffice_Application
                             lblSuccess.ForeColor = System.Drawing.Color.Green;
                             lblSuccess.Text = "Shipment Status Updated. Since package was delivered, arrival date was added.";
                         }
-                        else if (DeliveryStatusList.SelectedValue == "In Transit")
+                        else if (DeliveryStatusList.SelectedValue == "1")
                         {
                             cmd.CommandText = "UPDATE DELIVERY_STATUS SET Date_Shipped = @cDate FROM DELIVERY_STATUS INNER JOIN SHIPMENT ON DELIVERY_STATUS.Delivery_Status_ID = SHIPMENT.Delivery_Status WHERE (SHIPMENT.Tracking_Num = @tNo)";
                             cmd.Parameters.AddWithValue("@tNo", DropDownList1.SelectedValue);
@@ -97,6 +97,8 @@ namespace PostOffice_Application
                             lblSuccess.Text = "Shipment Status Updated. Since the package was delivered, arrival date was added.";
                             lblSuccess.Visible = true;
                         }
+                        else
+                            lblSuccess.Text = "Shipment Status Updated.";
                     }
                 }
                 catch (SqlException ex)
