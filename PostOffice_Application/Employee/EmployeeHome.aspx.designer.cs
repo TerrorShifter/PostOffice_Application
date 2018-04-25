@@ -238,15 +238,6 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.TextBox beginDate;
         
         /// <summary>
-        /// CalendarBegin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarBegin;
-        
-        /// <summary>
         /// endDate control.
         /// </summary>
         /// <remarks>
@@ -254,15 +245,6 @@ namespace PostOffice_Application {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox endDate;
-        
-        /// <summary>
-        /// CalendarEnd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarEnd;
         
         /// <summary>
         /// btnGetDateRangeReport control.

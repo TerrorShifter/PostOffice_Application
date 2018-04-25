@@ -51,7 +51,7 @@ namespace PostOffice_Application
         //used for view5, date report
         bool isValidText(string text)
         {
-            
+
             if (text == "")
                 return false;
             else
@@ -68,10 +68,10 @@ namespace PostOffice_Application
                 GridView1.DataBind();
             }
         }
-        
+
         protected void btnGetDateRangeReport_Click(object sender, EventArgs e)
         {
-            
+
             if (!isValidText(beginDate.Text) || !isValidText(endDate.Text))
                 lblDateRangeError.Visible = true;
 
@@ -94,7 +94,7 @@ namespace PostOffice_Application
                         con.Open();
                         //Returns a table with the columns: Tracking Number, Package Type, Contents, Value of the contents, and the full address associated with the package
                         //based on given dates
-                        string getPackageInfoQuery = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STRING.Status_String AS [Delivery Status],PRIORITY.Priority_Type AS Priority, Package_Type.Package_Type_string AS [Package Type], SHIPMENT.Contents, SHIPMENT.Weight, SHIPMENT.Value_Of_Contents AS Value, SHIPMENT.Rate AS [Rate], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name] ,concat(SHIPMENT.Recipient_FName ,' ', SHIPMENT.Recipient_LName) AS [Recipient Name],concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID LEFT JOIN PRIORITY ON SHIPMENT.Priority_ID = Priority.Priority_ID LEFT JOIN Address ON SHIPMENT.Recipient_Address_ID = Address.Address_ID LEFT JOIN COUNTRY ON Address.Country_ID = Country.Country_ID LEFT JOIN STATES ON Address.State_ID = STATES.State_ID LEFT JOIN PACKAGE_TYPE ON PACKAGE_TYPE.Package_Type_ID=SHIPMENT.Package_Type LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID=CUSTOMER.Customer_ID WHERE NOT SHIPMENT.Delivery_Status = 5 AND NOT SHIPMENT.Delivery_Status = 6 AND DELIVERY_STATUS.Date_Shipped BETWEEN @startDate AND @endDate";
+                        string getPackageInfoQuery = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STRING.Status_String AS [Delivery Status],PRIORITY.Priority_Type AS Priority, Package_Type.Package_Type_string AS [Package Type], SHIPMENT.Contents, SHIPMENT.Weight, SHIPMENT.Value_Of_Contents AS Value, SHIPMENT.Rate AS [Rate], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name] ,concat(SHIPMENT.Recipient_FName ,' ', SHIPMENT.Recipient_LName) AS [Recipient Name],concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID LEFT JOIN PRIORITY ON SHIPMENT.Priority_ID = Priority.Priority_ID LEFT JOIN Address ON SHIPMENT.Recipient_Address_ID = Address.Address_ID LEFT JOIN COUNTRY ON Address.Country_ID = Country.Country_ID LEFT JOIN STATES ON Address.State_ID = STATES.State_ID LEFT JOIN PACKAGE_TYPE ON PACKAGE_TYPE.Package_Type_ID=SHIPMENT.Package_Type LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID=CUSTOMER.Customer_ID WHERE NOT SHIPMENT.Delivery_Status = 5 AND NOT SHIPMENT.Delivery_Status = 6 AND DELIVERY_STATUS.Date_Shipped BETWEEN @startDate AND @endDate ORDER BY DELIVERY_STATUS.Date_Shipped ASC";
                         SqlCommand cmd = new SqlCommand(getPackageInfoQuery, con);
                         cmd.Parameters.AddWithValue("@startDate", begin);
                         cmd.Parameters.AddWithValue("@endDate", end);
@@ -138,9 +138,9 @@ namespace PostOffice_Application
                     FailedShipmentsTable.DataBind();
                     con.Close();
                 }
-                
+
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
@@ -148,45 +148,35 @@ namespace PostOffice_Application
 
         protected void ddl2_ChangeSelection(object sender, EventArgs e)
         {
-                string getCustHistoryQuery = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STRING.Status_String AS [Delivery Status],PRIORITY.Priority_Type AS Priority, Package_Type.Package_Type_string AS [Package Type], SHIPMENT.Contents, SHIPMENT.Weight, SHIPMENT.Value_Of_Contents AS Value, SHIPMENT.Rate AS [Rate], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name] ,concat(SHIPMENT.Recipient_FName ,' ', SHIPMENT.Recipient_LName) AS [Recipient Name],concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID LEFT JOIN PRIORITY ON SHIPMENT.Priority_ID = Priority.Priority_ID LEFT JOIN Address ON SHIPMENT.Recipient_Address_ID = Address.Address_ID LEFT JOIN COUNTRY ON Address.Country_ID = Country.Country_ID LEFT JOIN STATES ON Address.State_ID = STATES.State_ID LEFT JOIN PACKAGE_TYPE ON PACKAGE_TYPE.Package_Type_ID=SHIPMENT.Package_Type LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID=CUSTOMER.Customer_ID WHERE Customer.Customer_ID = @cID;";
-                try
+            string getCustHistoryQuery = "SELECT SHIPMENT.Tracking_Num AS [Tracking Number], DELIVERY_STRING.Status_String AS [Delivery Status],PRIORITY.Priority_Type AS Priority, Package_Type.Package_Type_string AS [Package Type], SHIPMENT.Contents, SHIPMENT.Weight, SHIPMENT.Value_Of_Contents AS Value, SHIPMENT.Rate AS [Rate], DELIVERY_STATUS.Date_Shipped AS [Date Shipped], concat(CUSTOMER.Cust_FName, ' ', CUSTOMER.Cust_LName) AS [Sender Name] ,concat(SHIPMENT.Recipient_FName ,' ', SHIPMENT.Recipient_LName) AS [Recipient Name],concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM SHIPMENT LEFT JOIN DELIVERY_STATUS ON SHIPMENT.Delivery_Status = DELIVERY_STATUS.Delivery_Status_ID LEFT JOIN DELIVERY_STRING ON DELIVERY_STATUS.Status = DELIVERY_STRING.Status_ID LEFT JOIN PRIORITY ON SHIPMENT.Priority_ID = Priority.Priority_ID LEFT JOIN Address ON SHIPMENT.Recipient_Address_ID = Address.Address_ID LEFT JOIN COUNTRY ON Address.Country_ID = Country.Country_ID LEFT JOIN STATES ON Address.State_ID = STATES.State_ID LEFT JOIN PACKAGE_TYPE ON PACKAGE_TYPE.Package_Type_ID=SHIPMENT.Package_Type LEFT JOIN CUSTOMER ON SHIPMENT.Sender_ID=CUSTOMER.Customer_ID WHERE Customer.Customer_ID = @cID;";
+            try
+            {
+                var constr = new SqlConnectionStringBuilder
                 {
-                    var constr = new SqlConnectionStringBuilder
-                    {
-                        DataSource = "team-4-post-office-dbs.database.windows.net",
-                        InitialCatalog = "Post_Office",
-                        UserID = "luisflores",
-                        Password = "luisf%1220"
-                    };
-                    using (SqlConnection con = new SqlConnection(constr.ConnectionString))
-                    {
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand(getCustHistoryQuery, con);
-                        cmd.Parameters.AddWithValue("@cID", DropDownList2.SelectedValue);
-                        cmd.CommandType = System.Data.CommandType.Text;
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        CustHistoryTable.DataSource = dt;
-                        CustHistoryTable.DataBind();
-                        con.Close();
-                    }
-
-                }
-                catch (SqlException ex)
+                    DataSource = "team-4-post-office-dbs.database.windows.net",
+                    InitialCatalog = "Post_Office",
+                    UserID = "luisflores",
+                    Password = "luisf%1220"
+                };
+                using (SqlConnection con = new SqlConnection(constr.ConnectionString))
                 {
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(getCustHistoryQuery, con);
+                    cmd.Parameters.AddWithValue("@cID", DropDownList2.SelectedValue);
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    CustHistoryTable.DataSource = dt;
+                    CustHistoryTable.DataBind();
+                    con.Close();
                 }
-        }
 
-        protected void CalendarBegin_SelectionChanged(object sender, EventArgs e)
-        {
-            beginDate.Text = CalendarBegin.SelectedDate.ToShortDateString();
-        }
-
-        protected void CalendarEnd_SelectionChanged(object sender, EventArgs e)
-        {
-            endDate.Text = CalendarEnd.SelectedDate.ToShortDateString();
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
     }
 }
