@@ -91,7 +91,6 @@ namespace PostOffice_Application
                         //Updates a row in the shipment table that matches the given tracking number with the new given delivery status.
                         con.Open();
                         string updateShipmentQuery = "UPDATE DELIVERY_STATUS SET DELIVERY_STATUS.Status = @newStatus WHERE Delivery_Status_ID=(SELECT SHIPMENT.Delivery_Status FROM SHIPMENT WHERE SHIPMENT.Tracking_Num = @trackingNo); ";
-                        string updateDateQuery = "UPDATE DELIVERY_STATUS SET Arrival_Date = NULL FROM DELIVERY_STATUS INNER JOIN SHIPMENT ON DELIVERY_STATUS.Delivery_Status_ID = SHIPMENT.Delivery_Status WHERE (SHIPMENT.Tracking_Num = 9);";
                         SqlCommand cmd = new SqlCommand(updateShipmentQuery, con);
                         cmd.Parameters.AddWithValue("@newStatus", statusToInt(DeliveryStatusList.SelectedValue));
                         cmd.Parameters.AddWithValue("@trackingNo", txtTrackingNumber.Text.Trim());
@@ -106,13 +105,16 @@ namespace PostOffice_Application
                             cmd.Parameters.AddWithValue("@cDate", DateTime.Now);
                             cmd.ExecuteNonQuery();
                             lblInvalidInfo.ForeColor = System.Drawing.Color.Green;
-                            lblInvalidInfo.Text = "Shipment Status Updated. Since package was delivered, arrival date was added.";
+                            lblInvalidInfo.Text = "Shipment Status Updated. Since the package was delivered, arrival date was added.";
                             lblInvalidInfo.Visible = true;
                         }
                     }
                 }
                 catch (SqlException ex)
                 {
+                    lblInvalidInfo.ForeColor = System.Drawing.Color.Red;
+                    lblInvalidInfo.Text = "There was an error querying the database. Please try again.";
+                    lblInvalidInfo.Visible = true;
                     Console.WriteLine(ex.ToString());
                 }
             }
