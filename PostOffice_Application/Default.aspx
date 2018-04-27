@@ -11,7 +11,9 @@
             margin-left: auto;
             margin-right: auto;
             /*width: 20%;*/
-            margin-top: 84px;
+            margin-top: 0px;
+            height: 1357px;
+            width: 1078px;
         }
         ul {
             list-style-type: none;
@@ -57,24 +59,68 @@
             height: 196px;
             margin-top: 0px;
         }
+
+        .label {
+            font-family: 'Agency FB';
+            font-weight: bold;
+        }
+
+        .button {
+            background-color: midnightblue;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-left: 4px; 
+            margin-top: 4px; 
+            margin-bottom: 0px;
+            width: 120px;
+            height: 50px;
+            border-radius: 4px;
+            font-family: 'Bodoni MT';
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+
+        .button:active {
+          background-color:dodgerblue;
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
+        }
         
-        .auto-style5 {}
+        input[type=text] {
+            background-image: url('Images/textbox-icon.png');
+            background-repeat: no-repeat;
+            height: 50px;
+            width: 250px;
+            background-position: 10px 10px;
+            padding-left: 75px;
+            font-family: 'Bodoni MT';
+        }
 
         .auto-style7 {
             font-size: large;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Bodoni MT';
             text-align: center;
+            font-weight: bold;
         }
 
         .auto-style8 {
             font-size: x-large;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Bodoni MT';
+            font-weight: bold;
+        }
+
+        .lbl {
+            font-family: 'Bodoni MT';
+            font-weight: bold;
         }
         .auto-style9 {}
-
         </style>
 </head>
-<body style="height: 73px">
+<body style="background-image: url('Images/background_paper.png');">
     <ul>
         <li><a href="Start/Login.aspx">Login</a></li>               
     </ul>
@@ -83,25 +129,26 @@
         </div>
         <p style="height: 187px; margin-bottom: 1px;">
 
-            <img class="auto-style1" src="email-png-email-png-285.png" />
+            <img class="auto-style1" src="Images/tracking_background.png" />
 
-                <div align="center" class="auto-style3">
+                <div align="center" class="auto-style3" style="margin-top:475px">
 
-                    <asp:TextBox ID="txtBoxTracking" placeholder="Type Your Tracking Number" runat="server" CssClass="auto-style5" Height="36px" OnTextChanged="txtBoxTracking_TextChanged" Width="256px"></asp:TextBox>
+                    
+                    <input type="text" id="txtTracking" placeholder="Type Your Tracking Number" runat="server"/>
                     <!--<input id="inputBox" placeholder="Type Your Tracking Number" type="text" />!-->
-                    <asp:Button ID="btnTrack" runat="server" Height="42px" OnClick="Track_Click" style="font-size: medium; margin-left: 4px; margin-top: 4px; margin-bottom: 0px" Text="Track" Width="82px" />
+                    <asp:Button ID="btnTrack" runat="server" OnClick="Track_Click" CssClass="button" Text="Track" />
                     <br />
-                    <asp:Label ID="lblError" runat="server" ForeColor="Red" Text="Invalid Tracking Number" Visible="False"></asp:Label>
+                    <asp:Label ID="lblError" runat="server" ForeColor="Red" Text="Invalid Tracking Number" Visible="False" CssClass="label"></asp:Label>
                     <br />
                     <asp:Label ID="lblLocate" runat="server" CssClass="auto-style8" Text="Label"></asp:Label>
                     <br />
                     <br />
                     <asp:Label ID="lblShipped" runat="server" CssClass="auto-style7" Text="Label"></asp:Label>
-                    <asp:Image ID="imgCheck" runat="server" CssClass="auto-style9" Height="16px" ImageUrl="~/transparent-green-checkmark-hi.png" Width="26px" />
+                    <asp:Image ID="imgCheck" runat="server" CssClass="auto-style9" Height="16px" ImageUrl="~/Images/transparent-green-checkmark-hi.png" Width="26px" />
                     <br />
-                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Label" CssClass="lbl"></asp:Label>
                     <br />
-                    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                    <asp:Label ID="Label2" runat="server" Text="Label" CssClass="lbl"></asp:Label>
 
                 </div>
         </p> 

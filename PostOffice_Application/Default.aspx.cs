@@ -18,7 +18,7 @@ namespace PostOffice_Application
         {
             if (!IsPostBack)
             {
-                txtBoxTracking.Text = null;
+                txtTracking.Value = null;
                 lblError.Visible = false;
                 lblShipped.Visible = false;
                 Label1.Visible = false;
@@ -57,7 +57,7 @@ namespace PostOffice_Application
         protected void Track_Click(object sender, EventArgs e)
         {
             long parseInt = 1;
-            trackingNum = txtBoxTracking.Text.Trim();
+            trackingNum = txtTracking.Value.Trim();
             if (!long.TryParse(trackingNum, out parseInt) ) //if input tracking number is invalid(contains letters), show error
             {
                 lblError.Visible = true;
@@ -252,11 +252,6 @@ namespace PostOffice_Application
                     break;
 
             }
-        }
-
-        protected void txtBoxTracking_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
