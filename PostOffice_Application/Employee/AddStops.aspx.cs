@@ -17,11 +17,23 @@ namespace PostOffice_Application.Employee
 
         }
 
-        protected void btnGetStops_Click(object sender, EventArgs e)
+        protected void Lookup(object sender, EventArgs e)
         {
-            addressGrid.Visible = true;
-            stopsGrid.Visible = true;
-            stopsGrid.DataBind();
+            string url = "IDLookup.aspx?EntityTable=" + ((LinkButton)sender).CommandArgument.ToString();
+            string s = "window.open('" + url + "', 'popup_window', 'width=300,height=100,left=100,top=100,resizable=yes');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "script", s, true);
+        }
+
+        protected void ddl1_IndexChanged(object sender, EventArgs e)
+        {
+            if (DropDownList1.SelectedValue == "")
+                addressGrid.Visible = false;
+            else
+            {
+                addressGrid.Visible = true;
+                stopsGrid.Visible = true;
+                stopsGrid.DataBind();
+            }
         }
 
         protected void SqlDataSource1_Updated(object sender, SqlDataSourceStatusEventArgs e)
@@ -53,7 +65,7 @@ namespace PostOffice_Application.Employee
                         string query = "INSERT INTO CURRENT_STOP(Address_ID, Route_ID) VALUES(@address, @route)";
                         SqlCommand ins = new SqlCommand(query, connection);
                         ins.Parameters.AddWithValue("@address", rowAddress);
-                        ins.Parameters.AddWithValue("@route", txtRoute.Text.Trim());
+                        ins.Parameters.AddWithValue("@route", DropDownList1.SelectedValue);
                         ins.ExecuteNonQuery();
                         stopsGrid.DataBind();
                         display = "Stop added to delivery route.";
