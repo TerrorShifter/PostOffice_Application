@@ -112,9 +112,9 @@
     <Content Include="Customer\Customer_Home.aspx" />
     <Content Include="Employee\IDLookup.aspx" />
     <Content Include="Employee\AddStops.aspx" />
+    <Content Include="Images\envelope_background.png" />
     <Content Include="Images\messageincoming.gif" />
     <Content Include="Images\textbox-icon.png" />
-    <Content Include="Images\default_envelope.png" />
     <Content Include="Images\background_paper.png" />
     <Content Include="Images\tracking_background.png" />
     <Content Include="Start\ForgotPassword.aspx" />
