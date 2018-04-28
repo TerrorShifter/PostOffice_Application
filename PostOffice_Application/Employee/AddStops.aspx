@@ -18,6 +18,7 @@
         <asp:GridView ID="addressGrid" runat="server" DataSourceID="addressData" Visible="False" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Caption="Available Stops" DataKeyNames="Address_ID" OnSelectedIndexChanged="addressGrid_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
+                <asp:CommandField ShowSelectButton="True" />
                 <asp:BoundField HeaderText="Address_ID" ReadOnly="True" DataField="Address_ID" InsertVisible="False" SortExpression="Address_ID" />
                 <asp:BoundField HeaderText="Street_Address1" DataField="Street_Address1" SortExpression="Street_Address1" />
                 <asp:BoundField HeaderText="City" DataField="City" SortExpression="City" />
@@ -39,7 +40,7 @@
         <asp:SqlDataSource ID="addressData" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT ADDRESS.Address_ID, ADDRESS.Street_Address1, ADDRESS.City, ADDRESS.State_ID, ADDRESS.Zip, ADDRESS.Country_ID FROM ADDRESS INNER JOIN OFFICE_LOCATION ON ADDRESS.Address_ID = OFFICE_LOCATION.Office_Address_ID"></asp:SqlDataSource>
     </div>
     <div style="position:fixed; margin-left:-400px; margin-top:0px; top:25%; left:75%"">
-        <asp:GridView ID="stopsGrid" runat="server" AutoGenerateColumns="False" DataKeyNames="Stop_ID" DataSourceID="SqlDataSource1" Visible="False" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Caption="Stops on Route">
+        <asp:GridView ID="stopsGrid" runat="server" AutoGenerateColumns="False" DataKeyNames="Stop_ID" DataSourceID="SqlDataSource1" Visible="False" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Caption="Stops on Route" EmptyDataText="No stops exist on route" ShowHeaderWhenEmpty="True">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="Stop_ID" HeaderText="Stop_ID" InsertVisible="False" ReadOnly="True" SortExpression="Stop_ID" />
@@ -65,5 +66,6 @@
                 <asp:ControlParameter ControlID="DropDownList1" Name="routeid" PropertyName="SelectedValue" />
             </SelectParameters>
         </asp:SqlDataSource>
+        <asp:Label ID="lblStopExists" runat="server" Text="Stop already on route" ForeColor="Red" Visible="False"></asp:Label>
     </div>
     </asp:Content>
