@@ -14,9 +14,6 @@
             height: 60px;
             width: 128px;
         }
-        .dropdown{
-            text-align: center;
-        }
         ul {
             list-style-type: none;
             margin: 0;
@@ -72,7 +69,7 @@
             margin-left: 4px; 
             margin-top: 4px; 
             margin-bottom: 0px;
-            width: 120px;
+            width: 180px;
             height: 50px;
             border-radius: 4px;
             text-align: center;
@@ -121,11 +118,6 @@
             font-weight: bold;
             font-size: x-large;
         }
-        .dropdown {
-             font-family: 'Bodoni MT';
-            font-weight: bold;
-            font-size: x-large;
-        }
     </style>
 </head>
 <body style="background-image: url('../Images/background_paper.png');">
@@ -141,7 +133,6 @@
                     <td class="auto-style7">
                         <asp:Label ID="Label1" runat="server" Text="Username/Email:"></asp:Label></td>                    
                         <td><input type="text" id="textUsername" runat="server"/></td>
-                        <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server" ControlToValidate="textUsername" ErrorMessage="Username is a required field." ForeColor="Yellow"></asp:RequiredFieldValidator>
                 </tr>
                     <tr>
                     <td class="auto-style2">
@@ -155,14 +146,14 @@
                         <asp:Label ID="lblLoginError" runat="server" Text="Invalid login info" ForeColor="Red" Font-Names="Agency FB"></asp:Label>
                         &nbsp;</td>
                     <td class="auto-style10">
-                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" Width="160px" CssClass="button"/></td>
+                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="button"/></td>
                 </tr>
                 <tr>
                     <td class="auto-style2">
                         
                     </td>
                     <td class="auto-style4">
-                        <asp:Button ID="btnForgot" runat="server" Text="Forgot Password?" Width="160px" OnClick="btnForgot_Click" CssClass="button"/>
+                        <asp:Button ID="btnForgot" runat="server" Text="Forgot Password?" OnClick="btnForgot_Click" CssClass="button"/>
                         </td>
                 </tr>
             </table>

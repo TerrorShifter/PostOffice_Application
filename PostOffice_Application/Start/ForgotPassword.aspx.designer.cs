@@ -31,13 +31,13 @@ namespace PostOffice_Application {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txtUsername control.
+        /// textUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsername;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText textUsername;
         
         /// <summary>
         /// lblBadEmail control.

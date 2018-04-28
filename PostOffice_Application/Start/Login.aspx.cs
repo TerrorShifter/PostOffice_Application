@@ -34,7 +34,6 @@ namespace PostOffice_Application
                     checkCredentials.Parameters.AddWithValue("@Username", textUsername.Value);
                     checkCredentials.Parameters.AddWithValue("@Password", textPassword.Value);                    
                     SqlDataReader dr = checkCredentials.ExecuteReader();
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Execute Reader');", true);
                     if (dr.HasRows)
                     {
                         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('HasRows');", true);
@@ -42,7 +41,6 @@ namespace PostOffice_Application
                         {
                             count = Convert.ToInt32(dr["cnt"]);
                             usertype = Convert.ToInt32(dr["usr"]);
-                            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + usertype + "');", true);
                         }
                         dr.Close();
                     }
@@ -60,7 +58,7 @@ namespace PostOffice_Application
                         SqlCommand getcustid = new SqlCommand(getid, connection);
                         SqlDataReader idreader = getcustid.ExecuteReader();
                         Session["CustomerID"] = idreader.ToString();
-
+                        idreader.Close();
                         string destination = "Login.aspx";
                         if (usertype == 1)
                             destination = "../Customer/Customer_Home.aspx";
@@ -79,7 +77,7 @@ namespace PostOffice_Application
 
         protected void btnForgot_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(textUsername.Value))
+            if (string.IsNullOrWhiteSpace(textUsername.Value))
             {
                 string display = "Username is required";
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);

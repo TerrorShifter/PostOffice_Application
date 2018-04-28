@@ -42,7 +42,7 @@ namespace PostOffice_Application.Common
                     connection.Open();
                     string query = "UPDATE LOGIN SET Password = @Password WHERE Username = @Username";
                     SqlCommand c = new SqlCommand(query, connection);
-                    c.Parameters.AddWithValue("@Password", NewPassword.Text.Trim());
+                    c.Parameters.AddWithValue("@Password", NewPass.Value);
                     c.Parameters.AddWithValue("@Username", Session["Username"].ToString());                 
                     c.ExecuteNonQuery();
                     string display = "Password Reset Successful.";
