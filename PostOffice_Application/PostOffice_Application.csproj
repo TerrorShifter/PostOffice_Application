@@ -15,7 +15,7 @@
     <RootNamespace>PostOffice_Application</RootNamespace>
     <AssemblyName>PostOffice_Application</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -111,12 +111,16 @@
     <Content Include="Employee\EmployeeHome.aspx" />
     <Content Include="Employee\EmployeeUpdateShipment.aspx" />
     <Content Include="Customer\Customer_Home.aspx" />
-    <Content Include="email-png-email-png-285.png" />
     <Content Include="Employee\IDLookup.aspx" />
     <Content Include="Employee\AddStops.aspx" />
+    <Content Include="Images\envelope_background.png" />
+    <Content Include="Images\messageincoming.gif" />
+    <Content Include="Images\textbox-icon.png" />
+    <Content Include="Images\background_paper.png" />
+    <Content Include="Images\tracking_background.png" />
     <Content Include="Start\ForgotPassword.aspx" />
     <Content Include="Start\Login.aspx" />
-    <Content Include="transparent-green-checkmark-hi.png" />
+    <Content Include="Images\transparent-green-checkmark-hi.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

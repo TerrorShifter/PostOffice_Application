@@ -40,13 +40,13 @@ namespace PostOffice_Application.Common {
         protected global::System.Web.UI.WebControls.Label CurrentPasswordLabel;
         
         /// <summary>
-        /// CurrentPassword control.
+        /// CurrPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CurrentPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword CurrPassword;
         
         /// <summary>
         /// CurrentPasswordRequired control.
@@ -67,13 +67,13 @@ namespace PostOffice_Application.Common {
         protected global::System.Web.UI.WebControls.Label NewPasswordLabel;
         
         /// <summary>
-        /// NewPassword control.
+        /// NewPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NewPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword NewPass;
         
         /// <summary>
         /// NewPasswordRequired control.
@@ -94,13 +94,13 @@ namespace PostOffice_Application.Common {
         protected global::System.Web.UI.WebControls.Label ConfirmNewPasswordLabel;
         
         /// <summary>
-        /// ConfirmNewPassword control.
+        /// ConfirmNew control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmNewPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword ConfirmNew;
         
         /// <summary>
         /// ConfirmNewPasswordRequired control.

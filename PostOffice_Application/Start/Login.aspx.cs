@@ -15,7 +15,7 @@ namespace PostOffice_Application
         {
             lblLoginError.Visible = false;
         }
-
+        int count = 0, usertype = 0;
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -29,27 +29,41 @@ namespace PostOffice_Application
                 using (SqlConnection connection = new SqlConnection(cb.ConnectionString))
                 {
                     connection.Open();
-                    string query = "SELECT COUNT(1) FROM LOGIN L, USER_TYPE U WHERE L.Username=@Username AND L.Password=@Password AND U.User_Type_Name=@UserType AND L.User_Type_ID=U.User_Type_ID";
+                    string query = "SELECT COUNT(1) AS cnt, L.User_Type_ID as usr FROM LOGIN L WHERE L.Username=@Username AND L.Password=@Password GROUP BY L.User_Type_ID";
                     SqlCommand checkCredentials = new SqlCommand(query, connection);
-                    checkCredentials.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
-                    checkCredentials.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
-                    checkCredentials.Parameters.AddWithValue("@UserType", DropDownList1.Text.Trim());
-                    int count = Convert.ToInt32(checkCredentials.ExecuteScalar());
+                    checkCredentials.Parameters.AddWithValue("@Username", textUsername.Value);
+                    checkCredentials.Parameters.AddWithValue("@Password", textPassword.Value);                    
+                    SqlDataReader dr = checkCredentials.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('HasRows');", true);
+                        while (dr.Read())
+                        {
+                            count = Convert.ToInt32(dr["cnt"]);
+                            usertype = Convert.ToInt32(dr["usr"]);
+                        }
+                        dr.Close();
+                    }
                     if (count == 1)
                     {
-                        Session["Username"] = txtUsername.Text.Trim();
-                        Session["UserType"] = DropDownList1.Text.Trim();
+                        string user = "";
+                        if (usertype == 1)
+                            user = "Customer";
+                        else if (usertype == 2)
+                            user = "Employee";
+                        Session["Username"] = textUsername.Value;
+                        Session["UserType"] = user;
 
                         string getid = "SELECT C.Customer_ID FROM CUSTOMER C, LOGIN L WHERE C.Email = L.Username";
                         SqlCommand getcustid = new SqlCommand(getid, connection);
                         SqlDataReader idreader = getcustid.ExecuteReader();
                         Session["CustomerID"] = idreader.ToString();
-
-                        string destination = "";
-                        if (DropDownList1.Text.Trim() == "Customer")
-                            destination = "/Customer/Customer_Home.aspx";
-                        else
-                            destination = "/Employee/EmployeeHome.aspx";
+                        idreader.Close();
+                        string destination = "Login.aspx";
+                        if (usertype == 1)
+                            destination = "../Customer/Customer_Home.aspx";
+                        else if (usertype == 2)
+                            destination = "../Employee/EmployeeHome.aspx";
                         Response.Redirect(destination);
                     }
                     else { lblLoginError.Visible = true; }
@@ -63,15 +77,15 @@ namespace PostOffice_Application
 
         protected void btnForgot_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(txtUsername.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(textUsername.Value))
             {
                 string display = "Username is required";
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + display + "');", true);
-                txtUsername.Focus();
+                textUsername.Focus();
             }
             else
             {
-                Session["Username"] = txtUsername.Text.Trim();
+                Session["Username"] = textUsername.Value;
                 Response.Redirect("ForgotPassword.aspx");
             }
         }

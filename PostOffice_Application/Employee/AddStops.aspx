@@ -1,12 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Employee/EmployeeMaster.Master" AutoEventWireup="true" CodeBehind="AddStops.aspx.cs" Inherits="PostOffice_Application.Employee.WebForm1" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">    
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
+    <asp:ScriptManager EnablePartialRendering="true"
+ ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <div style="position:fixed; margin-left:-214px; margin-top:-65px; top:25%; left:50%"">
         <asp:Label ID="Label1" runat="server" Text="Route ID: "></asp:Label>
-        <asp:TextBox ID="txtRoute" runat="server"></asp:TextBox>
-        <asp:Button ID="btnGetStops" runat="server" Text="Search" OnClick="btnGetStops_Click" />
-        <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server" ControlToValidate="txtRoute" ErrorMessage="Route# is a required field." ForeColor="Yellow"></asp:RequiredFieldValidator>
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="Route_ID" DataValueField="Route_ID" OnSelectedIndexChanged="ddl1_IndexChanged" AutoPostBack="True">
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Route_ID] FROM [DELIVERY_ROUTE]"></asp:SqlDataSource>
+        <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument="DELIVERY_ROUTE" OnClick="Lookup">Lookup</asp:LinkButton>
+        <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server" ControlToValidate="DropDownList1" ErrorMessage="Route# is a required field." ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
     <div style="position:fixed; margin-left:-350px; margin-top:0px; top:25%; left:25%; right: 313px;">
         <asp:GridView ID="addressGrid" runat="server" DataSourceID="addressData" Visible="False" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Caption="Available Stops" DataKeyNames="Address_ID" OnSelectedIndexChanged="addressGrid_SelectedIndexChanged">
@@ -34,7 +40,7 @@
         <asp:SqlDataSource ID="addressData" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT ADDRESS.Address_ID, ADDRESS.Street_Address1, ADDRESS.City, ADDRESS.State_ID, ADDRESS.Zip, ADDRESS.Country_ID FROM ADDRESS INNER JOIN OFFICE_LOCATION ON ADDRESS.Address_ID = OFFICE_LOCATION.Office_Address_ID"></asp:SqlDataSource>
     </div>
     <div style="position:fixed; margin-left:-400px; margin-top:0px; top:25%; left:75%"">
-        <asp:GridView ID="stopsGrid" runat="server" AutoGenerateColumns="False" DataKeyNames="Stop_ID" DataSourceID="SqlDataSource1" Visible="False" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Caption="Stops on Route">
+        <asp:GridView ID="stopsGrid" runat="server" AutoGenerateColumns="False" DataKeyNames="Stop_ID" DataSourceID="SqlDataSource1" Visible="False" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Caption="Stops on Route" EmptyDataText="No stops exist on route" ShowHeaderWhenEmpty="True">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="Stop_ID" HeaderText="Stop_ID" InsertVisible="False" ReadOnly="True" SortExpression="Stop_ID" />
@@ -57,8 +63,9 @@
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT CURRENT_STOP.Stop_ID, ADDRESS.Street_Address1, ADDRESS.City, ADDRESS.State_ID, ADDRESS.Zip, ADDRESS.Country_ID FROM ADDRESS INNER JOIN CURRENT_STOP ON ADDRESS.Address_ID = CURRENT_STOP.Address_ID INNER JOIN DELIVERY_ROUTE ON CURRENT_STOP.Route_ID = DELIVERY_ROUTE.Route_ID WHERE DELIVERY_ROUTE.Route_ID = @routeid" OnUpdated="SqlDataSource1_Updated">
             <SelectParameters>
-                <asp:ControlParameter ControlID="txtRoute" Name="routeid" PropertyName="Text" />
+                <asp:ControlParameter ControlID="DropDownList1" Name="routeid" PropertyName="SelectedValue" />
             </SelectParameters>
         </asp:SqlDataSource>
+        <asp:Label ID="lblStopExists" runat="server" Text="Stop already on route" ForeColor="Red" Visible="False"></asp:Label>
     </div>
     </asp:Content>

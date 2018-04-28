@@ -16,11 +16,7 @@ namespace PostOffice_Application
     public partial class ForgotPassword : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
-            if(Session["Username"] == null)
-            {
-                Response.Redirect("Login.aspx");
-            }
+        {           
             lblBadEmail.Visible = false;
             
         }
@@ -58,14 +54,14 @@ namespace PostOffice_Application
         {
             //bool result = root.Equals(root2, StringComparison.OrdinalIgnoreCase);
             //bool areEqual = String.Equals(root, root2, StringComparison.OrdinalIgnoreCase);
-            int comparison = String.Compare(Session["Username"].ToString(), txtUsername.Text.Trim(), ignoreCase: true);
+            int comparison = String.Compare(Session["Username"].ToString(), textUsername.Value, ignoreCase: true);
             if (comparison == 0)
             {
                 string tempPW = saveTempPassword();
                 try
                 {
                     MailMessage mailMessage = new MailMessage();
-                    mailMessage.To.Add(txtUsername.Text.Trim());
+                    mailMessage.To.Add(textUsername.Value);
                     mailMessage.From = new MailAddress("team4post.office@gmail.com");
                     mailMessage.Subject = "Your Post Office password has been reset";
                     mailMessage.Body = "Hello, \n\nWe've assigned a new temporary password to " + Session["Username"] + " as requested. The new password is " + tempPW + " and you may use it to login and reset to a new custom password. \n\nThanks, \n\nTeam 4";
