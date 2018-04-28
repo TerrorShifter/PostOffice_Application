@@ -126,10 +126,10 @@ namespace PostOffice_Application
                 "Tracking_Num = @TrackingID AND Delivery_Status_ID = Delivery_Status";
             string arrQuery = "SELECT Arrival_Date FROM SHIPMENT, DELIVERY_STRING, DELIVERY_STATUS WHERE " +
                 "Tracking_Num = @TrackingID AND Delivery_Status_ID = Delivery_Status";
-            string locQuery = "SELECT DISTINCT Street_Address1 FROM ADDRESS AS A, SHIPMENT, PACKAGES_AT_STOP AS P, CURRENT_STOP AS C WHERE " +
-                "P.Package_ID = @TrackingID AND P.Stop_ID = C.Stop_ID AND C.Address_ID = A.Address_ID";
-            string cityQuery = "SELECT DISTINCT CONCAT(City, ', ', State_ID) FROM ADDRESS AS A, SHIPMENT, PACKAGES_AT_STOP AS P, CURRENT_STOP AS C WHERE " +
-                "P.Package_ID = @TrackingID AND P.Stop_ID = C.Stop_ID AND C.Address_ID = A.Address_ID";
+            string locQuery = "SELECT DISTINCT Street_Address1 FROM ADDRESS AS A, SHIPMENT, PACKAGES_AT_STOP AS P, CURRENT_STOP AS C, DELIVERY_ROUTE AS D WHERE " +
+                "P.Package_ID = @TrackingID AND P.Stop_ID = C.Stop_ID AND C.Address_ID = A.Address_ID AND C.Stop_ID = D.Curent_Stop";
+            string cityQuery = "SELECT DISTINCT CONCAT(City, ', ', State_ID) FROM ADDRESS AS A, SHIPMENT, PACKAGES_AT_STOP AS P, CURRENT_STOP AS C, DELIVERY_ROUTE AS D WHERE " +
+                "P.Package_ID = @TrackingID AND P.Stop_ID = C.Stop_ID AND C.Address_ID = A.Address_ID AND C.Stop_ID = D.Curent_Stop";
 
             switch (status)
             {
