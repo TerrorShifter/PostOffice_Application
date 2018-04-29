@@ -32,12 +32,12 @@
             <asp:View ID="View2" runat="server">
                 <br />
                 Country:
-                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Country_Name" DataValueField="Country_ID">
+                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Country_Name" DataValueField="Country_ID" Font-Names="Bodoni MT">
                 </asp:DropDownList>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Country_Name], [Country_ID] FROM [COUNTRY]"></asp:SqlDataSource>
                 <asp:Label ID="Label7" runat="server"></asp:Label>
                 , State:
-                <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="State_Name" DataValueField="State_ID">
+                <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="State_Name" DataValueField="State_ID" Font-Names="Bodoni MT">
                 </asp:DropDownList>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT * FROM [STATES]"></asp:SqlDataSource>
                 , City:
@@ -58,18 +58,18 @@
                 Street Address 2 (optional):
                 <asp:TextBox ID="TextBox9" runat="server" MaxLength="50"></asp:TextBox>
                 <br />
-                <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="InternalSubmit"/>
-                <asp:Button ID="Button3" CommandName="NextView" runat="server" Text="Close" />
+                <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="InternalSubmit" CssClass="button"/>
+                <asp:Button ID="Button3" CommandName="NextView" runat="server" Text="Close" CssClass="button"/>
             </asp:View>
             <asp:View ID="View1" runat="server">
-                <asp:Button ID="Button1" CommandName="PrevView" runat="server" Text="Create new" />
+                <asp:Button ID="Button1" CommandName="PrevView" runat="server" Text="Create new" CssClass="button"/>
             </asp:View>
         </asp:MultiView>
         ):
         </p>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource3" DataTextField="Address_ID" DataValueField="Address_ID">
+            <asp:DropDownList ID="DropDownList3" runat="server" DataSourceID="SqlDataSource3" DataTextField="Address_ID" DataValueField="Address_ID" Font-Names="Bodoni MT">
             </asp:DropDownList>
             <asp:Label ID="Label5" runat="server"></asp:Label>
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Address_ID] FROM [ADDRESS]"></asp:SqlDataSource>
@@ -80,14 +80,14 @@
     </asp:UpdatePanel>
     <p>
         Local Post Office ID:
-        <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataSource4" DataTextField="Office_Location_ID" DataValueField="Office_Location_ID">
+        <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataSource4" DataTextField="Office_Location_ID" DataValueField="Office_Location_ID" Font-Names="Bodoni MT">
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Office_Location_ID] FROM [OFFICE_LOCATION]"></asp:SqlDataSource>
         <asp:LinkButton ID="LinkButton2" runat="server" OnClick="Lookup" CommandArgument="OFFICE_LOCATION">Lookup</asp:LinkButton>
         <asp:Label ID="Label6" runat="server"></asp:Label>
     </p>
     <p>
-        <asp:Button ID="Button4" runat="server" OnClick="CreateSubmit" Text="Submit" />
+        <asp:Button ID="Button4" runat="server" OnClick="CreateSubmit" Text="Submit" CssClass="button"/>
         <asp:Label ID="CustomerCreated" runat="server" style="font-weight: 700" Text="Customer Successfully Created" Visible="False"></asp:Label>
     </p>
 </asp:Content>
