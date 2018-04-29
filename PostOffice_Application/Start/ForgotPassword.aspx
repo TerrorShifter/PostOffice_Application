@@ -23,6 +23,7 @@
             padding: 0;
             overflow: hidden;
             background-color: #333;
+            font-family: 'Bodoni MT';
         }
 
         li {

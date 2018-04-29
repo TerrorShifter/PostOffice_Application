@@ -51,7 +51,11 @@
             padding: 20px;
         }
 
-
+        h1 {
+            font-family: 'Bodoni MT';
+            border: 5px solid black;
+            background-color: lightsteelblue;
+        }
         /*This is to change the entire page background color*/
         body {
             background-color: #f3f3f3;
@@ -69,6 +73,7 @@
             padding: 0;
             overflow: hidden;
             background-color: #333;
+            font-family: 'Bodoni MT';
         }
 
         li {
@@ -94,6 +99,7 @@
         .btn{
             background-color: #333;
             color: white;
+            font-family: 'Bodoni MT';
         }
         .btn:hover{
             background-color: skyblue;
@@ -104,16 +110,13 @@
 
     /*Header style for double outline*/
     h2 {border-style: double;}
-        .auto-style2 {
-            background-color: #F3F3F3;
-        }
         .auto-style3 {
-            color: #000000
+            color: #000000           
         }
         </style>
 
 </head>
-<body>
+<body style="background-image: url('../Images/background_paper.png');">
     <form id="form1" runat="server">
         <ul>
             <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
@@ -134,7 +137,7 @@
             &nbsp;</p>
 
 
-        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Tracking_Num" DataValueField="Tracking_Num" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Visible="False" ondatabound="DropDownList1_DataBound" >
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Tracking_Num" DataValueField="Tracking_Num" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Visible="False" ondatabound="DropDownList1_DataBound" font-names="Bodoni MT">
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Tracking_Num] FROM [SHIPMENT], [CUSTOMER] WHERE [Sender_ID] = [Customer_ID] AND ([Email] = @Email)">
             <SelectParameters>
@@ -144,7 +147,7 @@
          <!--Sidenote to myself Where session = Username -->
         <asp:MultiView ID="MultiView1" runat="server">
             <asp:View ID="View1" runat="server">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource2" Width="696px" style="height: 0px; z-index: 1; left: 7px; top: 268px; position: absolute; width: 696px; background-color: #F3F3F3;" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource2" Width="696px" style="height: 0px; z-index: 1; left: 7px; top: 268px; position: absolute; width: 696px; background-color: #F3F3F3;" CellPadding="4" ForeColor="#333333" GridLines="None" font-names="Bodoni MT">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking_Num" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />

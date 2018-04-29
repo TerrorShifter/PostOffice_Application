@@ -58,6 +58,7 @@
             padding: 0;
             overflow: hidden;
             background-color: #333;
+            font-family: 'Bodoni MT';
         }
 
         li {
@@ -83,19 +84,24 @@
         .btn{
             background-color: #333;
             color: white;
+            font-family: 'Bodoni MT';
         }
         .btn:hover{
             background-color: skyblue;
             color: #111;
             font-weight: bold;
         }
-
+        h1 {
+            border: 5px solid black;
+            background-color: lightsteelblue;
+            font-family: 'Bodoni MT';
+        }
 
     /*Header style for double outline*/
     h2 {border-style: double;}
         </style>
 </head>
-<body>
+<body style="background-image: url('../Images/background_paper.png');">
     <form id="form1" runat="server">
         <ul>
             <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
@@ -115,7 +121,7 @@
                     <asp:SessionParameter Name="Email" SessionField="Username" />
                 </SelectParameters>
             </asp:SqlDataSource>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" Font-Names="Bodoni MT">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
                     <asp:BoundField DataField="Tracking_Num" HeaderText="Tracking #" InsertVisible="False" ReadOnly="True" SortExpression="Tracking_Num" />

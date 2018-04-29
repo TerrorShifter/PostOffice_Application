@@ -12,16 +12,13 @@
 
 
         /*This is to change the entire page background color*/
-        body {
-            background-color: #f3f3f3;
-        }
-
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
             background-color: #333;
+            font-family: 'Bodoni MT';
         }
 
         li {
@@ -44,6 +41,7 @@
         .btn{
             background-color: #333;
             color: white;
+            font-family: 'Bodoni MT';
         }
         .btn:hover{
             background-color: skyblue;
@@ -51,9 +49,52 @@
             font-weight: bold;
         }
 
+        .Titlelbl {
+            font-family: 'Bodoni MT';
+            font-weight:800;
+            font-size:x-large;
+            text-decoration: underline;
+        }
+        .lbl {
+            font-family: 'Bodoni MT';
+            font-weight: bold;
+            font-size: medium;
+        }
+        .txt {
+            font-family: 'Bodoni MT';
+        }
+        .button {
+            background-color: midnightblue;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-left: 4px; 
+            margin-top: 4px; 
+            margin-bottom: 0px;
+            width: 120px;
+            height: 50px;
+            border-radius: 4px;
+            font-family: 'Bodoni MT';
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
 
-
-
+        .button:active {
+          background-color:dodgerblue;
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
+        }
+        .home{
+            float: left;
+        }
+        h1 {
+            font-family: 'Bodoni MT';
+            border: 5px solid black;
+            background-color: lightsteelblue;
+        }
 
 </style><!-- End of Style Block -->
 
@@ -63,7 +104,7 @@
 
 
 </head>
-<body>
+<body style="background-image: url('../Images/background_paper.png');">
     <form id="form1" runat="server">
 
          <ul>
@@ -77,36 +118,36 @@
         <div>
         </div>
          <p>
-             <asp:Label ID="Text" runat="server" style="font-weight: 700; font-size: large; text-decoration: underline" Text="Customer Account Information:"></asp:Label>
+             <h1 <span class="auto-style3"> <span class="">&nbsp; Customer Account Information:&nbsp;&nbsp; </span> </span></h1>
          </p>
          <p>
              &nbsp;</p>
          <p>
-             <asp:Label ID="Email_Label" runat="server" Text="Email:"></asp:Label>
+             <asp:Label ID="Email_Label" runat="server" Text="Email:" CssClass="lbl"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <asp:TextBox ID="Email_Textbox" runat="server"></asp:TextBox>
+             <asp:TextBox ID="Email_Textbox" runat="server" CssClass="txt"></asp:TextBox>
          </p>
          <p>
-             <asp:Label ID="FName_Label" runat="server" Text="First Name:"></asp:Label>
+             <asp:Label ID="FName_Label" runat="server" Text="First Name:" CssClass="lbl"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <asp:TextBox ID="FName_Textbox" runat="server"></asp:TextBox>
+             <asp:TextBox ID="FName_Textbox" runat="server" CssClass="txt"></asp:TextBox>
          </p>
 &nbsp;&nbsp;&nbsp;
          <p>
-             <asp:Label ID="LName_Label" runat="server" Text="Last Name:"></asp:Label>
+             <asp:Label ID="LName_Label" runat="server" Text="Last Name:" CssClass="lbl"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <asp:TextBox ID="LName_TextBox" runat="server"></asp:TextBox>
+             <asp:TextBox ID="LName_TextBox" runat="server" CssClass="txt"></asp:TextBox>
          </p>
 &nbsp;&nbsp;&nbsp;
          <p>
-             <asp:Label ID="Phone_Num_Label" runat="server" Text="Phone Number:"></asp:Label>
+             <asp:Label ID="Phone_Num_Label" runat="server" Text="Phone Number:" CssClass="lbl"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             <asp:TextBox ID="Phone_Num_Textbox" runat="server"></asp:TextBox>
+             <asp:TextBox ID="Phone_Num_Textbox" runat="server" CssClass="txt"></asp:TextBox>
          </p>
          <p>
              &nbsp;</p>
          <p style="margin-left: 120px">
-             <asp:Button ID="Update_Submit" runat="server" OnClick="UpdateInfo_Click" Text="Update Information" />
+             <asp:Button ID="Update_Submit" runat="server" OnClick="UpdateInfo_Click" Text="Update Information" CssClass="button" />
          </p>
     </form>
 </body>
