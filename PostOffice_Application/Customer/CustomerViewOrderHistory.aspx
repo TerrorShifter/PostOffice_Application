@@ -114,11 +114,55 @@
         </div>
         <h1 <span class="auto-style3"> <span class="auto-style2">&nbsp; View Shipment History&nbsp;&nbsp; </span> </span></h1>
         <p style="margin-left: 40px">
+            &nbsp;<p style="margin-left: 40px">
+            <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:ListItem>Name</asp:ListItem>
+                <asp:ListItem>Content</asp:ListItem>
+                <asp:ListItem>Package Type</asp:ListItem>
+                <asp:ListItem>Priority</asp:ListItem>
+                <asp:ListItem>Status</asp:ListItem>
+            </asp:DropDownList>
+            <asp:TextBox ID="Search_Text" runat="server"></asp:TextBox>
+            <asp:Button ID="Search_Button" runat="server" Text="Search" OnClick="Search_Button_Click" />
+        &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Clear_Button" runat="server" OnClick="Button1_Click" Text="Clear Filter" />
+        <p style="margin-left: 40px">
+            &nbsp;<p style="margin-left: 40px">
   <!--      <h2>View Shipment History</h2> -->
         <p>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT S.Weight, S.Recipient_Phone, S.Rate, S.Contents, S.Value_of_Contents, S.Recipient_FName, S.Recipient_LName, S.Tracking_Num, PA.Package_Type_string, FR.Fragility_Level, PR.Priority_Type, DS.Status_String FROM SHIPMENT AS S INNER JOIN DELIVERY_STATUS AS D ON S.Delivery_Status = D.Delivery_Status_ID INNER JOIN DELIVERY_STRING AS DS ON D.Status = DS.Status_ID INNER JOIN PRIORITY AS PR ON S.Priority_ID = PR.Priority_ID INNER JOIN FRAGILITY AS FR ON S.Fragile = FR.Fragility_ID INNER JOIN PACKAGE_TYPE AS PA ON S.Package_Type = PA.Package_Type_ID INNER JOIN CUSTOMER AS C ON S.Sender_ID = C.Customer_ID WHERE (C.Email = @Email)">
                 <SelectParameters>
                     <asp:SessionParameter Name="Email" SessionField="Username" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT S.Weight, S.Recipient_Phone, S.Rate, S.Contents, S.Value_of_Contents, S.Recipient_FName, S.Recipient_LName, S.Tracking_Num, PA.Package_Type_string, FR.Fragility_Level, PR.Priority_Type, DS.Status_String FROM SHIPMENT AS S INNER JOIN DELIVERY_STATUS AS D ON S.Delivery_Status = D.Delivery_Status_ID INNER JOIN DELIVERY_STRING AS DS ON D.Status = DS.Status_ID INNER JOIN PRIORITY AS PR ON S.Priority_ID = PR.Priority_ID INNER JOIN FRAGILITY AS FR ON S.Fragile = FR.Fragility_ID INNER JOIN PACKAGE_TYPE AS PA ON S.Package_Type = PA.Package_Type_ID INNER JOIN CUSTOMER AS C ON S.Sender_ID = C.Customer_ID WHERE (C.Email = @Email) AND (S.Recipient_FName LIKE '%' + @FName + '%') OR (C.Email = @Email) AND (S.Recipient_LName LIKE '%' + @FName + '%')">
+                <SelectParameters>
+                    <asp:SessionParameter Name="Email" SessionField="Username" />
+                    <asp:ControlParameter ControlID="Search_Text" Name="FName" PropertyName="Text" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT S.Weight, S.Recipient_Phone, S.Rate, S.Contents, S.Value_of_Contents, S.Recipient_FName, S.Recipient_LName, S.Tracking_Num, PA.Package_Type_string, FR.Fragility_Level, PR.Priority_Type, DS.Status_String FROM SHIPMENT AS S INNER JOIN DELIVERY_STATUS AS D ON S.Delivery_Status = D.Delivery_Status_ID INNER JOIN DELIVERY_STRING AS DS ON D.Status = DS.Status_ID INNER JOIN PRIORITY AS PR ON S.Priority_ID = PR.Priority_ID INNER JOIN FRAGILITY AS FR ON S.Fragile = FR.Fragility_ID INNER JOIN PACKAGE_TYPE AS PA ON S.Package_Type = PA.Package_Type_ID INNER JOIN CUSTOMER AS C ON S.Sender_ID = C.Customer_ID WHERE (C.Email = @Email) AND (S.Contents LIKE '%' + @FName + '%')">
+                <SelectParameters>
+                    <asp:SessionParameter Name="Email" SessionField="Username" />
+                    <asp:ControlParameter ControlID="Search_Text" Name="FName" PropertyName="Text" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT S.Weight, S.Recipient_Phone, S.Rate, S.Contents, S.Value_of_Contents, S.Recipient_FName, S.Recipient_LName, S.Tracking_Num, PA.Package_Type_string, FR.Fragility_Level, PR.Priority_Type, DS.Status_String FROM SHIPMENT AS S INNER JOIN DELIVERY_STATUS AS D ON S.Delivery_Status = D.Delivery_Status_ID INNER JOIN DELIVERY_STRING AS DS ON D.Status = DS.Status_ID INNER JOIN PRIORITY AS PR ON S.Priority_ID = PR.Priority_ID INNER JOIN FRAGILITY AS FR ON S.Fragile = FR.Fragility_ID INNER JOIN PACKAGE_TYPE AS PA ON S.Package_Type = PA.Package_Type_ID INNER JOIN CUSTOMER AS C ON S.Sender_ID = C.Customer_ID WHERE (C.Email = @Email) AND (PA.Package_Type_string LIKE '%' + @FName + '%')">
+                <SelectParameters>
+                    <asp:SessionParameter Name="Email" SessionField="Username" />
+                    <asp:ControlParameter ControlID="Search_Text" Name="FName" PropertyName="Text" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT S.Weight, S.Recipient_Phone, S.Rate, S.Contents, S.Value_of_Contents, S.Recipient_FName, S.Recipient_LName, S.Tracking_Num, PA.Package_Type_string, FR.Fragility_Level, PR.Priority_Type, DS.Status_String FROM SHIPMENT AS S INNER JOIN DELIVERY_STATUS AS D ON S.Delivery_Status = D.Delivery_Status_ID INNER JOIN DELIVERY_STRING AS DS ON D.Status = DS.Status_ID INNER JOIN PRIORITY AS PR ON S.Priority_ID = PR.Priority_ID INNER JOIN FRAGILITY AS FR ON S.Fragile = FR.Fragility_ID INNER JOIN PACKAGE_TYPE AS PA ON S.Package_Type = PA.Package_Type_ID INNER JOIN CUSTOMER AS C ON S.Sender_ID = C.Customer_ID WHERE (C.Email = @Email) AND (PR.Priority_Type LIKE '%' + @FName + '%')">
+                <SelectParameters>
+                    <asp:SessionParameter Name="Email" SessionField="Username" />
+                    <asp:ControlParameter ControlID="Search_Text" Name="FName" PropertyName="Text" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource7" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT S.Weight, S.Recipient_Phone, S.Rate, S.Contents, S.Value_of_Contents, S.Recipient_FName, S.Recipient_LName, S.Tracking_Num, PA.Package_Type_string, FR.Fragility_Level, PR.Priority_Type, DS.Status_String FROM SHIPMENT AS S INNER JOIN DELIVERY_STATUS AS D ON S.Delivery_Status = D.Delivery_Status_ID INNER JOIN DELIVERY_STRING AS DS ON D.Status = DS.Status_ID INNER JOIN PRIORITY AS PR ON S.Priority_ID = PR.Priority_ID INNER JOIN FRAGILITY AS FR ON S.Fragile = FR.Fragility_ID INNER JOIN PACKAGE_TYPE AS PA ON S.Package_Type = PA.Package_Type_ID INNER JOIN CUSTOMER AS C ON S.Sender_ID = C.Customer_ID WHERE (C.Email = @Email) AND (DS.Status_String LIKE '%' + @FName + '%')">
+                <SelectParameters>
+                    <asp:SessionParameter Name="Email" SessionField="Username" />
+                    <asp:ControlParameter ControlID="Search_Text" Name="FName" PropertyName="Text" />
                 </SelectParameters>
             </asp:SqlDataSource>
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Tracking_Num" DataSourceID="SqlDataSource1" CellPadding="4" ForeColor="#333333" GridLines="None" Font-Names="Bodoni MT">
