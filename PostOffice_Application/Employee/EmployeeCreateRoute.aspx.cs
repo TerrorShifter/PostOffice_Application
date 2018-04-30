@@ -40,7 +40,7 @@ namespace PostOffice_Application
         protected void Lookup(object sender, EventArgs e)
         {
             string url = "IDLookup.aspx?EntityTable=" + ((LinkButton)sender).CommandArgument.ToString();
-            string s = "window.open('" + url + "', 'popup_window', 'width=300,height=100,left=100,top=100,resizable=yes');";
+            string s = "window.open('" + url + "', '_blank', 'width=300,height=100,left=100,top=100,resizable=yes');";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "script", s, true);
         }
 

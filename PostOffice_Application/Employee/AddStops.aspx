@@ -12,6 +12,10 @@
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Route_ID] FROM [DELIVERY_ROUTE]"></asp:SqlDataSource>
         <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument="DELIVERY_ROUTE" OnClick="Lookup">Lookup</asp:LinkButton>
+        &nbsp;|
+        <asp:LinkButton ID="LinkButton2" runat="server" CommandArgument="EMPLOYEE">Employee Lookup</asp:LinkButton>
+&nbsp;|
+        <asp:LinkButton ID="LinkButton3" runat="server" CommandArgument="ADDRESS">Address Lookup</asp:LinkButton>
         <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server" ControlToValidate="DropDownList1" ErrorMessage="Route# is a required field." ForeColor="Red"></asp:RequiredFieldValidator>
     </div>
     <div style="position:fixed; margin-left:-350px; margin-top:0px; top:25%; left:25%; right: 313px;">
