@@ -15,7 +15,7 @@
     <RootNamespace>PostOffice_Application</RootNamespace>
     <AssemblyName>PostOffice_Application</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -109,6 +109,7 @@
   <ItemGroup>
     <Content Include="Employee\EmployeeCreatePackage.aspx" />
     <Content Include="Employee\EmployeeHome.aspx" />
+    <Content Include="Employee\EmployeeUpdateRoute.aspx" />
     <Content Include="Employee\EmployeeUpdateShipment.aspx" />
     <Content Include="Customer\Customer_Home.aspx" />
     <Content Include="Employee\IDLookup.aspx" />
@@ -190,6 +191,13 @@
     </Compile>
     <Compile Include="Employee\EmployeeHome.aspx.designer.cs">
       <DependentUpon>EmployeeHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeUpdateRoute.aspx.cs">
+      <DependentUpon>EmployeeUpdateRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeUpdateRoute.aspx.designer.cs">
+      <DependentUpon>EmployeeUpdateRoute.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employee\EmployeeUpdateShipment.aspx.cs">
       <DependentUpon>EmployeeUpdateShipment.aspx</DependentUpon>
