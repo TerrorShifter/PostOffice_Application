@@ -75,7 +75,7 @@
             margin-left: 4px; 
             margin-top: 4px; 
             margin-bottom: 0px;
-            width: 120px;
+            width: 215px;
             height: 50px;
             border-radius: 4px;
             font-family: 'Bodoni MT';
@@ -110,7 +110,6 @@
          <ul>
             <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
             <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
-          <li><a href="Customer_PackageChecking.aspx">Check Package</a></li>
             <li class="home"><a href="Customer_Home.aspx">Home</a></li>
         </ul>
 

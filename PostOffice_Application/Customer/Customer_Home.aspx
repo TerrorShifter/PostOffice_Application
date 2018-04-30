@@ -81,8 +81,7 @@
     <form id="form1" runat="server">
         <ul>
             <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
-            <li><a href="../Common/Password_Reset.aspx">Reset Password</a></li>
-          <li><a href="Customer_Account.aspx">Account</a></li>-
+            <li><a href="Customer_Account.aspx">Account</a></li>
             <li><a href="CustomerViewOrderHistory.aspx">View Shipment History</a></li>
             <asp:Label ID="USERNAME" runat="server" Text=" Label" Font-Names="Bodoni MT"></asp:Label>
         </ul>
