@@ -68,7 +68,7 @@
         <tr>
             <td class="auto-style4" colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="Label3" runat="server" Font-Size="Large" ForeColor="Red" Text="Error changing current stop. Please try a different Address." Visible="False"></asp:Label>
-    <asp:GridView ID="stopsGrid" runat="server" Caption="Choose a new stop for the delivery route:" CaptionAlign="Top" CellPadding="7" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" AllowPaging="True" OnSelectedIndexChanged="stopsGrid_SelectedIndexChanged">
+    <asp:GridView ID="stopsGrid" runat="server" Caption="Choose a new stop for the delivery route:" CaptionAlign="Top" CellPadding="7" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" OnSelectedIndexChanged="stopsGrid_SelectedIndexChanged">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:CommandField ShowSelectButton="True" />
