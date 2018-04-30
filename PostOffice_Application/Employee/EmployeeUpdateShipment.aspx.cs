@@ -23,7 +23,7 @@ namespace PostOffice_Application
                 DeliveryStatusList.AppendDataBoundItems = true;
             }
         }
-
+       static int routeID = 0;
         //Used on dropdown list and tracking number field
         bool isValidText(string text)
         {
@@ -40,8 +40,30 @@ namespace PostOffice_Application
             ScriptManager.RegisterStartupScript(this, this.GetType(), "script", s, true);
         }
 
+        void updateCurrentStop(SqlCommand cmd)
+        {
+            try
+            {
+                cmd.CommandText = "SELECT DELIVERY_ROUTE.Route_ID FROM DELIVERY_ROUTE LEFT JOIN CURRENT_STOP ON CURRENT_STOP.Route_ID = DELIVERY_ROUTE.Route_ID LEFT JOIN PACKAGES_AT_STOP ON PACKAGES_AT_STOP.Stop_ID = CURRENT_STOP.Stop_ID LEFT JOIN SHIPMENT ON SHIPMENT.Tracking_Num = PACKAGES_AT_STOP.Package_ID WHERE Tracking_Num = @trackingNo; ";
+                routeID = (int)cmd.ExecuteScalar();
+                cmd.CommandText = "SELECT DISTINCT CURRENT_STOP.Stop_ID AS [Stop ID], concat(Address.Street_Address1, ' ', Address.Street_Address2, ' ', Address.Apartment_Num, ' ', Address.City, ', ', STATES.State_Name, ' ', Address.Zip, ', ', COUNTRY.Country_Name) AS Address FROM CURRENT_STOP LEFT JOIN PACKAGES_AT_STOP ON CURRENT_STOP.Stop_ID = PACKAGES_AT_STOP.Stop_ID LEFT JOIN SHIPMENT ON SHIPMENT.Tracking_Num = PACKAGES_AT_STOP.Package_ID LEFT JOIN DELIVERY_ROUTE ON DELIVERY_ROUTE.Route_ID = CURRENT_STOP.Route_ID LEFT JOIN ADDRESS ON ADDRESS.Address_ID = CURRENT_STOP.Address_ID LEFT JOIN COUNTRY ON COUNTRY.Country_ID = ADDRESS.Country_ID LEFT JOIN STATES ON STATES.State_ID = ADDRESS.State_ID WHERE DELIVERY_ROUTE.Route_ID = @routeID; ";
+                cmd.Parameters.AddWithValue("@routeID", routeID);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                stopsGrid.DataSource = dt;
+                stopsGrid.DataBind();
+                stopsGrid.Visible = true;
+            }
+            catch(SqlException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            
             Label1.Text = "";
             Label2.Text = "";
             bool readyToSubmit = true;
@@ -85,7 +107,8 @@ namespace PostOffice_Application
                             cmd.Parameters.AddWithValue("@cDate", DateTime.Now);
                             cmd.ExecuteNonQuery();
                             lblSuccess.ForeColor = System.Drawing.Color.Green;
-                            lblSuccess.Text = "Shipment Status Updated. Since the package was delivered, arrival date was added.";
+                            lblSuccess.Text = "Shipment Status Updated. Since the package was delivered, arrival date was added, and delivery route was updated.";
+                            updateCurrentStop(cmd);
                         }
                         else if (DeliveryStatusList.SelectedValue == "1")
                         {
@@ -107,6 +130,7 @@ namespace PostOffice_Application
                         da.Fill(dt);
                         updateGrid.DataSource = dt;
                         updateGrid.DataBind();
+                       
                         con.Close();
                     }
                 }
@@ -120,6 +144,51 @@ namespace PostOffice_Application
             }
 
         }
+
+        protected void stopsGrid_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow row = stopsGrid.SelectedRow;
+            int stopID;
+            Label3.Visible = false;
+            if(int.TryParse(row.Cells[1].Text, out stopID))
+            {
+                try
+                {
+                    var constr = new SqlConnectionStringBuilder()
+                    {
+                        DataSource = "team-4-post-office-dbs.database.windows.net",
+                        InitialCatalog = "Post_Office",
+                        UserID = "luisflores",
+                        Password = "luisf%1220"
+
+                    };
+                    using (SqlConnection con = new SqlConnection(constr.ConnectionString))
+                    {
+                        con.Open();
+                        string updateRouteCurrentStopQuery = "UPDATE DELIVERY_ROUTE SET Curent_Stop = @stopID WHERE Route_ID = @routeID; ";
+                        SqlCommand cmd = new SqlCommand(updateRouteCurrentStopQuery, con);
+                        cmd.Parameters.AddWithValue("@stopID", stopID);
+                        cmd.Parameters.AddWithValue("@routeID", routeID);
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = "SELECT * FROM DELIVERY_ROUTE WHERE Route_ID = @routeID";
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        updateRouteGrid.DataSource = dt;
+                        updateRouteGrid.DataBind();
+
+                    }
+                }
+
+                catch (SqlException ex)
+                {
+                    Label3.Visible = true;
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                }
+            }
+        }
+        
     }
 
 }

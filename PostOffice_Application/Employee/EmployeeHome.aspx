@@ -11,7 +11,7 @@
         Generate a report</h2>
     <p>
         Report type: 
-        <asp:DropDownList ID="ddl1" OnSelectedIndexChanged="ddl1_changeView" AutoPostBack="true" runat="server">
+        <asp:DropDownList ID="ddl1" OnSelectedIndexChanged="ddl1_changeView" AutoPostBack="true" runat="server" Font-Names="Bodoni MT">
             <asp:ListItem Text="" Value="View1"></asp:ListItem>
             <asp:ListItem Text="Packages on shipment" Value="View2"></asp:ListItem>
             <asp:ListItem Text="Customer order history" Value="View3"></asp:ListItem>
@@ -24,7 +24,7 @@
             <asp:View ID="View1" runat="server">
             </asp:View>
             <asp:View ID="View2" runat="server">
-                Enter route ID:<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="Route_ID" DataValueField="Route_ID" OnSelectedIndexChanged="DropDownList1_ChangeSelection" AutoPostBack="True">
+                Enter route ID:<asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="Route_ID" DataValueField="Route_ID" OnSelectedIndexChanged="DropDownList1_ChangeSelection" AutoPostBack="True" Font-Names="Bodoni MT">
                 </asp:DropDownList>
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Route_ID] FROM [DELIVERY_ROUTE]"></asp:SqlDataSource>
                 <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument="DELIVERY_ROUTE" OnClick="Lookup">Lookup</asp:LinkButton> | 
@@ -180,14 +180,14 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To:&nbsp;<asp:TextBox ID="View3To" runat="server" TextMode="Date"></asp:TextBox>
                 <asp:Label ID="v3tLabel" runat="server"></asp:Label>
                 <br />
-                Enter Customer ID:<asp:DropDownList ID="ddlCustID" runat="server" DataSourceID="SqlDataSource3" DataTextField="Customer_ID" DataValueField="Customer_ID">
+                Enter Customer ID:<asp:DropDownList ID="ddlCustID" runat="server" DataSourceID="SqlDataSource3" DataTextField="Customer_ID" DataValueField="Customer_ID" Font-Names="Bodoni MT">
                 </asp:DropDownList>
                 <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Customer_ID] FROM [CUSTOMER]"></asp:SqlDataSource>
                 <asp:LinkButton ID="lbtnCustomerLookup" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
                 &nbsp;
                 <asp:Label ID="lblCustID" runat="server"></asp:Label>
                 <br />
-                <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Fetch Package History" />
+                <asp:Button ID="btnCustHistory" runat="server" OnClick="btnCustHistory_Click" Text="Fetch Package History" CssClass="button" Width="300"/>
                 <asp:GridView ID="CustHistoryTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No packages found!" Visible="False">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
@@ -208,7 +208,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To:<asp:TextBox ID="View4To" runat="server" TextMode="Date"></asp:TextBox>
                 <asp:Label ID="v4tLabel" runat="server" Visible="False"></asp:Label>
                 <br />
-                <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Packages" />
+                <asp:Button ID="btnFailedPackages" runat="server" OnClick="btnFailedPackages_Click" Text="Fetch Packages" CssClass="button" Width="160"/>
                 <asp:GridView ID="FailedShipmentsTable" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No packages found!" Visible="False">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
@@ -230,7 +230,7 @@
                 <asp:Label ID="v5tLabel" runat="server" align="right"></asp:Label>
                    <br />
                    <br />
-                   <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" />
+                   <asp:Button ID="btnGetDateRangeReport" runat="server" OnClick="btnGetDateRangeReport_Click" Text="Fetch Packages" CssClass="button" Width="160"/>
                 <asp:GridView ID="DateRangeTable" runat="server" align="middle" CellPadding="4" ForeColor="#333333" GridLines="None" EmptyDataText="No packages found!">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />

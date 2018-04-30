@@ -14,6 +14,7 @@
             padding: 0;
             overflow: hidden;
             background-color: #333;
+            font-family: 'Bodoni MT';
         }
 
         li {
@@ -39,15 +40,44 @@
         .btn{
             background-color: #333;
             color: white;
+            font-family: 'Bodoni MT';
         }
         .btn:hover{
             background-color: skyblue;
             color: #111;
             font-weight: bold;
         }
+        .button {
+            background-color: midnightblue;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            width: 130px;
+            height: 35px;
+            border-radius: 4px;
+            margin-left: 4px; 
+            margin-top: 4px;
+            font-family: 'Bodoni MT';
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        h1 {
+            font-family: 'Bodoni MT';
+            border: 5px solid black;
+            background-color: lightsteelblue;
+        }
+        h2 {
+            font-family: 'Bodoni MT';
+            border: 5px solid black;
+            background-color: lightsteelblue;
+        }
+        .textbox {
+            font-family: 'Bodoni MT';
+        }
     </style>
 </head>
-<body>
+<body style="background-image: url('../Images/background_paper.png'); font-family: 'Bodoni MT'">
     <form id="form1" runat="server">
     <ul>
         <li><asp:Button ID="btnLogoff" runat="server" Text="Logoff" OnClick="btnLogoff_Click" CssClass="btn" Height="55px"/></li>
