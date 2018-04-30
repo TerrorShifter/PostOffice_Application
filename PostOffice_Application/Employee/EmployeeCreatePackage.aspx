@@ -160,7 +160,7 @@
         ):
         <asp:DropDownList ID="DropDownList6" runat="server" DataSourceID="SqlDataSource6" DataTextField="Customer_ID" DataValueField="Customer_ID">
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Customer_ID] FROM [CUSTOMER]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:Post_OfficeConnectionString %>" SelectCommand="SELECT [Customer_ID] FROM [CUSTOMER] ORDER BY [Customer_ID]"></asp:SqlDataSource>
         <asp:LinkButton ID="LinkButton4" runat="server" CommandArgument="CUSTOMER" OnClick="Lookup">Lookup</asp:LinkButton>
         <asp:Label ID="Label21" runat="server"></asp:Label>
     </p>
